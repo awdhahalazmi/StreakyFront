@@ -7,6 +7,16 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9B4C8FBB2BFB756B00433448 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 9B4C8FBA2BFB756B00433448 /* Kingfisher */; };
+		9B4C8FBE2BFB757C00433448 /* Eureka in Frameworks */ = {isa = PBXBuildFile; productRef = 9B4C8FBD2BFB757C00433448 /* Eureka */; };
+		9B4C8FC12BFB759D00433448 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 9B4C8FC02BFB759D00433448 /* Alamofire */; };
+		9B4C8FC32BFB759D00433448 /* AlamofireDynamic in Frameworks */ = {isa = PBXBuildFile; productRef = 9B4C8FC22BFB759D00433448 /* AlamofireDynamic */; };
+		9B4C8FC62BFB75DA00433448 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 9B4C8FC52BFB75DA00433448 /* SnapKit */; };
+		9B4C8FC82BFB75DA00433448 /* SnapKit-Dynamic in Frameworks */ = {isa = PBXBuildFile; productRef = 9B4C8FC72BFB75DA00433448 /* SnapKit-Dynamic */; };
+		9B4C8FCA2BFB78DA00433448 /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B4C8FC92BFB78DA00433448 /* OnboardingViewController.swift */; };
+		9B4C8FCD2BFB791600433448 /* Onboarding2ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B4C8FCC2BFB791600433448 /* Onboarding2ViewController.swift */; };
+		9B4C8FCF2BFB7AA800433448 /* WelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B4C8FCE2BFB7AA800433448 /* WelcomeViewController.swift */; };
+		9B4C8FD12BFBB56600433448 /* Background.png in Resources */ = {isa = PBXBuildFile; fileRef = 9B4C8FD02BFBB56600433448 /* Background.png */; };
 		B1505CF02BFB5C3700D42364 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1505CEF2BFB5C3700D42364 /* AppDelegate.swift */; };
 		B1505CF22BFB5C3700D42364 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1505CF12BFB5C3700D42364 /* SceneDelegate.swift */; };
 		B1505CF42BFB5C3700D42364 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1505CF32BFB5C3700D42364 /* ViewController.swift */; };
@@ -16,6 +26,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		9B4C8FC92BFB78DA00433448 /* OnboardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewController.swift; sourceTree = "<group>"; };
+		9B4C8FCC2BFB791600433448 /* Onboarding2ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Onboarding2ViewController.swift; sourceTree = "<group>"; };
+		9B4C8FCE2BFB7AA800433448 /* WelcomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeViewController.swift; sourceTree = "<group>"; };
+		9B4C8FD02BFBB56600433448 /* Background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Background.png; path = ../../../Background.png; sourceTree = "<group>"; };
 		B1505CEC2BFB5C3700D42364 /* Streaky.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Streaky.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B1505CEF2BFB5C3700D42364 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B1505CF12BFB5C3700D42364 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -31,12 +45,28 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9B4C8FC12BFB759D00433448 /* Alamofire in Frameworks */,
+				9B4C8FC32BFB759D00433448 /* AlamofireDynamic in Frameworks */,
+				9B4C8FBB2BFB756B00433448 /* Kingfisher in Frameworks */,
+				9B4C8FBE2BFB757C00433448 /* Eureka in Frameworks */,
+				9B4C8FC62BFB75DA00433448 /* SnapKit in Frameworks */,
+				9B4C8FC82BFB75DA00433448 /* SnapKit-Dynamic in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		9B4C8FCB2BFB78F200433448 /* Onboarding */ = {
+			isa = PBXGroup;
+			children = (
+				9B4C8FC92BFB78DA00433448 /* OnboardingViewController.swift */,
+				9B4C8FCC2BFB791600433448 /* Onboarding2ViewController.swift */,
+				9B4C8FCE2BFB7AA800433448 /* WelcomeViewController.swift */,
+			);
+			path = Onboarding;
+			sourceTree = "<group>";
+		};
 		B1505CE32BFB5C3700D42364 = {
 			isa = PBXGroup;
 			children = (
@@ -56,10 +86,12 @@
 		B1505CEE2BFB5C3700D42364 /* Streaky */ = {
 			isa = PBXGroup;
 			children = (
+				9B4C8FCB2BFB78F200433448 /* Onboarding */,
 				B1505CEF2BFB5C3700D42364 /* AppDelegate.swift */,
 				B1505CF12BFB5C3700D42364 /* SceneDelegate.swift */,
 				B1505CF32BFB5C3700D42364 /* ViewController.swift */,
 				B1505CF52BFB5C3700D42364 /* Main.storyboard */,
+				9B4C8FD02BFBB56600433448 /* Background.png */,
 				B1505CF82BFB5C3900D42364 /* Assets.xcassets */,
 				B1505CFA2BFB5C3900D42364 /* LaunchScreen.storyboard */,
 				B1505CFD2BFB5C3900D42364 /* Info.plist */,
@@ -83,6 +115,14 @@
 			dependencies = (
 			);
 			name = Streaky;
+			packageProductDependencies = (
+				9B4C8FBA2BFB756B00433448 /* Kingfisher */,
+				9B4C8FBD2BFB757C00433448 /* Eureka */,
+				9B4C8FC02BFB759D00433448 /* Alamofire */,
+				9B4C8FC22BFB759D00433448 /* AlamofireDynamic */,
+				9B4C8FC52BFB75DA00433448 /* SnapKit */,
+				9B4C8FC72BFB75DA00433448 /* SnapKit-Dynamic */,
+			);
 			productName = Streaky;
 			productReference = B1505CEC2BFB5C3700D42364 /* Streaky.app */;
 			productType = "com.apple.product-type.application";
@@ -111,6 +151,12 @@
 				Base,
 			);
 			mainGroup = B1505CE32BFB5C3700D42364;
+			packageReferences = (
+				9B4C8FB92BFB756B00433448 /* XCRemoteSwiftPackageReference "Kingfisher" */,
+				9B4C8FBC2BFB757C00433448 /* XCRemoteSwiftPackageReference "Eureka" */,
+				9B4C8FBF2BFB759D00433448 /* XCRemoteSwiftPackageReference "Alamofire" */,
+				9B4C8FC42BFB75DA00433448 /* XCRemoteSwiftPackageReference "SnapKit" */,
+			);
 			productRefGroup = B1505CED2BFB5C3700D42364 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -126,6 +172,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B1505CFC2BFB5C3900D42364 /* LaunchScreen.storyboard in Resources */,
+				9B4C8FD12BFBB56600433448 /* Background.png in Resources */,
 				B1505CF92BFB5C3900D42364 /* Assets.xcassets in Resources */,
 				B1505CF72BFB5C3700D42364 /* Main.storyboard in Resources */,
 			);
@@ -141,6 +188,9 @@
 				B1505CF42BFB5C3700D42364 /* ViewController.swift in Sources */,
 				B1505CF02BFB5C3700D42364 /* AppDelegate.swift in Sources */,
 				B1505CF22BFB5C3700D42364 /* SceneDelegate.swift in Sources */,
+				9B4C8FCD2BFB791600433448 /* Onboarding2ViewController.swift in Sources */,
+				9B4C8FCA2BFB78DA00433448 /* OnboardingViewController.swift in Sources */,
+				9B4C8FCF2BFB7AA800433448 /* WelcomeViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -294,9 +344,9 @@
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Streaky/Info.plist;
+				INFOPLIST_KEY_LSApplicationCategoryType = "";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -306,9 +356,13 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = FatmaBuyabes.Streaky;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -321,9 +375,9 @@
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Streaky/Info.plist;
+				INFOPLIST_KEY_LSApplicationCategoryType = "";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -333,9 +387,13 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = FatmaBuyabes.Streaky;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
@@ -361,6 +419,74 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		9B4C8FB92BFB756B00433448 /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/onevcat/Kingfisher.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 7.11.0;
+			};
+		};
+		9B4C8FBC2BFB757C00433448 /* XCRemoteSwiftPackageReference "Eureka" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/xmartlabs/Eureka";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.4.0;
+			};
+		};
+		9B4C8FBF2BFB759D00433448 /* XCRemoteSwiftPackageReference "Alamofire" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Alamofire/Alamofire";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.9.1;
+			};
+		};
+		9B4C8FC42BFB75DA00433448 /* XCRemoteSwiftPackageReference "SnapKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SnapKit/SnapKit.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.7.1;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		9B4C8FBA2BFB756B00433448 /* Kingfisher */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 9B4C8FB92BFB756B00433448 /* XCRemoteSwiftPackageReference "Kingfisher" */;
+			productName = Kingfisher;
+		};
+		9B4C8FBD2BFB757C00433448 /* Eureka */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 9B4C8FBC2BFB757C00433448 /* XCRemoteSwiftPackageReference "Eureka" */;
+			productName = Eureka;
+		};
+		9B4C8FC02BFB759D00433448 /* Alamofire */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 9B4C8FBF2BFB759D00433448 /* XCRemoteSwiftPackageReference "Alamofire" */;
+			productName = Alamofire;
+		};
+		9B4C8FC22BFB759D00433448 /* AlamofireDynamic */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 9B4C8FBF2BFB759D00433448 /* XCRemoteSwiftPackageReference "Alamofire" */;
+			productName = AlamofireDynamic;
+		};
+		9B4C8FC52BFB75DA00433448 /* SnapKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 9B4C8FC42BFB75DA00433448 /* XCRemoteSwiftPackageReference "SnapKit" */;
+			productName = SnapKit;
+		};
+		9B4C8FC72BFB75DA00433448 /* SnapKit-Dynamic */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 9B4C8FC42BFB75DA00433448 /* XCRemoteSwiftPackageReference "SnapKit" */;
+			productName = "SnapKit-Dynamic";
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = B1505CE42BFB5C3700D42364 /* Project object */;
 }
