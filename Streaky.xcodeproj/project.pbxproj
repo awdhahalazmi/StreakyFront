@@ -23,6 +23,8 @@
 		B1505D242BFB607400D42364 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1505D232BFB607400D42364 /* SignUpViewController.swift */; };
 		B1505D282BFBBAD300D42364 /* InterestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1505D272BFBBAD300D42364 /* InterestViewController.swift */; };
 		B180FB7C2BFC9664001E8BEE /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B180FB7B2BFC9664001E8BEE /* MainViewController.swift */; };
+		B180FBC62BFE1481001E8BEE /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B180FBC42BFE1481001E8BEE /* LoginViewController.swift */; };
+		B180FBC72BFE1481001E8BEE /* AuthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B180FBC52BFE1481001E8BEE /* AuthViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -38,6 +40,8 @@
 		B1505D232BFB607400D42364 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		B1505D272BFBBAD300D42364 /* InterestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InterestViewController.swift; sourceTree = "<group>"; };
 		B180FB7B2BFC9664001E8BEE /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
+		B180FBC42BFE1481001E8BEE /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		B180FBC52BFE1481001E8BEE /* AuthViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -125,6 +129,8 @@
 		B1505D0C2BFB5E1C00D42364 /* AuthVC */ = {
 			isa = PBXGroup;
 			children = (
+				B180FBC52BFE1481001E8BEE /* AuthViewController.swift */,
+				B180FBC42BFE1481001E8BEE /* LoginViewController.swift */,
 				B1505D232BFB607400D42364 /* SignUpViewController.swift */,
 				B1505D272BFBBAD300D42364 /* InterestViewController.swift */,
 			);
@@ -228,8 +234,10 @@
 				B1505D282BFBBAD300D42364 /* InterestViewController.swift in Sources */,
 				B1505CF42BFB5C3700D42364 /* ViewController.swift in Sources */,
 				B1505CF02BFB5C3700D42364 /* AppDelegate.swift in Sources */,
+				B180FBC62BFE1481001E8BEE /* LoginViewController.swift in Sources */,
 				B1505D212BFB5F1000D42364 /* User.swift in Sources */,
 				B1505CF22BFB5C3700D42364 /* SceneDelegate.swift in Sources */,
+				B180FBC72BFE1481001E8BEE /* AuthViewController.swift in Sources */,
 				B1505D242BFB607400D42364 /* SignUpViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
