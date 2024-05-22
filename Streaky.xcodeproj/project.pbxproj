@@ -17,6 +17,10 @@
 		9B4C8FCD2BFB791600433448 /* Onboarding2ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B4C8FCC2BFB791600433448 /* Onboarding2ViewController.swift */; };
 		9B4C8FCF2BFB7AA800433448 /* WelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B4C8FCE2BFB7AA800433448 /* WelcomeViewController.swift */; };
 		9B4C8FD12BFBB56600433448 /* Background.png in Resources */ = {isa = PBXBuildFile; fileRef = 9B4C8FD02BFBB56600433448 /* Background.png */; };
+		9B4C8FD42BFCA19500433448 /* FriendTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B4C8FD32BFCA19500433448 /* FriendTableViewCell.swift */; };
+		9B4C8FD62BFCA1EE00433448 /* FriendsDashboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B4C8FD52BFCA1EE00433448 /* FriendsDashboardViewController.swift */; };
+		9B4C8FD92BFCA2E000433448 /* Friend.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B4C8FD82BFCA2E000433448 /* Friend.swift */; };
+		9B4C8FDD2BFCBD1B00433448 /* AddFriendViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B4C8FDC2BFCBD1B00433448 /* AddFriendViewController.swift */; };
 		B1505CF02BFB5C3700D42364 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1505CEF2BFB5C3700D42364 /* AppDelegate.swift */; };
 		B1505CF22BFB5C3700D42364 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1505CF12BFB5C3700D42364 /* SceneDelegate.swift */; };
 		B1505CF42BFB5C3700D42364 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1505CF32BFB5C3700D42364 /* ViewController.swift */; };
@@ -30,6 +34,10 @@
 		9B4C8FCC2BFB791600433448 /* Onboarding2ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Onboarding2ViewController.swift; sourceTree = "<group>"; };
 		9B4C8FCE2BFB7AA800433448 /* WelcomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeViewController.swift; sourceTree = "<group>"; };
 		9B4C8FD02BFBB56600433448 /* Background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Background.png; path = ../../../Background.png; sourceTree = "<group>"; };
+		9B4C8FD32BFCA19500433448 /* FriendTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendTableViewCell.swift; sourceTree = "<group>"; };
+		9B4C8FD52BFCA1EE00433448 /* FriendsDashboardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsDashboardViewController.swift; sourceTree = "<group>"; };
+		9B4C8FD82BFCA2E000433448 /* Friend.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Friend.swift; sourceTree = "<group>"; };
+		9B4C8FDC2BFCBD1B00433448 /* AddFriendViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddFriendViewController.swift; sourceTree = "<group>"; };
 		B1505CEC2BFB5C3700D42364 /* Streaky.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Streaky.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B1505CEF2BFB5C3700D42364 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B1505CF12BFB5C3700D42364 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -67,6 +75,41 @@
 			path = Onboarding;
 			sourceTree = "<group>";
 		};
+		9B4C8FD22BFC951F00433448 /* Friends */ = {
+			isa = PBXGroup;
+			children = (
+				9B4C8FDB2BFCA31400433448 /* ViewControllers */,
+				9B4C8FDA2BFCA2FC00433448 /* Views */,
+				9B4C8FD72BFCA27400433448 /* Models */,
+			);
+			path = Friends;
+			sourceTree = "<group>";
+		};
+		9B4C8FD72BFCA27400433448 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				9B4C8FD82BFCA2E000433448 /* Friend.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		9B4C8FDA2BFCA2FC00433448 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				9B4C8FD32BFCA19500433448 /* FriendTableViewCell.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		9B4C8FDB2BFCA31400433448 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				9B4C8FD52BFCA1EE00433448 /* FriendsDashboardViewController.swift */,
+				9B4C8FDC2BFCBD1B00433448 /* AddFriendViewController.swift */,
+			);
+			path = ViewControllers;
+			sourceTree = "<group>";
+		};
 		B1505CE32BFB5C3700D42364 = {
 			isa = PBXGroup;
 			children = (
@@ -86,6 +129,7 @@
 		B1505CEE2BFB5C3700D42364 /* Streaky */ = {
 			isa = PBXGroup;
 			children = (
+				9B4C8FD22BFC951F00433448 /* Friends */,
 				9B4C8FCB2BFB78F200433448 /* Onboarding */,
 				B1505CEF2BFB5C3700D42364 /* AppDelegate.swift */,
 				B1505CF12BFB5C3700D42364 /* SceneDelegate.swift */,
@@ -186,11 +230,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				B1505CF42BFB5C3700D42364 /* ViewController.swift in Sources */,
+				9B4C8FD62BFCA1EE00433448 /* FriendsDashboardViewController.swift in Sources */,
+				9B4C8FDD2BFCBD1B00433448 /* AddFriendViewController.swift in Sources */,
 				B1505CF02BFB5C3700D42364 /* AppDelegate.swift in Sources */,
 				B1505CF22BFB5C3700D42364 /* SceneDelegate.swift in Sources */,
 				9B4C8FCD2BFB791600433448 /* Onboarding2ViewController.swift in Sources */,
 				9B4C8FCA2BFB78DA00433448 /* OnboardingViewController.swift in Sources */,
+				9B4C8FD92BFCA2E000433448 /* Friend.swift in Sources */,
 				9B4C8FCF2BFB7AA800433448 /* WelcomeViewController.swift in Sources */,
+				9B4C8FD42BFCA19500433448 /* FriendTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
