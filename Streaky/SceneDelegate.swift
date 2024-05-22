@@ -18,10 +18,16 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // This delegate does not imply the connecting scene or session are new (see `application:configurationForConnectingSceneSession` instead).
         
         guard let windowScene = (scene as? UIWindowScene) else { return }
-               let window = UIWindow(windowScene: windowScene)
-               window.rootViewController = WelcomeViewController()
-               self.window = window
-               self.window?.makeKeyAndVisible()
+                let window = UIWindow(windowScene: windowScene)
+                // Window for the entery point or the app view
+                window.rootViewController = UINavigationController(rootViewController: AuthViewController())
+                //
+                self.window = window
+                
+                //window.rootViewController = TabBarViewController()
+
+                self.window?.makeKeyAndVisible()
+            }
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {
@@ -53,5 +59,4 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     }
 
 
-}
 
