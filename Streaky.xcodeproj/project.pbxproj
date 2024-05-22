@@ -77,7 +77,6 @@
 			isa = PBXGroup;
 			children = (
 				B1505D082BFB5DEB00D42364 /* Model */,
-				B1505D072BFB5DCB00D42364 /* Networking */,
 				B1505D062BFB5DC000D42364 /* Supporting */,
 				B1505D052BFB5DB900D42364 /* VC */,
 				B1505CF52BFB5C3700D42364 /* Main.storyboard */,
@@ -92,8 +91,6 @@
 			isa = PBXGroup;
 			children = (
 				B1505D0C2BFB5E1C00D42364 /* AuthVC */,
-				B1505D0B2BFB5E1100D42364 /* QuestionVC */,
-				B1505D0A2BFB5E0600D42364 /* FriendsVC */,
 				B1505D092BFB5DF900D42364 /* MainVC */,
 			);
 			path = VC;
@@ -106,13 +103,6 @@
 				B1505CF12BFB5C3700D42364 /* SceneDelegate.swift */,
 			);
 			path = Supporting;
-			sourceTree = "<group>";
-		};
-		B1505D072BFB5DCB00D42364 /* Networking */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Networking;
 			sourceTree = "<group>";
 		};
 		B1505D082BFB5DEB00D42364 /* Model */ = {
@@ -130,20 +120,6 @@
 				B180FB7B2BFC9664001E8BEE /* MainViewController.swift */,
 			);
 			path = MainVC;
-			sourceTree = "<group>";
-		};
-		B1505D0A2BFB5E0600D42364 /* FriendsVC */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = FriendsVC;
-			sourceTree = "<group>";
-		};
-		B1505D0B2BFB5E1100D42364 /* QuestionVC */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = QuestionVC;
 			sourceTree = "<group>";
 		};
 		B1505D0C2BFB5E1C00D42364 /* AuthVC */ = {
