@@ -25,6 +25,10 @@
 		B180FB7C2BFC9664001E8BEE /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B180FB7B2BFC9664001E8BEE /* MainViewController.swift */; };
 		B180FBC62BFE1481001E8BEE /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B180FBC42BFE1481001E8BEE /* LoginViewController.swift */; };
 		B180FBC72BFE1481001E8BEE /* AuthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B180FBC52BFE1481001E8BEE /* AuthViewController.swift */; };
+		B180FBCD2BFE1558001E8BEE /* FriendsDashboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B180FBCA2BFE1558001E8BEE /* FriendsDashboardViewController.swift */; };
+		B180FBCE2BFE1558001E8BEE /* FriendTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B180FBCB2BFE1558001E8BEE /* FriendTableViewCell.swift */; };
+		B180FBCF2BFE1558001E8BEE /* AddFriendViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B180FBCC2BFE1558001E8BEE /* AddFriendViewController.swift */; };
+		B180FBD12BFE1566001E8BEE /* Friend.swift in Sources */ = {isa = PBXBuildFile; fileRef = B180FBD02BFE1566001E8BEE /* Friend.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -42,6 +46,10 @@
 		B180FB7B2BFC9664001E8BEE /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		B180FBC42BFE1481001E8BEE /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		B180FBC52BFE1481001E8BEE /* AuthViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthViewController.swift; sourceTree = "<group>"; };
+		B180FBCA2BFE1558001E8BEE /* FriendsDashboardViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendsDashboardViewController.swift; sourceTree = "<group>"; };
+		B180FBCB2BFE1558001E8BEE /* FriendTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendTableViewCell.swift; sourceTree = "<group>"; };
+		B180FBCC2BFE1558001E8BEE /* AddFriendViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddFriendViewController.swift; sourceTree = "<group>"; };
+		B180FBD02BFE1566001E8BEE /* Friend.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Friend.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -94,6 +102,9 @@
 		B1505D052BFB5DB900D42364 /* VC */ = {
 			isa = PBXGroup;
 			children = (
+				B180FBCC2BFE1558001E8BEE /* AddFriendViewController.swift */,
+				B180FBCA2BFE1558001E8BEE /* FriendsDashboardViewController.swift */,
+				B180FBCB2BFE1558001E8BEE /* FriendTableViewCell.swift */,
 				B1505D0C2BFB5E1C00D42364 /* AuthVC */,
 				B1505D092BFB5DF900D42364 /* MainVC */,
 			);
@@ -112,6 +123,7 @@
 		B1505D082BFB5DEB00D42364 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				B180FBD02BFE1566001E8BEE /* Friend.swift */,
 				B1505D222BFB5FFA00D42364 /* Auth */,
 			);
 			path = Model;
@@ -230,14 +242,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B180FBCF2BFE1558001E8BEE /* AddFriendViewController.swift in Sources */,
 				B180FB7C2BFC9664001E8BEE /* MainViewController.swift in Sources */,
 				B1505D282BFBBAD300D42364 /* InterestViewController.swift in Sources */,
 				B1505CF42BFB5C3700D42364 /* ViewController.swift in Sources */,
 				B1505CF02BFB5C3700D42364 /* AppDelegate.swift in Sources */,
+				B180FBCE2BFE1558001E8BEE /* FriendTableViewCell.swift in Sources */,
 				B180FBC62BFE1481001E8BEE /* LoginViewController.swift in Sources */,
 				B1505D212BFB5F1000D42364 /* User.swift in Sources */,
 				B1505CF22BFB5C3700D42364 /* SceneDelegate.swift in Sources */,
+				B180FBCD2BFE1558001E8BEE /* FriendsDashboardViewController.swift in Sources */,
 				B180FBC72BFE1481001E8BEE /* AuthViewController.swift in Sources */,
+				B180FBD12BFE1566001E8BEE /* Friend.swift in Sources */,
 				B1505D242BFB607400D42364 /* SignUpViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
