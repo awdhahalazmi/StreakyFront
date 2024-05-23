@@ -19,7 +19,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let windowScene = (scene as? UIWindowScene) else { return }
         let window = UIWindow(windowScene: windowScene)
         // Window for the entery point or the app view
-        window.rootViewController = UINavigationController(rootViewController: SignUpViewController())
+        window.rootViewController = UINavigationController(rootViewController: FriendsDashboardViewController())
         //
         self.window = window
         

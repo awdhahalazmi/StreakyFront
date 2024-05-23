@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9B4C8FE32BFF1CBC00433448 /* RequestTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B4C8FE22BFF1CBC00433448 /* RequestTableViewCell.swift */; };
+		9B4C8FE52BFF23BE00433448 /* AddFriendTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B4C8FE42BFF23BE00433448 /* AddFriendTableViewCell.swift */; };
 		B1505CF02BFB5C3700D42364 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1505CEF2BFB5C3700D42364 /* AppDelegate.swift */; };
 		B1505CF22BFB5C3700D42364 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1505CF12BFB5C3700D42364 /* SceneDelegate.swift */; };
 		B1505CF42BFB5C3700D42364 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1505CF32BFB5C3700D42364 /* ViewController.swift */; };
@@ -32,6 +34,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		9B4C8FE22BFF1CBC00433448 /* RequestTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestTableViewCell.swift; sourceTree = "<group>"; };
+		9B4C8FE42BFF23BE00433448 /* AddFriendTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddFriendTableViewCell.swift; sourceTree = "<group>"; };
 		B1505CEC2BFB5C3700D42364 /* Streaky.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Streaky.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B1505CEF2BFB5C3700D42364 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B1505CF12BFB5C3700D42364 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -69,6 +73,26 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		9B4C8FE02BFF1C4B00433448 /* FriendsVC */ = {
+			isa = PBXGroup;
+			children = (
+				B180FBCA2BFE1558001E8BEE /* FriendsDashboardViewController.swift */,
+				B180FBCC2BFE1558001E8BEE /* AddFriendViewController.swift */,
+				B180FBCB2BFE1558001E8BEE /* FriendTableViewCell.swift */,
+				9B4C8FE22BFF1CBC00433448 /* RequestTableViewCell.swift */,
+				9B4C8FE42BFF23BE00433448 /* AddFriendTableViewCell.swift */,
+			);
+			path = FriendsVC;
+			sourceTree = "<group>";
+		};
+		9B4C8FE12BFF1C7800433448 /* Friend */ = {
+			isa = PBXGroup;
+			children = (
+				B180FBD02BFE1566001E8BEE /* Friend.swift */,
+			);
+			path = Friend;
+			sourceTree = "<group>";
+		};
 		B1505CE32BFB5C3700D42364 = {
 			isa = PBXGroup;
 			children = (
@@ -102,9 +126,7 @@
 		B1505D052BFB5DB900D42364 /* VC */ = {
 			isa = PBXGroup;
 			children = (
-				B180FBCC2BFE1558001E8BEE /* AddFriendViewController.swift */,
-				B180FBCA2BFE1558001E8BEE /* FriendsDashboardViewController.swift */,
-				B180FBCB2BFE1558001E8BEE /* FriendTableViewCell.swift */,
+				9B4C8FE02BFF1C4B00433448 /* FriendsVC */,
 				B1505D0C2BFB5E1C00D42364 /* AuthVC */,
 				B1505D092BFB5DF900D42364 /* MainVC */,
 			);
@@ -123,7 +145,7 @@
 		B1505D082BFB5DEB00D42364 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				B180FBD02BFE1566001E8BEE /* Friend.swift */,
+				9B4C8FE12BFF1C7800433448 /* Friend */,
 				B1505D222BFB5FFA00D42364 /* Auth */,
 			);
 			path = Model;
@@ -243,6 +265,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B180FBCF2BFE1558001E8BEE /* AddFriendViewController.swift in Sources */,
+				9B4C8FE32BFF1CBC00433448 /* RequestTableViewCell.swift in Sources */,
 				B180FB7C2BFC9664001E8BEE /* MainViewController.swift in Sources */,
 				B1505D282BFBBAD300D42364 /* InterestViewController.swift in Sources */,
 				B1505CF42BFB5C3700D42364 /* ViewController.swift in Sources */,
@@ -252,6 +275,7 @@
 				B1505D212BFB5F1000D42364 /* User.swift in Sources */,
 				B1505CF22BFB5C3700D42364 /* SceneDelegate.swift in Sources */,
 				B180FBCD2BFE1558001E8BEE /* FriendsDashboardViewController.swift in Sources */,
+				9B4C8FE52BFF23BE00433448 /* AddFriendTableViewCell.swift in Sources */,
 				B180FBC72BFE1481001E8BEE /* AuthViewController.swift in Sources */,
 				B180FBD12BFE1566001E8BEE /* Friend.swift in Sources */,
 				B1505D242BFB607400D42364 /* SignUpViewController.swift in Sources */,
