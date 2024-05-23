@@ -29,6 +29,11 @@
 		B180FBCE2BFE1558001E8BEE /* FriendTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B180FBCB2BFE1558001E8BEE /* FriendTableViewCell.swift */; };
 		B180FBCF2BFE1558001E8BEE /* AddFriendViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B180FBCC2BFE1558001E8BEE /* AddFriendViewController.swift */; };
 		B180FBD12BFE1566001E8BEE /* Friend.swift in Sources */ = {isa = PBXBuildFile; fileRef = B180FBD02BFE1566001E8BEE /* Friend.swift */; };
+		B180FBD42BFE17E9001E8BEE /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B180FBD32BFE17E9001E8BEE /* ProfileViewController.swift */; };
+		B180FBD62BFE17FC001E8BEE /* EditProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B180FBD52BFE17FC001E8BEE /* EditProfileViewController.swift */; };
+		B180FBDB2BFE189F001E8BEE /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B180FBD72BFE189F001E8BEE /* OnboardingViewController.swift */; };
+		B180FBDC2BFE189F001E8BEE /* WelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B180FBD82BFE189F001E8BEE /* WelcomeViewController.swift */; };
+		B180FBE32BFE1A1C001E8BEE /* Onboarding2ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B180FBE22BFE1A1C001E8BEE /* Onboarding2ViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -50,6 +55,11 @@
 		B180FBCB2BFE1558001E8BEE /* FriendTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendTableViewCell.swift; sourceTree = "<group>"; };
 		B180FBCC2BFE1558001E8BEE /* AddFriendViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddFriendViewController.swift; sourceTree = "<group>"; };
 		B180FBD02BFE1566001E8BEE /* Friend.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Friend.swift; sourceTree = "<group>"; };
+		B180FBD32BFE17E9001E8BEE /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		B180FBD52BFE17FC001E8BEE /* EditProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileViewController.swift; sourceTree = "<group>"; };
+		B180FBD72BFE189F001E8BEE /* OnboardingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = OnboardingViewController.swift; path = Streaky/VC/Onboarding/OnboardingViewController.swift; sourceTree = SOURCE_ROOT; };
+		B180FBD82BFE189F001E8BEE /* WelcomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = WelcomeViewController.swift; path = Streaky/Onboarding/WelcomeViewController.swift; sourceTree = SOURCE_ROOT; };
+		B180FBE22BFE1A1C001E8BEE /* Onboarding2ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Onboarding2ViewController.swift; path = Streaky/Onboarding/Onboarding2ViewController.swift; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -102,6 +112,8 @@
 		B1505D052BFB5DB900D42364 /* VC */ = {
 			isa = PBXGroup;
 			children = (
+				B180FBDF2BFE18B4001E8BEE /* Onboarding */,
+				B180FBD22BFE17CD001E8BEE /* ProfileVC */,
 				B180FBCC2BFE1558001E8BEE /* AddFriendViewController.swift */,
 				B180FBCA2BFE1558001E8BEE /* FriendsDashboardViewController.swift */,
 				B180FBCB2BFE1558001E8BEE /* FriendTableViewCell.swift */,
@@ -133,6 +145,7 @@
 			isa = PBXGroup;
 			children = (
 				B1505CF32BFB5C3700D42364 /* ViewController.swift */,
+				B180FBD82BFE189F001E8BEE /* WelcomeViewController.swift */,
 				B180FB7B2BFC9664001E8BEE /* MainViewController.swift */,
 			);
 			path = MainVC;
@@ -155,6 +168,24 @@
 				B1505D202BFB5F1000D42364 /* User.swift */,
 			);
 			path = Auth;
+			sourceTree = "<group>";
+		};
+		B180FBD22BFE17CD001E8BEE /* ProfileVC */ = {
+			isa = PBXGroup;
+			children = (
+				B180FBD32BFE17E9001E8BEE /* ProfileViewController.swift */,
+				B180FBD52BFE17FC001E8BEE /* EditProfileViewController.swift */,
+			);
+			path = ProfileVC;
+			sourceTree = "<group>";
+		};
+		B180FBDF2BFE18B4001E8BEE /* Onboarding */ = {
+			isa = PBXGroup;
+			children = (
+				B180FBD72BFE189F001E8BEE /* OnboardingViewController.swift */,
+				B180FBE22BFE1A1C001E8BEE /* Onboarding2ViewController.swift */,
+			);
+			path = Onboarding;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -246,11 +277,16 @@
 				B180FB7C2BFC9664001E8BEE /* MainViewController.swift in Sources */,
 				B1505D282BFBBAD300D42364 /* InterestViewController.swift in Sources */,
 				B1505CF42BFB5C3700D42364 /* ViewController.swift in Sources */,
+				B180FBD42BFE17E9001E8BEE /* ProfileViewController.swift in Sources */,
+				B180FBDC2BFE189F001E8BEE /* WelcomeViewController.swift in Sources */,
 				B1505CF02BFB5C3700D42364 /* AppDelegate.swift in Sources */,
 				B180FBCE2BFE1558001E8BEE /* FriendTableViewCell.swift in Sources */,
 				B180FBC62BFE1481001E8BEE /* LoginViewController.swift in Sources */,
+				B180FBD62BFE17FC001E8BEE /* EditProfileViewController.swift in Sources */,
 				B1505D212BFB5F1000D42364 /* User.swift in Sources */,
 				B1505CF22BFB5C3700D42364 /* SceneDelegate.swift in Sources */,
+				B180FBE32BFE1A1C001E8BEE /* Onboarding2ViewController.swift in Sources */,
+				B180FBDB2BFE189F001E8BEE /* OnboardingViewController.swift in Sources */,
 				B180FBCD2BFE1558001E8BEE /* FriendsDashboardViewController.swift in Sources */,
 				B180FBC72BFE1481001E8BEE /* AuthViewController.swift in Sources */,
 				B180FBD12BFE1566001E8BEE /* Friend.swift in Sources */,

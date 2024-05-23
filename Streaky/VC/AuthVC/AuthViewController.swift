@@ -114,7 +114,7 @@ class AuthViewController: UIViewController {
 
     @objc func signUpButtonTapped() {
         // Handle sign-up button tap
-        let loginVC = LoginViewController()
-        self.navigationController?.pushViewController(loginVC, animated: true)
+        let signupVC = SignUpViewController()
+        self.navigationController?.pushViewController(signupVC, animated: true)
     }
 }
