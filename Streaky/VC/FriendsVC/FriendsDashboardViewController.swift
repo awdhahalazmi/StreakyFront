@@ -10,6 +10,14 @@ class FriendsDashboardViewController: UIViewController, UITableViewDataSource, U
         Friend(name: "Noura", profileImageUrl: "https://example.com/image4.jpg", lastStreakLocation: "Ananas", streakCount: 2),
         Friend(name: "Maha", profileImageUrl: "https://example.com/image5.jpg", lastStreakLocation: "Spark", streakCount: 1)
     ]
+    
+    private let requests: [Friend] = [
+        Friend(name: "Dana", profileImageUrl: "https://example.com/image6.jpg", lastStreakLocation: "Cafe", streakCount: 3),
+        Friend(name: "Haya", profileImageUrl: "https://example.com/image7.jpg", lastStreakLocation: "Mall", streakCount: 2)
+    ]
+
+    private var currentList: [Friend]
+    private var isRequestView: Bool = false
 
     private let segmentedControl: UISegmentedControl = {
         let segmentedControl = UISegmentedControl(items: ["Request", "Friends"])
@@ -18,15 +26,27 @@ class FriendsDashboardViewController: UIViewController, UITableViewDataSource, U
         segmentedControl.tintColor = UIColor(red: 69/255, green: 30/255, blue: 123/255, alpha: 1)
         segmentedControl.layer.cornerRadius = 20
         segmentedControl.layer.masksToBounds = true
+        segmentedControl.addTarget(self, action: #selector(segmentedControlChanged), for: .valueChanged)
         return segmentedControl
     }()
 
     private let tableView: UITableView = {
         let tableView = UITableView()
         tableView.register(FriendTableViewCell.self, forCellReuseIdentifier: FriendTableViewCell.identifier)
+        tableView.register(RequestTableViewCell.self, forCellReuseIdentifier: RequestTableViewCell.identifier)
         tableView.separatorStyle = .none
         return tableView
     }()
+
+    override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
+        self.currentList = friends
+        super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
+    }
+
+    required init?(coder: NSCoder) {
+        self.currentList = friends
+        super.init(coder: coder)
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -62,8 +82,6 @@ class FriendsDashboardViewController: UIViewController, UITableViewDataSource, U
             action: #selector(addFriendButtonTapped)
         )
         navigationItem.rightBarButtonItem?.tintColor = UIColor.white
-
-       
     }
 
     private func configureNavigationBarAppearance() {
@@ -79,25 +97,47 @@ class FriendsDashboardViewController: UIViewController, UITableViewDataSource, U
         navigationController?.navigationBar.isTranslucent = true
     }
 
-
     @objc private func addFriendButtonTapped() {
         let addFriendVC = AddFriendViewController()
         navigationController?.pushViewController(addFriendVC, animated: true)
     }
-
     
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return friends.count
-    }
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-            return 80
+    @objc private func segmentedControlChanged(_ sender: UISegmentedControl) {
+        switch sender.selectedSegmentIndex {
+        case 0:
+            currentList = requests
+            isRequestView = true
+        case 1:
+            currentList = friends
+            isRequestView = false
+        default:
+            break
         }
+        tableView.reloadData()
+    }
+
+    // UITableViewDataSource methods
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return currentList.count
+    }
+
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 80
+    }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: FriendTableViewCell.identifier, for: indexPath) as? FriendTableViewCell else {
-            return UITableViewCell()
+        if isRequestView {
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: RequestTableViewCell.identifier, for: indexPath) as? RequestTableViewCell else {
+                return UITableViewCell()
+            }
+            cell.configure(with: currentList[indexPath.row])
+            return cell
+        } else {
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: FriendTableViewCell.identifier, for: indexPath) as? FriendTableViewCell else {
+                return UITableViewCell()
+            }
+            cell.configure(with: currentList[indexPath.row])
+            return cell
         }
-        cell.configure(with: friends[indexPath.row])
-        return cell
     }
 }
