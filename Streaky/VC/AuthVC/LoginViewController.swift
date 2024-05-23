@@ -177,17 +177,19 @@ class LoginViewController: UIViewController {
         // Perform login action here
         
         // Navigate to the next screen after login
-        let nextVC = AuthViewController()
-        self.navigationController?.pushViewController(nextVC, animated: true)
+        let signUpVC = SignUpViewController()
+        signUpVC.modalPresentationStyle = .fullScreen
+        self.present(signUpVC, animated: true, completion: nil)
+        
     }
     
         
         
     
     @objc func registerButtonTapped() {
-        // Navigate to the registration screen
         let signUpVC = SignUpViewController()
-        self.navigationController?.pushViewController(signUpVC, animated: true)
+        signUpVC.modalPresentationStyle = .fullScreen
+        self.present(signUpVC, animated: true, completion: nil)
     }
     
     func presentAlertWithTitle(title: String, message: String) {
