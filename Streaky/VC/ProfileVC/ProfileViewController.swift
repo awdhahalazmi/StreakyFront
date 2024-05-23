@@ -183,7 +183,7 @@ class ProfileViewController: UIViewController {
 
     func setupNavigationBar() {
         navigationItem.leftBarButtonItem = UIBarButtonItem(
-            image: UIImage(systemName: "square.and.arrow.up.trianglebadge.exclamationmark"),
+            image: UIImage(systemName: "power"),
             style: .plain,
             target: self,
             action: #selector(logoutTapped)

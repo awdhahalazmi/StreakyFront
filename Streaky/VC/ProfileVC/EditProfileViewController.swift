@@ -12,11 +12,15 @@ class EditProfileViewController: UIViewController {
     var profileLabel: UILabel!
     var changeProfileButton: UIButton!
 
+    var currentName: String?
+    var currentEmail: String?
+
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
         setupConstraints()
         configureNavigationBar()
+        fillCurrentData()
     }
 
     func setupUI() {
@@ -55,9 +59,9 @@ class EditProfileViewController: UIViewController {
 
         // Name TextField
         nameTextField = UITextField()
-        nameTextField.placeholder = "Name"
         nameTextField.font = UIFont.systemFont(ofSize: 16)
         nameTextField.textColor = .black
+        nameTextField.placeholder = "name"
         nameTextField.borderStyle = .none
         infoContainerView.addSubview(nameTextField)
 
@@ -68,9 +72,9 @@ class EditProfileViewController: UIViewController {
 
         // Email TextField
         emailTextField = UITextField()
-        emailTextField.placeholder = "Email"
         emailTextField.font = UIFont.systemFont(ofSize: 16)
         emailTextField.textColor = .black
+        emailTextField.placeholder = "email"
         emailTextField.borderStyle = .none
         infoContainerView.addSubview(emailTextField)
 
@@ -172,14 +176,26 @@ class EditProfileViewController: UIViewController {
         navigationController?.navigationBar.scrollEdgeAppearance = appearance
     }
 
+    func fillCurrentData() {
+        nameTextField.text = currentName
+        emailTextField.text = currentEmail
+    }
+
     @objc func changeProfileTapped() {
         // Handle change profile picture action
     }
 
     @objc func saveTapped() {
-        // Handle save action
-        // Save the changes and dismiss or pop the view controller
-        navigationController?.popViewController(animated: true)
+        // Display confirmation alert
+        let alertController = UIAlertController(title: "Confirm Edit", message: "Are you sure you want to save these changes?", preferredStyle: .alert)
+        let confirmAction = UIAlertAction(title: "Confirm", style: .default) { _ in
+            // Save the changes and dismiss or pop the view controller
+            self.navigationController?.popViewController(animated: true)
+        }
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+        alertController.addAction(confirmAction)
+        alertController.addAction(cancelAction)
+        present(alertController, animated: true, completion: nil)
     }
 
     @objc func cancelTapped() {
