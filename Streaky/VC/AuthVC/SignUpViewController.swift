@@ -174,7 +174,7 @@ class SignUpViewController: UIViewController {
     
     @objc func backButtonTapped() {
         navigationController?.popToRootViewController(animated: true)
-        let onboardingVC = ViewController()
+        let onboardingVC = Onboarding2ViewController()
         self.navigationController?.pushViewController(onboardingVC, animated: false)
     }
     

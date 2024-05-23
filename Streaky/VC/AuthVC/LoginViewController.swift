@@ -159,7 +159,7 @@ class LoginViewController: UIViewController {
     @objc func backButtonTapped() {
         navigationController?.popToRootViewController(animated: true)
         let onboardingVC = AuthViewController()
-        self.navigationController?.pushViewController(onboardingVC, animated: false)
+        self.navigationController?.pushViewController(onboardingVC, animated: true)
     }
     
     @objc func loginButtonTapped() {
@@ -177,17 +177,19 @@ class LoginViewController: UIViewController {
         // Perform login action here
         
         // Navigate to the next screen after login
-        let nextVC = AuthViewController()
-        self.navigationController?.pushViewController(nextVC, animated: true)
+        let signUpVC = SignUpViewController()
+        signUpVC.modalPresentationStyle = .fullScreen
+        self.present(signUpVC, animated: true, completion: nil)
+        
     }
     
         
         
     
     @objc func registerButtonTapped() {
-        // Navigate to the registration screen
-        let authVC = AuthViewController()
-        self.navigationController?.pushViewController(authVC, animated: true)
+        let signUpVC = SignUpViewController()
+        signUpVC.modalPresentationStyle = .fullScreen
+        self.present(signUpVC, animated: true, completion: nil)
     }
     
     func presentAlertWithTitle(title: String, message: String) {
