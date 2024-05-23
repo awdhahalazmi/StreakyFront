@@ -7,8 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		9B4C8FE32BFF1CBC00433448 /* RequestTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B4C8FE22BFF1CBC00433448 /* RequestTableViewCell.swift */; };
-		9B4C8FE52BFF23BE00433448 /* AddFriendTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B4C8FE42BFF23BE00433448 /* AddFriendTableViewCell.swift */; };
 		B1505CF02BFB5C3700D42364 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1505CEF2BFB5C3700D42364 /* AppDelegate.swift */; };
 		B1505CF22BFB5C3700D42364 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1505CF12BFB5C3700D42364 /* SceneDelegate.swift */; };
 		B1505CF42BFB5C3700D42364 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1505CF32BFB5C3700D42364 /* ViewController.swift */; };
@@ -27,20 +25,16 @@
 		B180FB7C2BFC9664001E8BEE /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B180FB7B2BFC9664001E8BEE /* MainViewController.swift */; };
 		B180FBC62BFE1481001E8BEE /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B180FBC42BFE1481001E8BEE /* LoginViewController.swift */; };
 		B180FBC72BFE1481001E8BEE /* AuthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B180FBC52BFE1481001E8BEE /* AuthViewController.swift */; };
-		B180FBCD2BFE1558001E8BEE /* FriendsDashboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B180FBCA2BFE1558001E8BEE /* FriendsDashboardViewController.swift */; };
-		B180FBCE2BFE1558001E8BEE /* FriendTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B180FBCB2BFE1558001E8BEE /* FriendTableViewCell.swift */; };
-		B180FBCF2BFE1558001E8BEE /* AddFriendViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B180FBCC2BFE1558001E8BEE /* AddFriendViewController.swift */; };
 		B180FBD12BFE1566001E8BEE /* Friend.swift in Sources */ = {isa = PBXBuildFile; fileRef = B180FBD02BFE1566001E8BEE /* Friend.swift */; };
 		B180FBD42BFE17E9001E8BEE /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B180FBD32BFE17E9001E8BEE /* ProfileViewController.swift */; };
 		B180FBD62BFE17FC001E8BEE /* EditProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B180FBD52BFE17FC001E8BEE /* EditProfileViewController.swift */; };
 		B180FBDB2BFE189F001E8BEE /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B180FBD72BFE189F001E8BEE /* OnboardingViewController.swift */; };
 		B180FBDC2BFE189F001E8BEE /* WelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B180FBD82BFE189F001E8BEE /* WelcomeViewController.swift */; };
 		B180FBE32BFE1A1C001E8BEE /* Onboarding2ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B180FBE22BFE1A1C001E8BEE /* Onboarding2ViewController.swift */; };
+		B180FBF82BFF6EFF001E8BEE /* FriendsVC in Resources */ = {isa = PBXBuildFile; fileRef = B180FBF72BFF6EFF001E8BEE /* FriendsVC */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		9B4C8FE22BFF1CBC00433448 /* RequestTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestTableViewCell.swift; sourceTree = "<group>"; };
-		9B4C8FE42BFF23BE00433448 /* AddFriendTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddFriendTableViewCell.swift; sourceTree = "<group>"; };
 		B1505CEC2BFB5C3700D42364 /* Streaky.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Streaky.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B1505CEF2BFB5C3700D42364 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B1505CF12BFB5C3700D42364 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -55,15 +49,13 @@
 		B180FB7B2BFC9664001E8BEE /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		B180FBC42BFE1481001E8BEE /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		B180FBC52BFE1481001E8BEE /* AuthViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthViewController.swift; sourceTree = "<group>"; };
-		B180FBCA2BFE1558001E8BEE /* FriendsDashboardViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendsDashboardViewController.swift; sourceTree = "<group>"; };
-		B180FBCB2BFE1558001E8BEE /* FriendTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendTableViewCell.swift; sourceTree = "<group>"; };
-		B180FBCC2BFE1558001E8BEE /* AddFriendViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddFriendViewController.swift; sourceTree = "<group>"; };
 		B180FBD02BFE1566001E8BEE /* Friend.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Friend.swift; sourceTree = "<group>"; };
 		B180FBD32BFE17E9001E8BEE /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		B180FBD52BFE17FC001E8BEE /* EditProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileViewController.swift; sourceTree = "<group>"; };
 		B180FBD72BFE189F001E8BEE /* OnboardingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = OnboardingViewController.swift; path = Streaky/VC/Onboarding/OnboardingViewController.swift; sourceTree = SOURCE_ROOT; };
 		B180FBD82BFE189F001E8BEE /* WelcomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = WelcomeViewController.swift; path = Streaky/Onboarding/WelcomeViewController.swift; sourceTree = SOURCE_ROOT; };
 		B180FBE22BFE1A1C001E8BEE /* Onboarding2ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Onboarding2ViewController.swift; path = Streaky/Onboarding/Onboarding2ViewController.swift; sourceTree = SOURCE_ROOT; };
+		B180FBF72BFF6EFF001E8BEE /* FriendsVC */ = {isa = PBXFileReference; lastKnownFileType = folder; path = FriendsVC; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -83,18 +75,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		9B4C8FE02BFF1C4B00433448 /* FriendsVC */ = {
-			isa = PBXGroup;
-			children = (
-				B180FBCA2BFE1558001E8BEE /* FriendsDashboardViewController.swift */,
-				B180FBCC2BFE1558001E8BEE /* AddFriendViewController.swift */,
-				B180FBCB2BFE1558001E8BEE /* FriendTableViewCell.swift */,
-				9B4C8FE22BFF1CBC00433448 /* RequestTableViewCell.swift */,
-				9B4C8FE42BFF23BE00433448 /* AddFriendTableViewCell.swift */,
-			);
-			path = FriendsVC;
-			sourceTree = "<group>";
-		};
 		9B4C8FE12BFF1C7800433448 /* Friend */ = {
 			isa = PBXGroup;
 			children = (
@@ -136,11 +116,9 @@
 		B1505D052BFB5DB900D42364 /* VC */ = {
 			isa = PBXGroup;
 			children = (
+				B180FBF72BFF6EFF001E8BEE /* FriendsVC */,
 				B180FBDF2BFE18B4001E8BEE /* Onboarding */,
 				B180FBD22BFE17CD001E8BEE /* ProfileVC */,
-				B180FBCC2BFE1558001E8BEE /* AddFriendViewController.swift */,
-				B180FBCA2BFE1558001E8BEE /* FriendsDashboardViewController.swift */,
-				B180FBCB2BFE1558001E8BEE /* FriendTableViewCell.swift */,
 				B1505D0C2BFB5E1C00D42364 /* AuthVC */,
 				B1505D092BFB5DF900D42364 /* MainVC */,
 			);
@@ -285,6 +263,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B1505CFC2BFB5C3900D42364 /* LaunchScreen.storyboard in Resources */,
+				B180FBF82BFF6EFF001E8BEE /* FriendsVC in Resources */,
 				B1505CF92BFB5C3900D42364 /* Assets.xcassets in Resources */,
 				B1505CF72BFB5C3700D42364 /* Main.storyboard in Resources */,
 			);
@@ -297,23 +276,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B180FBCF2BFE1558001E8BEE /* AddFriendViewController.swift in Sources */,
-				9B4C8FE32BFF1CBC00433448 /* RequestTableViewCell.swift in Sources */,
 				B180FB7C2BFC9664001E8BEE /* MainViewController.swift in Sources */,
 				B1505D282BFBBAD300D42364 /* InterestViewController.swift in Sources */,
 				B1505CF42BFB5C3700D42364 /* ViewController.swift in Sources */,
 				B180FBD42BFE17E9001E8BEE /* ProfileViewController.swift in Sources */,
 				B180FBDC2BFE189F001E8BEE /* WelcomeViewController.swift in Sources */,
 				B1505CF02BFB5C3700D42364 /* AppDelegate.swift in Sources */,
-				B180FBCE2BFE1558001E8BEE /* FriendTableViewCell.swift in Sources */,
 				B180FBC62BFE1481001E8BEE /* LoginViewController.swift in Sources */,
 				B180FBD62BFE17FC001E8BEE /* EditProfileViewController.swift in Sources */,
 				B1505D212BFB5F1000D42364 /* User.swift in Sources */,
 				B1505CF22BFB5C3700D42364 /* SceneDelegate.swift in Sources */,
 				B180FBE32BFE1A1C001E8BEE /* Onboarding2ViewController.swift in Sources */,
 				B180FBDB2BFE189F001E8BEE /* OnboardingViewController.swift in Sources */,
-				B180FBCD2BFE1558001E8BEE /* FriendsDashboardViewController.swift in Sources */,
-				9B4C8FE52BFF23BE00433448 /* AddFriendTableViewCell.swift in Sources */,
 				B180FBC72BFE1481001E8BEE /* AuthViewController.swift in Sources */,
 				B180FBD12BFE1566001E8BEE /* Friend.swift in Sources */,
 				B1505D242BFB607400D42364 /* SignUpViewController.swift in Sources */,

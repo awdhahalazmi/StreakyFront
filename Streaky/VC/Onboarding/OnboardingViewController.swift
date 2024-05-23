@@ -76,6 +76,7 @@ class OnboardingViewController: UIViewController {
     }
     
     private func setupViews() {
+        
         view.addSubview(backgroundImageView)
         view.addSubview(whiteContainerView)
         whiteContainerView.addSubview(titleLabel)
