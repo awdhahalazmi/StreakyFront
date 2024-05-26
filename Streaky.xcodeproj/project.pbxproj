@@ -36,7 +36,6 @@
 		B1910ED52BFF83D200277790 /* AddFriendTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1910ED02BFF83D100277790 /* AddFriendTableViewCell.swift */; };
 		B1910ED62BFF83D200277790 /* AddFriendViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1910ED12BFF83D200277790 /* AddFriendViewController.swift */; };
 		B1910ED72BFF83D200277790 /* RequestTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1910ED22BFF83D200277790 /* RequestTableViewCell.swift */; };
-		B1FFA62E2BFF8272007B198D /* OnBoarding in Resources */ = {isa = PBXBuildFile; fileRef = B1FFA62D2BFF8272007B198D /* OnBoarding */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -65,7 +64,6 @@
 		B1910ED02BFF83D100277790 /* AddFriendTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddFriendTableViewCell.swift; sourceTree = "<group>"; };
 		B1910ED12BFF83D200277790 /* AddFriendViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddFriendViewController.swift; sourceTree = "<group>"; };
 		B1910ED22BFF83D200277790 /* RequestTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestTableViewCell.swift; sourceTree = "<group>"; };
-		B1FFA62D2BFF8272007B198D /* OnBoarding */ = {isa = PBXFileReference; lastKnownFileType = folder; name = OnBoarding; path = VC/MainVC/OnBoarding; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -112,7 +110,6 @@
 		B1505CEE2BFB5C3700D42364 /* Streaky */ = {
 			isa = PBXGroup;
 			children = (
-				B1FFA62D2BFF8272007B198D /* OnBoarding */,
 				B1505D082BFB5DEB00D42364 /* Model */,
 				B1505D062BFB5DC000D42364 /* Supporting */,
 				B1505D052BFB5DB900D42364 /* VC */,
@@ -127,7 +124,7 @@
 		B1505D052BFB5DB900D42364 /* VC */ = {
 			isa = PBXGroup;
 			children = (
-				B1910ECD2BFF83C600277790 /* Fridns View Controlllers */,
+				B1910ECD2BFF83C600277790 /* FriendsVC */,
 				B180FBDF2BFE18B4001E8BEE /* Onboarding */,
 				B180FBD22BFE17CD001E8BEE /* ProfileVC */,
 				B1505D0C2BFB5E1C00D42364 /* AuthVC */,
@@ -201,7 +198,7 @@
 			path = Onboarding;
 			sourceTree = "<group>";
 		};
-		B1910ECD2BFF83C600277790 /* Fridns View Controlllers */ = {
+		B1910ECD2BFF83C600277790 /* FriendsVC */ = {
 			isa = PBXGroup;
 			children = (
 				B1910ED02BFF83D100277790 /* AddFriendTableViewCell.swift */,
@@ -210,7 +207,7 @@
 				B1910ECE2BFF83D100277790 /* FriendTableViewCell.swift */,
 				B1910ED22BFF83D200277790 /* RequestTableViewCell.swift */,
 			);
-			path = "Fridns View Controlllers";
+			path = FriendsVC;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -288,7 +285,6 @@
 				B1505CFC2BFB5C3900D42364 /* LaunchScreen.storyboard in Resources */,
 				B1505CF92BFB5C3900D42364 /* Assets.xcassets in Resources */,
 				B1505CF72BFB5C3700D42364 /* Main.storyboard in Resources */,
-				B1FFA62E2BFF8272007B198D /* OnBoarding in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
