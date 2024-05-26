@@ -5,7 +5,7 @@ class Onboarding2ViewController: UIViewController {
 
     private let backgroundImageView: UIImageView = {
         let imageView = UIImageView()
-        imageView.image = UIImage(named: "Onboarding2")
+        imageView.image = UIImage(named: "Onboarding")
         imageView.contentMode = .scaleAspectFill
         return imageView
     }()

@@ -205,8 +205,18 @@ class ProfileViewController: UIViewController {
     }
 
     @objc func logoutTapped() {
-        let authVC = AuthViewController()
-        navigationController?.pushViewController(authVC, animated: true)    }
+        // Display confirmation alert
+        let alertController = UIAlertController(title: "Log Out", message: "Are you sure you want to log out?", preferredStyle: .alert)
+        let confirmAction = UIAlertAction(title: "Log Out", style: .destructive) { _ in
+            // Handle log out action
+            let authVC = AuthViewController()
+            self.navigationController?.pushViewController(authVC, animated: true)
+        }
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+        alertController.addAction(confirmAction)
+        alertController.addAction(cancelAction)
+        present(alertController, animated: true, completion: nil)
+    }
 
     @objc func editTapped() {
         let editVC = EditProfileViewController()

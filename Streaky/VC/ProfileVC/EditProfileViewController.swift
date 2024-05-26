@@ -93,7 +93,7 @@ class EditProfileViewController: UIViewController {
         confirmButton.setTitle("Confirm", for: .normal)
         confirmButton.setTitleColor(.white, for: .normal)
         confirmButton.backgroundColor = #colorLiteral(red: 0.2706783712, green: 0.1171713695, blue: 0.4809373021, alpha: 1)
-        confirmButton.layer.cornerRadius = 14
+        confirmButton.layer.cornerRadius = 24
         confirmButton.addTarget(self, action: #selector(saveTapped), for: .touchUpInside)
         view.addSubview(confirmButton)
 
