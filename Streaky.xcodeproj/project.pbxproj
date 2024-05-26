@@ -10,7 +10,6 @@
 		9B4C8FE32BFF1CBC00433448 /* RequestTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B4C8FE22BFF1CBC00433448 /* RequestTableViewCell.swift */; };
 		9B4C8FE52BFF23BE00433448 /* AddFriendTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B4C8FE42BFF23BE00433448 /* AddFriendTableViewCell.swift */; };
 		9B4C8FE82BFF2D9D00433448 /* QuestionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B4C8FE72BFF2D9D00433448 /* QuestionViewController.swift */; };
-		9B4C8FEA2BFF435F00433448 /* CongratulationsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B4C8FE92BFF435F00433448 /* CongratulationsView.swift */; };
 		B1505CF02BFB5C3700D42364 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1505CEF2BFB5C3700D42364 /* AppDelegate.swift */; };
 		B1505CF22BFB5C3700D42364 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1505CF12BFB5C3700D42364 /* SceneDelegate.swift */; };
 		B1505CF42BFB5C3700D42364 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1505CF32BFB5C3700D42364 /* ViewController.swift */; };
@@ -39,7 +38,6 @@
 		9B4C8FE22BFF1CBC00433448 /* RequestTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestTableViewCell.swift; sourceTree = "<group>"; };
 		9B4C8FE42BFF23BE00433448 /* AddFriendTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddFriendTableViewCell.swift; sourceTree = "<group>"; };
 		9B4C8FE72BFF2D9D00433448 /* QuestionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionViewController.swift; sourceTree = "<group>"; };
-		9B4C8FE92BFF435F00433448 /* CongratulationsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CongratulationsView.swift; sourceTree = "<group>"; };
 		B1505CEC2BFB5C3700D42364 /* Streaky.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Streaky.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B1505CEF2BFB5C3700D42364 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B1505CF12BFB5C3700D42364 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -101,7 +99,6 @@
 			isa = PBXGroup;
 			children = (
 				9B4C8FE72BFF2D9D00433448 /* QuestionViewController.swift */,
-				9B4C8FE92BFF435F00433448 /* CongratulationsView.swift */,
 			);
 			path = QuestionsVC;
 			sourceTree = "<group>";
@@ -290,7 +287,6 @@
 				B1505CF22BFB5C3700D42364 /* SceneDelegate.swift in Sources */,
 				B180FBCD2BFE1558001E8BEE /* FriendsDashboardViewController.swift in Sources */,
 				9B4C8FE52BFF23BE00433448 /* AddFriendTableViewCell.swift in Sources */,
-				9B4C8FEA2BFF435F00433448 /* CongratulationsView.swift in Sources */,
 				B180FBC72BFE1481001E8BEE /* AuthViewController.swift in Sources */,
 				B180FBD12BFE1566001E8BEE /* Friend.swift in Sources */,
 				9B4C8FE82BFF2D9D00433448 /* QuestionViewController.swift in Sources */,

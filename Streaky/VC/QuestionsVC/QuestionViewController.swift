@@ -2,10 +2,10 @@ import UIKit
 import SnapKit
 
 class QuestionViewController: UIViewController {
-
+    
     private let backgroundImageView: UIImageView = {
         let imageView = UIImageView()
-        imageView.image = UIImage(named: "Background") // Replace with your image name
+        imageView.image = UIImage(named: "Background")
         imageView.contentMode = .scaleAspectFill
         return imageView
     }()
@@ -72,16 +72,18 @@ class QuestionViewController: UIViewController {
     }()
     
     private let correctAnswerColor = UIColor(red: 144/255, green: 238/255, blue: 144/255, alpha: 1)
+    private let incorrectAnswerColor = UIColor(red: 238/255, green: 100/255, blue: 100/255, alpha: 1)
     private let selectedAnswerColor = UIColor(red: 100/255, green: 149/255, blue: 237/255, alpha: 1)
     
     private var questions: [(question: String, options: [String], correctAnswer: String)] = [
         ("What is the latest released in Pick", ["Tramisu Latte", "Con Panna", "Pum Berry Sauce", "Schiaccatta"], "Pum Berry Sauce"),
         ("What is the capital of France?", ["Berlin", "Madrid", "Paris", "Rome"], "Paris"),
-        // Add more questions here
+        
     ]
     
     private var currentQuestionIndex = 0
     private var selectedAnswer: String?
+    private var incorrectAnswers = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -112,7 +114,7 @@ class QuestionViewController: UIViewController {
         }
         
         containerView.snp.makeConstraints { make in
-            make.top.equalTo(todayQuestionLabel.snp.bottom).offset(32) // Moved down
+            make.top.equalTo(todayQuestionLabel.snp.bottom).offset(32)
             make.left.right.equalToSuperview().inset(16)
             make.height.equalTo(400)
         }
@@ -150,7 +152,7 @@ class QuestionViewController: UIViewController {
     
     private func loadQuestion() {
         guard currentQuestionIndex < questions.count else {
-            // Handle end of questions
+            
             return
         }
         
@@ -187,32 +189,57 @@ class QuestionViewController: UIViewController {
     
     @objc private func submitButtonTapped() {
         guard let selectedAnswer = selectedAnswer else {
-            showAlert(message: "Please select an answer.", isCorrect: false)
+            showAlert(message: "Please select an answer.")
             return
         }
         
         let questionData = questions[currentQuestionIndex]
         if selectedAnswer == questionData.correctAnswer {
-            if currentQuestionIndex == questions.count - 1 {
-                showCongratulations()
-            } else {
-                currentQuestionIndex += 1
-                loadQuestion()
+            highlightCorrectAnswer()
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
+                self.showCongratulations()
             }
         } else {
-            currentQuestionIndex += 1
-            loadQuestion()
+            highlightIncorrectAnswer()
+            incorrectAnswers += 1
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
+                if self.incorrectAnswers == 2 {
+                    self.showTryAgain()
+                } else {
+                    self.currentQuestionIndex += 1
+                    self.loadQuestion()
+                }
+            }
         }
     }
     
-    private func showAlert(message: String, isCorrect: Bool) {
+    private func highlightCorrectAnswer() {
+        for button in stackView.arrangedSubviews as! [UIButton] {
+            if button.title(for: .normal) == selectedAnswer {
+                button.layer.borderColor = correctAnswerColor.cgColor
+                button.backgroundColor = correctAnswerColor.withAlphaComponent(0.2)
+            }
+        }
+    }
+    
+    private func highlightIncorrectAnswer() {
+        for button in stackView.arrangedSubviews as! [UIButton] {
+            if button.title(for: .normal) == selectedAnswer {
+                button.layer.borderColor = incorrectAnswerColor.cgColor
+                button.backgroundColor = incorrectAnswerColor.withAlphaComponent(0.2)
+            }
+        }
+    }
+    
+    private func showAlert(message: String) {
         let alertController = UIAlertController(title: nil, message: message, preferredStyle: .alert)
         alertController.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
         present(alertController, animated: true, completion: nil)
     }
     
     private func showCongratulations() {
-        let congratulationsView = CongratulationsView()
+        hideQuestions()
+        let congratulationsView = createCongratulationsView()
         view.addSubview(congratulationsView)
         
         congratulationsView.snp.makeConstraints { make in
@@ -220,6 +247,24 @@ class QuestionViewController: UIViewController {
             make.width.equalToSuperview().multipliedBy(0.8)
             make.height.equalTo(200)
         }
+    }
+    
+    private func showTryAgain() {
+        hideQuestions()
+        let tryAgainView = createTryAgainView()
+        view.addSubview(tryAgainView)
+        
+        tryAgainView.snp.makeConstraints { make in
+            make.center.equalToSuperview()
+            make.width.equalToSuperview().multipliedBy(0.8)
+            make.height.equalTo(200)
+        }
+    }
+    
+    private func hideQuestions() {
+        todayQuestionLabel.isHidden = true
+        containerView.isHidden = true
+        submitButton.isHidden = true
     }
     
     private func configureNavigationBar() {
@@ -233,12 +278,106 @@ class QuestionViewController: UIViewController {
         navigationController?.navigationBar.scrollEdgeAppearance = appearance
         navigationController?.navigationBar.isTranslucent = true
         
-        let backButton = UIBarButtonItem(image: UIImage(systemName: "chevron.left"), style: .plain, target: self, action: #selector(backButtonTapped))
-        backButton.tintColor = .white
-        navigationItem.leftBarButtonItem = backButton
+        
     }
     
     @objc private func backButtonTapped() {
         navigationController?.popViewController(animated: true)
+    }
+    
+    private func createCongratulationsView() -> UIView {
+        let view = UIView()
+        view.backgroundColor = .white
+        view.layer.cornerRadius = 20
+        view.layer.masksToBounds = true
+        
+        let messageLabel: UILabel = {
+            let label = UILabel()
+            label.text = "Congratulations!\nYou have earned 80 Points"
+            label.font = UIFont.systemFont(ofSize: 20, weight: .bold)
+            label.textColor = .black
+            label.textAlignment = .center
+            label.numberOfLines = 0
+            return label
+        }()
+        
+        let doneButton: UIButton = {
+            let button = UIButton(type: .system)
+            button.setTitle("Done", for: .normal)
+            button.setTitleColor(.white, for: .normal)
+            button.backgroundColor = UIColor(red: 1.0, green: 0.6, blue: 0.4, alpha: 1.0)
+            button.layer.cornerRadius = 22
+            button.addTarget(self, action: #selector(doneButtonTapped), for: .touchUpInside)
+            return button
+        }()
+        
+        view.addSubview(messageLabel)
+        view.addSubview(doneButton)
+        
+        messageLabel.snp.makeConstraints { make in
+            make.top.equalToSuperview().offset(32)
+            make.left.right.equalToSuperview().inset(16)
+        }
+        
+        doneButton.snp.makeConstraints { make in
+            make.top.equalTo(messageLabel.snp.bottom).offset(16)
+            make.centerX.equalToSuperview()
+            make.width.equalTo(120)
+            make.height.equalTo(44)
+            make.bottom.equalToSuperview().offset(-32)
+        }
+        
+        return view
+    }
+    
+    private func createTryAgainView() -> UIView {
+        let view = UIView()
+        view.backgroundColor = .white
+        view.layer.cornerRadius = 20
+        view.layer.masksToBounds = true
+        
+        let messageLabel: UILabel = {
+            let label = UILabel()
+            label.text = "Thanks for your effort!\nTry again Tomorrow"
+            label.font = UIFont.systemFont(ofSize: 20, weight: .bold)
+            label.textColor = .black
+            label.textAlignment = .center
+            label.numberOfLines = 0
+            return label
+        }()
+        
+        let doneButton: UIButton = {
+            let button = UIButton(type: .system)
+            button.setTitle("Done", for: .normal)
+            button.setTitleColor(.white, for: .normal)
+            button.backgroundColor = UIColor(red: 1.0, green: 0.6, blue: 0.4, alpha: 1.0)
+            button.layer.cornerRadius = 22
+            button.addTarget(self, action: #selector(doneButtonTapped), for: .touchUpInside)
+            return button
+        }()
+        
+        view.addSubview(messageLabel)
+        view.addSubview(doneButton)
+        
+        messageLabel.snp.makeConstraints { make in
+            make.top.equalToSuperview().offset(32)
+            make.left.right.equalToSuperview().inset(16)
+        }
+        
+        doneButton.snp.makeConstraints { make in
+            make.top.equalTo(messageLabel.snp.bottom).offset(16)
+            make.centerX.equalToSuperview()
+            make.width.equalTo(120)
+            make.height.equalTo(44)
+            make.bottom.equalToSuperview().offset(-32)
+        }
+        
+        return view
+    }
+    
+    @objc private func doneButtonTapped() {
+        if let view = view.subviews.last {
+            view.removeFromSuperview()
+        }
     }
 }
