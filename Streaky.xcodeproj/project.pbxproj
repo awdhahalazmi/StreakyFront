@@ -101,13 +101,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		9B4554C52C045EC0007BE793 /* New Group */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = "New Group";
-			sourceTree = "<group>";
-		};
 		9B4554C82C045EE6007BE793 /* QuestionsVC */ = {
 			isa = PBXGroup;
 			children = (
@@ -150,7 +143,6 @@
 			isa = PBXGroup;
 			children = (
 				9B4554C82C045EE6007BE793 /* QuestionsVC */,
-				9B4554C52C045EC0007BE793 /* New Group */,
 				B1910ECD2BFF83C600277790 /* FriendsVC */,
 				B180FBDF2BFE18B4001E8BEE /* Onboarding */,
 				B180FBD22BFE17CD001E8BEE /* ProfileVC */,
