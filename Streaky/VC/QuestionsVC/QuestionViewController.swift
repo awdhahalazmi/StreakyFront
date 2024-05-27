@@ -78,7 +78,6 @@ class QuestionViewController: UIViewController {
     private var questions: [(question: String, options: [String], correctAnswer: String)] = [
         ("What is the latest released in Pick", ["Tramisu Latte", "Con Panna", "Pum Berry Sauce", "Schiaccatta"], "Pum Berry Sauce"),
         ("What is the capital of France?", ["Berlin", "Madrid", "Paris", "Rome"], "Paris"),
-        
     ]
     
     private var currentQuestionIndex = 0
@@ -152,7 +151,6 @@ class QuestionViewController: UIViewController {
     
     private func loadQuestion() {
         guard currentQuestionIndex < questions.count else {
-            
             return
         }
         
@@ -201,13 +199,19 @@ class QuestionViewController: UIViewController {
             }
         } else {
             highlightIncorrectAnswer()
+            if currentQuestionIndex == 0 {
+                submitButton.setTitle("Try Again", for: .normal)
+            }
             incorrectAnswers += 1
-            DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
                 if self.incorrectAnswers == 2 {
                     self.showTryAgain()
                 } else {
                     self.currentQuestionIndex += 1
                     self.loadQuestion()
+                    if self.currentQuestionIndex != 0 {
+                        self.submitButton.setTitle("Submit", for: .normal)
+                    }
                 }
             }
         }
@@ -277,8 +281,6 @@ class QuestionViewController: UIViewController {
         navigationController?.navigationBar.standardAppearance = appearance
         navigationController?.navigationBar.scrollEdgeAppearance = appearance
         navigationController?.navigationBar.isTranslucent = true
-        
-        
     }
     
     @objc private func backButtonTapped() {
