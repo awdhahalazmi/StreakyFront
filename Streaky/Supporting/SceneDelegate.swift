@@ -23,6 +23,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window.rootViewController = UINavigationController(rootViewController: QuestionViewController())
 
 
+
         self.window = window
         
         self.window?.makeKeyAndVisible()
