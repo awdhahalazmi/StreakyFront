@@ -15,14 +15,13 @@ class RequestTableViewCell: UITableViewCell {
     
     private let nameLabel: UILabel = {
         let label = UILabel()
-        label.font = UIFont.systemFont(ofSize: 16, weight: .bold)  // Ensure same font style
         label.textColor = UIColor(red: 123/255, green: 25/255, blue: 251/255, alpha: 1)
         return label
     }()
     
     private let streakLabel: UILabel = {
         let label = UILabel()
-        label.font = UIFont.systemFont(ofSize: 14, weight: .medium)  // Ensure same font style
+        label.font = UIFont.systemFont(ofSize: 14, weight: .medium)  
         label.textColor = UIColor(red: 199/255, green: 173/255, blue: 235/255, alpha: 1)
         return label
     }()

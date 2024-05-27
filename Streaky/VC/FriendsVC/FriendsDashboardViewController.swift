@@ -116,7 +116,7 @@ class FriendsDashboardViewController: UIViewController, UITableViewDataSource, U
         tableView.reloadData()
     }
 
-    // UITableViewDataSource methods
+   
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return currentList.count
     }
