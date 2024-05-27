@@ -20,15 +20,21 @@ class FriendsDashboardViewController: UIViewController, UITableViewDataSource, U
     private var isRequestView: Bool = false
 
     private let segmentedControl: UISegmentedControl = {
-        let segmentedControl = UISegmentedControl(items: ["Request", "Friends"])
-        segmentedControl.selectedSegmentIndex = 1
+        let segmentedControl = UISegmentedControl(items: ["Friends", "Request"])
+        segmentedControl.selectedSegmentIndex = 0
         segmentedControl.backgroundColor = .white
         segmentedControl.tintColor = UIColor(red: 69/255, green: 30/255, blue: 123/255, alpha: 1)
         segmentedControl.layer.cornerRadius = 20
         segmentedControl.layer.masksToBounds = true
+        
+        let titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor(red: 143/255, green: 91/255, blue: 215/255, alpha: 1)]
+        segmentedControl.setTitleTextAttributes(titleTextAttributes, for: .normal)
+        segmentedControl.setTitleTextAttributes(titleTextAttributes, for: .selected)
+        
         segmentedControl.addTarget(self, action: #selector(segmentedControlChanged), for: .valueChanged)
         return segmentedControl
     }()
+
 
     private let tableView: UITableView = {
         let tableView = UITableView()
@@ -104,10 +110,10 @@ class FriendsDashboardViewController: UIViewController, UITableViewDataSource, U
     
     @objc private func segmentedControlChanged(_ sender: UISegmentedControl) {
         switch sender.selectedSegmentIndex {
-        case 0:
+        case 1:
             currentList = requests
             isRequestView = true
-        case 1:
+        case 0:
             currentList = friends
             isRequestView = false
         default:
@@ -116,7 +122,6 @@ class FriendsDashboardViewController: UIViewController, UITableViewDataSource, U
         tableView.reloadData()
     }
 
-   
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return currentList.count
     }
