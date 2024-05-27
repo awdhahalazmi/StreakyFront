@@ -144,7 +144,8 @@ class Onboarding2ViewController: UIViewController {
     }
     
     @objc private func nextButtonTapped() {
-        let nextVC = AuthViewController()
-        navigationController?.pushViewController(nextVC, animated: true)
+        let AuthVC = AuthViewController()
+        navigationController?.pushViewController(AuthVC, animated: true)
+
     }
 }

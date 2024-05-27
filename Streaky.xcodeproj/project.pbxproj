@@ -45,11 +45,13 @@
 		B1910F1A2C03947900277790 /* Reward.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1910F192C03947900277790 /* Reward.swift */; };
 		B1910F1C2C0394BD00277790 /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1910F1B2C0394BD00277790 /* Location.swift */; };
 		B1910F1E2C03950800277790 /* TokenResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1910F1D2C03950800277790 /* TokenResponse.swift */; };
-		B1910F2B2C048F0100277790 /* TodayQuestionCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1910F2A2C048F0100277790 /* TodayQuestionCollectionViewCell.swift */; };
-		B1910F2D2C048F4500277790 /* TodayQuestionCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1910F2C2C048F4500277790 /* TodayQuestionCollectionViewController.swift */; };
+		B1910F272C04613900277790 /* QuestionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1910F262C04613900277790 /* QuestionViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+
+		B1910F2B2C048F0100277790 /* TodayQuestionCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1910F2A2C048F0100277790 /* TodayQuestionCollectionViewCell.swift */; };
+		B1910F2D2C048F4500277790 /* TodayQuestionCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1910F2C2C048F4500277790 /* TodayQuestionCollectionViewController.swift */; };
 		9B4554C62C045EE0007BE793 /* QuestionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuestionViewController.swift; sourceTree = "<group>"; };
 		B1505CEC2BFB5C3700D42364 /* Streaky.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Streaky.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B1505CEF2BFB5C3700D42364 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -84,6 +86,7 @@
 		B1910F192C03947900277790 /* Reward.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reward.swift; sourceTree = "<group>"; };
 		B1910F1B2C0394BD00277790 /* Location.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
 		B1910F1D2C03950800277790 /* TokenResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenResponse.swift; sourceTree = "<group>"; };
+		B1910F262C04613900277790 /* QuestionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionViewController.swift; sourceTree = "<group>"; };
 		B1910F2A2C048F0100277790 /* TodayQuestionCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayQuestionCollectionViewCell.swift; sourceTree = "<group>"; };
 		B1910F2C2C048F4500277790 /* TodayQuestionCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayQuestionCollectionViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -146,6 +149,7 @@
 		B1505D052BFB5DB900D42364 /* VC */ = {
 			isa = PBXGroup;
 			children = (
+				B1910F282C04614C00277790 /* QuestionsVC */,
 				9B4554C82C045EE6007BE793 /* QuestionsVC */,
 				B1910ECD2BFF83C600277790 /* FriendsVC */,
 				B180FBDF2BFE18B4001E8BEE /* Onboarding */,
@@ -258,6 +262,7 @@
 			path = SecretExperience;
 			sourceTree = "<group>";
 		};
+
 		B1910F292C048EAD00277790 /* QuestionVC */ = {
 			isa = PBXGroup;
 			children = (
