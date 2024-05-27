@@ -1,29 +1,23 @@
-//
-//  MainViewController.swift
-//  Streaky
-//
-//  Created by Fatma Buyabes on 21/05/2024.
-//
-
 import UIKit
+import SnapKit
 
 class MainViewController: UIViewController {
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        
+        // Set up the main view
+        view.backgroundColor = .white
+        
+        // Set up and add the StreaksViewController
+        let streaksViewController = StreaksTableViewController()
+        addChild(streaksViewController)
+        view.addSubview(streaksViewController.view)
+        streaksViewController.didMove(toParent: self)
+        
+        // Set up constraints for the streaksViewController's view using SnapKit
+        streaksViewController.view.snp.makeConstraints { make in
+            make.edges.equalToSuperview()
+        }
     }
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }

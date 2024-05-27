@@ -62,7 +62,6 @@ class FriendTableViewCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-
     private func setupViews() {
         contentView.addSubview(profileImageView)
         contentView.addSubview(containerView)
@@ -95,8 +94,6 @@ class FriendTableViewCell: UITableViewCell {
             make.width.equalTo(70)
         }
     }
-    
-    
 
     func configure(with friend: Friend) {
         if let url = URL(string: friend.profileImageUrl) {

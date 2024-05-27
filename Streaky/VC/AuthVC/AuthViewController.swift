@@ -108,13 +108,14 @@ class AuthViewController: UIViewController {
     }
     
     @objc func loginButtonTapped() {
-            let loginVC = LoginViewController()
-            self.navigationController?.pushViewController(loginVC, animated: true)
+        let loginVC = LoginViewController()
+        loginVC.modalPresentationStyle = .fullScreen
+        self.present(loginVC, animated: true, completion: nil)
         }
 
     @objc func signUpButtonTapped() {
-        // Handle sign-up button tap
-        let loginVC = LoginViewController()
-        self.navigationController?.pushViewController(loginVC, animated: true)
+        let signUpVC = SignUpViewController()
+        signUpVC.modalPresentationStyle = .fullScreen
+        self.present(signUpVC, animated: true, completion: nil)
     }
 }
