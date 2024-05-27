@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		9B4554C72C045EE0007BE793 /* QuestionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B4554C62C045EE0007BE793 /* QuestionViewController.swift */; };
+		9BF8E2542C049ECE001A9AAC /* PointsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BF8E2532C049ECE001A9AAC /* PointsViewController.swift */; };
 		B1505CF02BFB5C3700D42364 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1505CEF2BFB5C3700D42364 /* AppDelegate.swift */; };
 		B1505CF22BFB5C3700D42364 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1505CF12BFB5C3700D42364 /* SceneDelegate.swift */; };
 		B1505CF42BFB5C3700D42364 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1505CF32BFB5C3700D42364 /* ViewController.swift */; };
@@ -49,6 +50,7 @@
 
 /* Begin PBXFileReference section */
 		9B4554C62C045EE0007BE793 /* QuestionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuestionViewController.swift; sourceTree = "<group>"; };
+		9BF8E2532C049ECE001A9AAC /* PointsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PointsViewController.swift; sourceTree = "<group>"; };
 		B1505CEC2BFB5C3700D42364 /* Streaky.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Streaky.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B1505CEF2BFB5C3700D42364 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B1505CF12BFB5C3700D42364 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -107,6 +109,14 @@
 				9B4554C62C045EE0007BE793 /* QuestionViewController.swift */,
 			);
 			path = QuestionsVC;
+			sourceTree = "<group>";
+		};
+		9BF8E2522C049EA1001A9AAC /* Points */ = {
+			isa = PBXGroup;
+			children = (
+				9BF8E2532C049ECE001A9AAC /* PointsViewController.swift */,
+			);
+			path = Points;
 			sourceTree = "<group>";
 		};
 		B1505CE32BFB5C3700D42364 = {
@@ -179,6 +189,7 @@
 		B1505D092BFB5DF900D42364 /* MainVC */ = {
 			isa = PBXGroup;
 			children = (
+				9BF8E2522C049EA1001A9AAC /* Points */,
 				B1910F072C030F3300277790 /* SecretExperience */,
 				B1910F062C030F2600277790 /* Rewards */,
 				B1910F052C030F1700277790 /* Streaks */,
@@ -363,6 +374,7 @@
 				B180FBC72BFE1481001E8BEE /* AuthViewController.swift in Sources */,
 				B180FBD12BFE1566001E8BEE /* Friend.swift in Sources */,
 				B1505D242BFB607400D42364 /* SignUpViewController.swift in Sources */,
+				9BF8E2542C049ECE001A9AAC /* PointsViewController.swift in Sources */,
 				B1910ED42BFF83D200277790 /* FriendsDashboardViewController.swift in Sources */,
 				9B4554C72C045EE0007BE793 /* QuestionViewController.swift in Sources */,
 				B1910ED32BFF83D200277790 /* FriendTableViewCell.swift in Sources */,

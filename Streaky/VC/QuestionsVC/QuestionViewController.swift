@@ -3,6 +3,8 @@ import SnapKit
 
 class QuestionViewController: UIViewController {
     
+    private var points: Int = 0
+    
     private let backgroundImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.image = UIImage(named: "Background")
@@ -78,6 +80,7 @@ class QuestionViewController: UIViewController {
     private var questions: [(question: String, options: [String], correctAnswer: String)] = [
         ("What is the latest released in Pick", ["Tramisu Latte", "Con Panna", "Pum Berry Sauce", "Schiaccatta"], "Pum Berry Sauce"),
         ("What is the capital of France?", ["Berlin", "Madrid", "Paris", "Rome"], "Paris"),
+        
     ]
     
     private var currentQuestionIndex = 0
@@ -194,24 +197,19 @@ class QuestionViewController: UIViewController {
         let questionData = questions[currentQuestionIndex]
         if selectedAnswer == questionData.correctAnswer {
             highlightCorrectAnswer()
+            points += 50 
             DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
                 self.showCongratulations()
             }
         } else {
             highlightIncorrectAnswer()
-            if currentQuestionIndex == 0 {
-                submitButton.setTitle("Try Again", for: .normal)
-            }
             incorrectAnswers += 1
-            DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
                 if self.incorrectAnswers == 2 {
                     self.showTryAgain()
                 } else {
                     self.currentQuestionIndex += 1
                     self.loadQuestion()
-                    if self.currentQuestionIndex != 0 {
-                        self.submitButton.setTitle("Submit", for: .normal)
-                    }
                 }
             }
         }
@@ -295,7 +293,7 @@ class QuestionViewController: UIViewController {
         
         let messageLabel: UILabel = {
             let label = UILabel()
-            label.text = "Congratulations!\nYou have earned 80 Points"
+            label.text = "Congratulations!\nYou have earned 50 Points"
             label.font = UIFont.systemFont(ofSize: 20, weight: .bold)
             label.textColor = .black
             label.textAlignment = .center
@@ -381,5 +379,7 @@ class QuestionViewController: UIViewController {
         if let view = view.subviews.last {
             view.removeFromSuperview()
         }
+        let pointsVC = PointsViewController(points: points)
+        navigationController?.pushViewController(pointsVC, animated: true)
     }
 }
