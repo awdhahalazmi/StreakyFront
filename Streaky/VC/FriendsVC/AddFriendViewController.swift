@@ -73,7 +73,7 @@ class AddFriendViewController: UIViewController, UITableViewDataSource, UITableV
         navigationController?.popViewController(animated: true)
     }
 
-    // UITableViewDataSource methods
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return friends.count
     }
@@ -91,17 +91,17 @@ class AddFriendViewController: UIViewController, UITableViewDataSource, UITableV
         return cell
     }
 
-    // UISearchBarDelegate methods
+   
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        // Handle search text change
+        
     }
 
-    // AddFriendCellDelegate method
+    
     func didTapAddButton(for friend: Friend) {
         let alertController = UIAlertController(title: "Add Friend", message: "Do you want to add \(friend.name) as a friend?", preferredStyle: .alert)
         alertController.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
         alertController.addAction(UIAlertAction(title: "Add", style: .default, handler: { _ in
-            // Handle adding the friend
+            
             print("\(friend.name) added as a friend.")
         }))
         present(alertController, animated: true, completion: nil)
