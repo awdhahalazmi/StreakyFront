@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9B4554C72C045EE0007BE793 /* QuestionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B4554C62C045EE0007BE793 /* QuestionViewController.swift */; };
 		B1505CF02BFB5C3700D42364 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1505CEF2BFB5C3700D42364 /* AppDelegate.swift */; };
 		B1505CF22BFB5C3700D42364 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1505CF12BFB5C3700D42364 /* SceneDelegate.swift */; };
 		B1505CF42BFB5C3700D42364 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1505CF32BFB5C3700D42364 /* ViewController.swift */; };
@@ -48,6 +49,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+
+		B1910F2B2C048F0100277790 /* TodayQuestionCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1910F2A2C048F0100277790 /* TodayQuestionCollectionViewCell.swift */; };
+		B1910F2D2C048F4500277790 /* TodayQuestionCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1910F2C2C048F4500277790 /* TodayQuestionCollectionViewController.swift */; };
+		9B4554C62C045EE0007BE793 /* QuestionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuestionViewController.swift; sourceTree = "<group>"; };
 		B1505CEC2BFB5C3700D42364 /* Streaky.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Streaky.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B1505CEF2BFB5C3700D42364 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B1505CF12BFB5C3700D42364 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -82,6 +87,8 @@
 		B1910F1B2C0394BD00277790 /* Location.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
 		B1910F1D2C03950800277790 /* TokenResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenResponse.swift; sourceTree = "<group>"; };
 		B1910F262C04613900277790 /* QuestionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionViewController.swift; sourceTree = "<group>"; };
+		B1910F2A2C048F0100277790 /* TodayQuestionCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayQuestionCollectionViewCell.swift; sourceTree = "<group>"; };
+		B1910F2C2C048F4500277790 /* TodayQuestionCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayQuestionCollectionViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -101,6 +108,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		9B4554C82C045EE6007BE793 /* QuestionsVC */ = {
+			isa = PBXGroup;
+			children = (
+				9B4554C62C045EE0007BE793 /* QuestionViewController.swift */,
+			);
+			path = QuestionsVC;
+			sourceTree = "<group>";
+		};
 		B1505CE32BFB5C3700D42364 = {
 			isa = PBXGroup;
 			children = (
@@ -135,6 +150,7 @@
 			isa = PBXGroup;
 			children = (
 				B1910F282C04614C00277790 /* QuestionsVC */,
+				9B4554C82C045EE6007BE793 /* QuestionsVC */,
 				B1910ECD2BFF83C600277790 /* FriendsVC */,
 				B180FBDF2BFE18B4001E8BEE /* Onboarding */,
 				B180FBD22BFE17CD001E8BEE /* ProfileVC */,
@@ -171,6 +187,7 @@
 		B1505D092BFB5DF900D42364 /* MainVC */ = {
 			isa = PBXGroup;
 			children = (
+				B1910F292C048EAD00277790 /* QuestionVC */,
 				B1910F072C030F3300277790 /* SecretExperience */,
 				B1910F062C030F2600277790 /* Rewards */,
 				B1910F052C030F1700277790 /* Streaks */,
@@ -245,12 +262,14 @@
 			path = SecretExperience;
 			sourceTree = "<group>";
 		};
-		B1910F282C04614C00277790 /* QuestionsVC */ = {
+
+		B1910F292C048EAD00277790 /* QuestionVC */ = {
 			isa = PBXGroup;
 			children = (
-				B1910F262C04613900277790 /* QuestionViewController.swift */,
+				B1910F2A2C048F0100277790 /* TodayQuestionCollectionViewCell.swift */,
+				B1910F2C2C048F4500277790 /* TodayQuestionCollectionViewController.swift */,
 			);
-			path = QuestionsVC;
+			path = QuestionVC;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -352,6 +371,7 @@
 				B1505CF02BFB5C3700D42364 /* AppDelegate.swift in Sources */,
 				B180FBC62BFE1481001E8BEE /* LoginViewController.swift in Sources */,
 				B180FBD62BFE17FC001E8BEE /* EditProfileViewController.swift in Sources */,
+				B1910F2B2C048F0100277790 /* TodayQuestionCollectionViewCell.swift in Sources */,
 				B1910F1C2C0394BD00277790 /* Location.swift in Sources */,
 				B1910F0B2C0311BE00277790 /* StreaksTableViewCell.swift in Sources */,
 				B1910ED62BFF83D200277790 /* AddFriendViewController.swift in Sources */,
@@ -360,11 +380,12 @@
 				B1505CF22BFB5C3700D42364 /* SceneDelegate.swift in Sources */,
 				B180FBE32BFE1A1C001E8BEE /* Onboarding2ViewController.swift in Sources */,
 				B180FBDB2BFE189F001E8BEE /* OnboardingViewController.swift in Sources */,
+				B1910F2D2C048F4500277790 /* TodayQuestionCollectionViewController.swift in Sources */,
 				B180FBC72BFE1481001E8BEE /* AuthViewController.swift in Sources */,
 				B180FBD12BFE1566001E8BEE /* Friend.swift in Sources */,
 				B1505D242BFB607400D42364 /* SignUpViewController.swift in Sources */,
 				B1910ED42BFF83D200277790 /* FriendsDashboardViewController.swift in Sources */,
-				B1910F272C04613900277790 /* QuestionViewController.swift in Sources */,
+				9B4554C72C045EE0007BE793 /* QuestionViewController.swift in Sources */,
 				B1910ED32BFF83D200277790 /* FriendTableViewCell.swift in Sources */,
 				B1910ED52BFF83D200277790 /* AddFriendTableViewCell.swift in Sources */,
 			);

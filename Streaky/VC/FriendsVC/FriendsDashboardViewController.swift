@@ -20,12 +20,11 @@ class FriendsDashboardViewController: UIViewController, UITableViewDataSource, U
     private var isRequestView: Bool = false
 
     private let segmentedControl: UISegmentedControl = {
-        let segmentedControl = UISegmentedControl(items: ["Request", "Friends"])
-        segmentedControl.selectedSegmentIndex = 1
+        let segmentedControl = UISegmentedControl(items: ["Friends", "Request"])
+        segmentedControl.selectedSegmentIndex = 0
         segmentedControl.backgroundColor = .white
         segmentedControl.tintColor = UIColor(red: 69/255, green: 30/255, blue: 123/255, alpha: 1)
-        segmentedControl.layer.cornerRadius = 20
-        segmentedControl.layer.masksToBounds = true
+        segmentedControl.setTitleTextAttributes([NSAttributedString.Key.foregroundColor: UIColor(red: 143/255, green: 91/255, blue: 215/255, alpha: 1)], for: .normal)
         segmentedControl.addTarget(self, action: #selector(segmentedControlChanged), for: .valueChanged)
         return segmentedControl
     }()
@@ -105,11 +104,11 @@ class FriendsDashboardViewController: UIViewController, UITableViewDataSource, U
     @objc private func segmentedControlChanged(_ sender: UISegmentedControl) {
         switch sender.selectedSegmentIndex {
         case 0:
-            currentList = requests
-            isRequestView = true
-        case 1:
             currentList = friends
             isRequestView = false
+        case 1:
+            currentList = requests
+            isRequestView = true
         default:
             break
         }
@@ -131,13 +130,20 @@ class FriendsDashboardViewController: UIViewController, UITableViewDataSource, U
                 return UITableViewCell()
             }
             cell.configure(with: currentList[indexPath.row])
+            cell.selectionStyle = .none
             return cell
         } else {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: FriendTableViewCell.identifier, for: indexPath) as? FriendTableViewCell else {
                 return UITableViewCell()
             }
             cell.configure(with: currentList[indexPath.row])
+            cell.selectionStyle = .none
             return cell
         }
+    }
+
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
     }
 }

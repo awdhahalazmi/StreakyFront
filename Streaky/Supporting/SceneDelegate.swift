@@ -21,6 +21,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // Window for the entery point or the app view
         window.rootViewController = UINavigationController(rootViewController: WelcomeViewController())
 
+
         self.window = window
         
         self.window?.makeKeyAndVisible()

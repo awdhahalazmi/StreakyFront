@@ -1,4 +1,6 @@
 import UIKit
+import SnapKit
+
 protocol AddFriendCellDelegate: AnyObject {
     func didTapAddButton(for friend: Friend)
 }
@@ -73,7 +75,6 @@ class AddFriendViewController: UIViewController, UITableViewDataSource, UITableV
         navigationController?.popViewController(animated: true)
     }
 
-    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return friends.count
     }
@@ -88,20 +89,23 @@ class AddFriendViewController: UIViewController, UITableViewDataSource, UITableV
         }
         cell.configure(with: friends[indexPath.row])
         cell.delegate = self
+        cell.selectionStyle = .none
         return cell
     }
 
-   
-    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
     }
 
-    
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+       
+    }
+
     func didTapAddButton(for friend: Friend) {
         let alertController = UIAlertController(title: "Add Friend", message: "Do you want to add \(friend.name) as a friend?", preferredStyle: .alert)
         alertController.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
         alertController.addAction(UIAlertAction(title: "Add", style: .default, handler: { _ in
-            
             print("\(friend.name) added as a friend.")
         }))
         present(alertController, animated: true, completion: nil)
