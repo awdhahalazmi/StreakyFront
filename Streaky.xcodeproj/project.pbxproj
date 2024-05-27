@@ -48,6 +48,7 @@
 		B1910F1E2C03950800277790 /* TokenResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1910F1D2C03950800277790 /* TokenResponse.swift */; };
 		B1910F2B2C048F0100277790 /* TodayQuestionCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1910F2A2C048F0100277790 /* TodayQuestionCollectionViewCell.swift */; };
 		B1910F2D2C048F4500277790 /* TodayQuestionCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1910F2C2C048F4500277790 /* TodayQuestionCollectionViewController.swift */; };
+		B1910F2F2C04F44D00277790 /* RewardsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1910F2E2C04F44D00277790 /* RewardsTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -88,6 +89,7 @@
 		B1910F1D2C03950800277790 /* TokenResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenResponse.swift; sourceTree = "<group>"; };
 		B1910F2A2C048F0100277790 /* TodayQuestionCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayQuestionCollectionViewCell.swift; sourceTree = "<group>"; };
 		B1910F2C2C048F4500277790 /* TodayQuestionCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayQuestionCollectionViewController.swift; sourceTree = "<group>"; };
+		B1910F2E2C04F44D00277790 /* RewardsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RewardsTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -258,6 +260,7 @@
 		B1910F062C030F2600277790 /* Rewards */ = {
 			isa = PBXGroup;
 			children = (
+				B1910F2E2C04F44D00277790 /* RewardsTableViewCell.swift */,
 			);
 			path = Rewards;
 			sourceTree = "<group>";
@@ -368,6 +371,7 @@
 				B1910F1E2C03950800277790 /* TokenResponse.swift in Sources */,
 				B1910ED72BFF83D200277790 /* RequestTableViewCell.swift in Sources */,
 				B1910F182C0393CA00277790 /* Business.swift in Sources */,
+				B1910F2F2C04F44D00277790 /* RewardsTableViewCell.swift in Sources */,
 				B1505D282BFBBAD300D42364 /* InterestViewController.swift in Sources */,
 				B1910F162C0392F800277790 /* UserStreak.swift in Sources */,
 				B1910F1A2C03947900277790 /* Reward.swift in Sources */,
