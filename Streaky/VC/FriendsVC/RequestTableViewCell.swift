@@ -15,6 +15,7 @@ class RequestTableViewCell: UITableViewCell {
     
     private let nameLabel: UILabel = {
         let label = UILabel()
+        label.font = UIFont.systemFont(ofSize: 16, weight: .bold)
         label.textColor = UIColor(red: 123/255, green: 25/255, blue: 251/255, alpha: 1)
         return label
     }()
