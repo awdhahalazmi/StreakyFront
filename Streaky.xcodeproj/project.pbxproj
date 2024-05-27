@@ -7,9 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		9B4C8FE32BFF1CBC00433448 /* RequestTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B4C8FE22BFF1CBC00433448 /* RequestTableViewCell.swift */; };
-		9B4C8FE52BFF23BE00433448 /* AddFriendTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B4C8FE42BFF23BE00433448 /* AddFriendTableViewCell.swift */; };
-		9B4C8FE82BFF2D9D00433448 /* QuestionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B4C8FE72BFF2D9D00433448 /* QuestionViewController.swift */; };
+		9B4554C72C045EE0007BE793 /* QuestionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B4554C62C045EE0007BE793 /* QuestionViewController.swift */; };
 		B1505CF02BFB5C3700D42364 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1505CEF2BFB5C3700D42364 /* AppDelegate.swift */; };
 		B1505CF22BFB5C3700D42364 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1505CF12BFB5C3700D42364 /* SceneDelegate.swift */; };
 		B1505CF42BFB5C3700D42364 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1505CF32BFB5C3700D42364 /* ViewController.swift */; };
@@ -50,9 +48,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		9B4C8FE22BFF1CBC00433448 /* RequestTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestTableViewCell.swift; sourceTree = "<group>"; };
-		9B4C8FE42BFF23BE00433448 /* AddFriendTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddFriendTableViewCell.swift; sourceTree = "<group>"; };
-		9B4C8FE72BFF2D9D00433448 /* QuestionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionViewController.swift; sourceTree = "<group>"; };
+		9B4554C62C045EE0007BE793 /* QuestionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuestionViewController.swift; sourceTree = "<group>"; };
 		B1505CEC2BFB5C3700D42364 /* Streaky.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Streaky.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B1505CEF2BFB5C3700D42364 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B1505CF12BFB5C3700D42364 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -105,35 +101,21 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		9B4C8FE02BFF1C4B00433448 /* FriendsVC */ = {
+		9B4554C52C045EC0007BE793 /* New Group */ = {
 			isa = PBXGroup;
 			children = (
-				B180FBCA2BFE1558001E8BEE /* FriendsDashboardViewController.swift */,
-				B180FBCC2BFE1558001E8BEE /* AddFriendViewController.swift */,
-				B180FBCB2BFE1558001E8BEE /* FriendTableViewCell.swift */,
-				9B4C8FE22BFF1CBC00433448 /* RequestTableViewCell.swift */,
-				9B4C8FE42BFF23BE00433448 /* AddFriendTableViewCell.swift */,
 			);
-			path = FriendsVC;
+			path = "New Group";
 			sourceTree = "<group>";
 		};
-		9B4C8FE12BFF1C7800433448 /* Friend */ = {
+		9B4554C82C045EE6007BE793 /* QuestionsVC */ = {
 			isa = PBXGroup;
 			children = (
-				B180FBD02BFE1566001E8BEE /* Friend.swift */,
-			);
-			path = Friend;
-			sourceTree = "<group>";
-		};
-		9B4C8FE62BFF2D5C00433448 /* QuestionsVC */ = {
-			isa = PBXGroup;
-			children = (
-				9B4C8FE72BFF2D9D00433448 /* QuestionViewController.swift */,
+				9B4554C62C045EE0007BE793 /* QuestionViewController.swift */,
 			);
 			path = QuestionsVC;
 			sourceTree = "<group>";
 		};
-
 		B1505CE32BFB5C3700D42364 = {
 			isa = PBXGroup;
 			children = (
@@ -167,10 +149,11 @@
 		B1505D052BFB5DB900D42364 /* VC */ = {
 			isa = PBXGroup;
 			children = (
+				9B4554C82C045EE6007BE793 /* QuestionsVC */,
+				9B4554C52C045EC0007BE793 /* New Group */,
 				B1910ECD2BFF83C600277790 /* FriendsVC */,
 				B180FBDF2BFE18B4001E8BEE /* Onboarding */,
 				B180FBD22BFE17CD001E8BEE /* ProfileVC */,
-
 				B1505D0C2BFB5E1C00D42364 /* AuthVC */,
 				B1505D092BFB5DF900D42364 /* MainVC */,
 			);
@@ -387,9 +370,9 @@
 				B180FBDB2BFE189F001E8BEE /* OnboardingViewController.swift in Sources */,
 				B180FBC72BFE1481001E8BEE /* AuthViewController.swift in Sources */,
 				B180FBD12BFE1566001E8BEE /* Friend.swift in Sources */,
-				9B4C8FE82BFF2D9D00433448 /* QuestionViewController.swift in Sources */,
 				B1505D242BFB607400D42364 /* SignUpViewController.swift in Sources */,
 				B1910ED42BFF83D200277790 /* FriendsDashboardViewController.swift in Sources */,
+				9B4554C72C045EE0007BE793 /* QuestionViewController.swift in Sources */,
 				B1910ED32BFF83D200277790 /* FriendTableViewCell.swift in Sources */,
 				B1910ED52BFF83D200277790 /* AddFriendTableViewCell.swift in Sources */,
 			);
