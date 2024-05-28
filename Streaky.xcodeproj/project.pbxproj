@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		9B4554C72C045EE0007BE793 /* QuestionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B4554C62C045EE0007BE793 /* QuestionViewController.swift */; };
 		9BF8E2542C049ECE001A9AAC /* PointsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BF8E2532C049ECE001A9AAC /* PointsViewController.swift */; };
+		9BF8E2562C05B164001A9AAC /* MainTabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BF8E2552C05B164001A9AAC /* MainTabBarViewController.swift */; };
 		B1505CF02BFB5C3700D42364 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1505CEF2BFB5C3700D42364 /* AppDelegate.swift */; };
 		B1505CF22BFB5C3700D42364 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1505CF12BFB5C3700D42364 /* SceneDelegate.swift */; };
 		B1505CF42BFB5C3700D42364 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1505CF32BFB5C3700D42364 /* ViewController.swift */; };
@@ -53,6 +54,7 @@
 /* Begin PBXFileReference section */
 		9B4554C62C045EE0007BE793 /* QuestionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuestionViewController.swift; sourceTree = "<group>"; };
 		9BF8E2532C049ECE001A9AAC /* PointsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PointsViewController.swift; sourceTree = "<group>"; };
+		9BF8E2552C05B164001A9AAC /* MainTabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarViewController.swift; sourceTree = "<group>"; };
 		B1505CEC2BFB5C3700D42364 /* Streaky.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Streaky.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B1505CEF2BFB5C3700D42364 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B1505CF12BFB5C3700D42364 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -119,6 +121,7 @@
 			isa = PBXGroup;
 			children = (
 				9BF8E2532C049ECE001A9AAC /* PointsViewController.swift */,
+				9BF8E2552C05B164001A9AAC /* MainTabBarViewController.swift */,
 			);
 			path = Points;
 			sourceTree = "<group>";
@@ -366,6 +369,7 @@
 				B180FB7C2BFC9664001E8BEE /* MainViewController.swift in Sources */,
 				B1910F102C03298300277790 /* Streak.swift in Sources */,
 				B1910F1E2C03950800277790 /* TokenResponse.swift in Sources */,
+				9BF8E2562C05B164001A9AAC /* MainTabBarViewController.swift in Sources */,
 				B1910ED72BFF83D200277790 /* RequestTableViewCell.swift in Sources */,
 				B1910F182C0393CA00277790 /* Business.swift in Sources */,
 				B1505D282BFBBAD300D42364 /* InterestViewController.swift in Sources */,
