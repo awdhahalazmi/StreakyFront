@@ -35,6 +35,7 @@ class PointsViewController: UIViewController {
         setupViews()
         updatePointsLabel()
         removeBackButton()
+        
     }
     
     private func setupViews() {
@@ -61,4 +62,6 @@ class PointsViewController: UIViewController {
     private func removeBackButton() {
         navigationItem.hidesBackButton = true
     }
+    
+   
 }
