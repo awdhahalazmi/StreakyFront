@@ -167,16 +167,16 @@ class SignUpViewController: UIViewController {
         navigationController?.navigationBar.scrollEdgeAppearance = appearance
         
         // Add back button
-        let backButton = UIBarButtonItem(image: UIImage(systemName: "chevron.left"), style: .plain, target: self, action: #selector(backButtonTapped))
-        backButton.tintColor = .white
-        navigationItem.leftBarButtonItem = backButton
+//        let backButton = UIBarButtonItem(image: UIImage(systemName: "chevron.left"), style: .plain, target: self, action: #selector(backButtonTapped))
+//        backButton.tintColor = .white
+//        navigationItem.leftBarButtonItem = backButton
     }
     
-    @objc func backButtonTapped() {
-        navigationController?.popToRootViewController(animated: true)
-        let onboardingVC = Onboarding2ViewController()
-        self.navigationController?.pushViewController(onboardingVC, animated: false)
-    }
+//    @objc func backButtonTapped() {
+//        navigationController?.popToRootViewController(animated: true)
+//        let onboardingVC = Onboarding2ViewController()
+//        self.navigationController?.pushViewController(onboardingVC, animated: false)
+//    }
     
     @objc func signUpButtonTapped() {
         guard let name = nameTextField.text, !name.isEmpty else {
@@ -204,14 +204,16 @@ class SignUpViewController: UIViewController {
                 }
         
         let user = User(name: name, email: email, password: password, genderId: genderIndex)
-        
+        let intVc = InterestViewController()
+        intVc.modalPresentationStyle = .fullScreen
+        self.present(intVc, animated: true, completion: nil)
+
 //
 //                let intresetVc = InterestViewController()
 //        intresetVc.modalPresentationStyle = .popover
 //                self.present(intresetVc, animated: true)
-            let secondVC = InterestViewController()
-            self.navigationController?.pushViewController(secondVC, animated: true)
-        
+            
+            
         
         
         //        NetworkManager.shared.signup(user: user) { [weak self] result in

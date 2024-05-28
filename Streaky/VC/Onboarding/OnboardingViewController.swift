@@ -219,7 +219,7 @@ class OnboardingViewController: UIViewController {
         currentStep += 1
         
         if currentStep > 1 {
-            let nextVC = MainViewController() // Replace with your next view controller
+            let nextVC = AuthViewController() // Replace with your next view controller
             navigationController?.pushViewController(nextVC, animated: true)
         } else {
             // Update content with animation

@@ -177,9 +177,9 @@ class LoginViewController: UIViewController {
         // Perform login action here
         
         // Navigate to the next screen after login
-        let signUpVC = SignUpViewController()
-        signUpVC.modalPresentationStyle = .fullScreen
-        self.present(signUpVC, animated: true, completion: nil)
+        let homeVc = HomeTableViewController()
+        homeVc.modalPresentationStyle = .fullScreen
+        self.present(homeVc, animated: true, completion: nil)
         
     }
     

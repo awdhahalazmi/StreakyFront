@@ -14,9 +14,8 @@ class WelcomeViewController: UIViewController {
     
     private let logoImageView: UIImageView = {
         let imageView = UIImageView()
-        imageView.image = UIImage(named: "Logo") // Ensure this image is in your assets
+        imageView.image = UIImage(named: "Logo")
         imageView.contentMode = .scaleAspectFit
-        imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView
     }()
     
