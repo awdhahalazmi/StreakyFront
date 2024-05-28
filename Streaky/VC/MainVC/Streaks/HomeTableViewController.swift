@@ -102,8 +102,12 @@ class HomeTableViewController: UITableViewController {
            if indexPath.section == 0 {
                // Calculate height for the StreaksTableViewCell based on its content
                return 160
-           } else {
+           } else if indexPath.section == 1 {
                // Calculate height for the TodayPointTableViewCell based on its content
+               return 160
+           } else if indexPath.section == 2{
+               return 180
+           } else {
                return 160
            }
        }

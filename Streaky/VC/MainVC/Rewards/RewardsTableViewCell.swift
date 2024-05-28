@@ -64,7 +64,6 @@ class RewardsTableViewCell: UITableViewCell, UICollectionViewDelegate, UICollect
     }
 }
 
-
 import UIKit
 import SnapKit
 
@@ -75,6 +74,8 @@ class RewardsCollectionViewCell: UICollectionViewCell {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFill
         imageView.clipsToBounds = true
+        imageView.layer.cornerRadius = 16
+        imageView.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner] // Top left and right corners only
         imageView.image = UIImage(named: "ananas") // Replace with your icon image
         return imageView
     }()
@@ -145,7 +146,7 @@ class RewardsCollectionViewCell: UICollectionViewCell {
         pointsLabel.snp.makeConstraints { make in
             make.top.equalTo(discountLabel.snp.bottom).offset(10)
             make.leading.trailing.equalToSuperview().inset(16)
-            make.top.equalTo(discountLabel.snp.bottom).offset(10)
+            make.bottom.equalToSuperview().offset(-10)
         }
     }
     
@@ -155,3 +156,5 @@ class RewardsCollectionViewCell: UICollectionViewCell {
         pointsLabel.text = pointsText
     }
 }
+
+

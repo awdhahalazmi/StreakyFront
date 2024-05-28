@@ -182,8 +182,8 @@ class InterestViewController: UIViewController {
     
     
     @objc func registerButtonTapped() {
-        let mainVC = AuthViewController()
-        mainVC.modalPresentationStyle = .fullScreen
-        self.present(mainVC, animated: true, completion: nil)
+        let homeVC = HomeTableViewController()
+        homeVC.modalPresentationStyle = .fullScreen
+        self.present(homeVC, animated: true, completion: nil)
     }
 }
