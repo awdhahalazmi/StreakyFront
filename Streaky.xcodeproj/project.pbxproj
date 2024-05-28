@@ -49,6 +49,7 @@
 		B1910F1E2C03950800277790 /* TokenResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1910F1D2C03950800277790 /* TokenResponse.swift */; };
 		B1910F2B2C048F0100277790 /* TodayQuestionCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1910F2A2C048F0100277790 /* TodayQuestionCollectionViewCell.swift */; };
 		B1910F2D2C048F4500277790 /* TodayQuestionCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1910F2C2C048F4500277790 /* TodayQuestionCollectionViewController.swift */; };
+		B1910F522C05C42000277790 /* LocationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1910F512C05C42000277790 /* LocationViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -90,6 +91,7 @@
 		B1910F1D2C03950800277790 /* TokenResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenResponse.swift; sourceTree = "<group>"; };
 		B1910F2A2C048F0100277790 /* TodayQuestionCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayQuestionCollectionViewCell.swift; sourceTree = "<group>"; };
 		B1910F2C2C048F4500277790 /* TodayQuestionCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayQuestionCollectionViewController.swift; sourceTree = "<group>"; };
+		B1910F512C05C42000277790 /* LocationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -196,6 +198,7 @@
 		B1505D092BFB5DF900D42364 /* MainVC */ = {
 			isa = PBXGroup;
 			children = (
+				B1910F502C05C3FD00277790 /* Location */,
 				9BF8E2522C049EA1001A9AAC /* Points */,
 				B1910F292C048EAD00277790 /* QuestionVC */,
 				B1910F072C030F3300277790 /* SecretExperience */,
@@ -279,6 +282,14 @@
 				B1910F2C2C048F4500277790 /* TodayQuestionCollectionViewController.swift */,
 			);
 			path = QuestionVC;
+			sourceTree = "<group>";
+		};
+		B1910F502C05C3FD00277790 /* Location */ = {
+			isa = PBXGroup;
+			children = (
+				B1910F512C05C42000277790 /* LocationViewController.swift */,
+			);
+			path = Location;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -387,6 +398,7 @@
 				B1910ED62BFF83D200277790 /* AddFriendViewController.swift in Sources */,
 				B1910F092C03119C00277790 /* HomeTableViewController.swift in Sources */,
 				B1505D212BFB5F1000D42364 /* User.swift in Sources */,
+				B1910F522C05C42000277790 /* LocationViewController.swift in Sources */,
 				B1505CF22BFB5C3700D42364 /* SceneDelegate.swift in Sources */,
 				B180FBE32BFE1A1C001E8BEE /* Onboarding2ViewController.swift in Sources */,
 				B180FBDB2BFE189F001E8BEE /* OnboardingViewController.swift in Sources */,
@@ -552,6 +564,9 @@
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Streaky/Info.plist;
+				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "";
+				INFOPLIST_KEY_NSLocationAlwaysUsageDescription = "";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
@@ -583,6 +598,9 @@
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Streaky/Info.plist;
+				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "";
+				INFOPLIST_KEY_NSLocationAlwaysUsageDescription = "";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
