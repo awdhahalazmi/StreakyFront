@@ -9,18 +9,19 @@ class MainTabBarViewController: UITabBarController {
     }
 
     func setupViewControllers() {
-        let pointsViewController = PointsViewController(points: 50)
-        pointsViewController.tabBarItem = UITabBarItem(
-            title: "Points",
-            image: UIImage(systemName: "sparkles"),
-            selectedImage: UIImage(systemName: "bubbles.and.sparkles.fill")
-        )
-
+        
         let friendsViewController = FriendsDashboardViewController()
         friendsViewController.tabBarItem = UITabBarItem(
             title: "Friends",
             image: UIImage(systemName: "person.2"),
             selectedImage: UIImage(systemName: "person.2.fill")
+        )
+        
+        let HomeTableViewController = HomeTableViewController()
+        HomeTableViewController.tabBarItem = UITabBarItem(
+            title: "Home",
+            image: UIImage(systemName: "sparkles"),
+            selectedImage: UIImage(systemName: "bubbles.and.sparkles.fill")
         )
 
         let profileViewController = ProfileViewController()
@@ -30,7 +31,7 @@ class MainTabBarViewController: UITabBarController {
             selectedImage: UIImage(systemName: "person.fill")
         )
 
-        viewControllers = [pointsViewController, friendsViewController, profileViewController]
+        viewControllers = [HomeTableViewController, friendsViewController, profileViewController]
     }
 
     private func configureTabBarAppearance() {

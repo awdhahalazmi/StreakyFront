@@ -379,7 +379,7 @@ class QuestionViewController: UIViewController {
         if let view = view.subviews.last {
             view.removeFromSuperview()
         }
-        let pointsVC = PointsViewController(points: points)
+        let pointsVC = HomeTableViewController()
         navigationController?.pushViewController(pointsVC, animated: true)
     }
 }

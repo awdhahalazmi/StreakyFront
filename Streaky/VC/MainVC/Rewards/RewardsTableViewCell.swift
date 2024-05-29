@@ -18,7 +18,7 @@ class RewardsTableViewCell: UITableViewCell, UICollectionViewDelegate, UICollect
         
         setupUI()
         setupConstraints()
-        
+        collectionView.backgroundColor = #colorLiteral(red: 1, green: 0.8982707858, blue: 0.7560862899, alpha: 0.2549316406)
         collectionView.delegate = self
         collectionView.dataSource = self
         collectionView.register(RewardsCollectionViewCell.self, forCellWithReuseIdentifier: "RewardsCollectionViewCell")
@@ -101,13 +101,13 @@ class RewardsCollectionViewCell: UICollectionViewCell {
     private let containerView: UIView = {
         let view = UIView()
         view.layer.cornerRadius = 16
-        view.layer.borderWidth = 0.5
-        view.layer.borderColor = UIColor.lightGray.cgColor
+        view.layer.borderWidth = 1
+        view.layer.borderColor = UIColor.white.cgColor
         view.layer.shadowRadius = 1
         view.layer.shadowOpacity = 0.2
         view.layer.shadowColor = UIColor.lightGray.cgColor
         view.layer.shadowOffset = CGSize(width: 0, height: 4)
-        view.backgroundColor = .white
+        view.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
         return view
     }()
     
