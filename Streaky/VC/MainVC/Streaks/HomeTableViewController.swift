@@ -43,7 +43,7 @@ class HomeTableViewController: UITableViewController {
     /// 3- Add the cell configuration
     
     // Define the section titles
-    let sections = ["", "","Today's Questions"]
+    let sections = ["","Today's Questions", "Rewards"]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -52,7 +52,7 @@ class HomeTableViewController: UITableViewController {
         
         tableView.register(StreaksTableViewCell.self, forCellReuseIdentifier: "StreaksTableViewCell")
         tableView.register(TodayPointTableViewCell.self, forCellReuseIdentifier: TodayPointTableViewCell.identifier)
-        
+        tableView.register(RewardsTableViewCell.self, forCellReuseIdentifier: RewardsTableViewCell.identifier)
 //        tableView.rowHeight = UITableView.automaticDimension
 //        tableView.estimatedRowHeight = 160
     }
@@ -79,14 +79,19 @@ class HomeTableViewController: UITableViewController {
             return cell
             
         } else if indexPath.section == 1 {
-         
-            return UITableViewCell()
-        }
-        else if indexPath.section == 2 {
-            // Second cell (TodayPointTableViewCell)
+            
             let cell = tableView.dequeueReusableCell(withIdentifier: TodayPointTableViewCell.identifier, for: indexPath) as! TodayPointTableViewCell
             
             // Configure the cell if needed
+            return cell
+            
+        }
+        else if indexPath.section == 2 {
+            // Second cell (TodayPointTableViewCell)
+
+            
+            let cell = tableView.dequeueReusableCell(withIdentifier: RewardsTableViewCell.identifier, for: indexPath) as! RewardsTableViewCell
+            // Configure the cell
             return cell
         }
         else {
@@ -97,8 +102,12 @@ class HomeTableViewController: UITableViewController {
            if indexPath.section == 0 {
                // Calculate height for the StreaksTableViewCell based on its content
                return 160
-           } else {
+           } else if indexPath.section == 1 {
                // Calculate height for the TodayPointTableViewCell based on its content
+               return 160
+           } else if indexPath.section == 2{
+               return 180
+           } else {
                return 160
            }
        }

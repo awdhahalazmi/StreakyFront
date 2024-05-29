@@ -5,6 +5,7 @@ class PointsViewController: UIViewController {
     
     private var points: Int
     
+    
     init(points: Int) {
         self.points = points
         super.init(nibName: nil, bundle: nil)

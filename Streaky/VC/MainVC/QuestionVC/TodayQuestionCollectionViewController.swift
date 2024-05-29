@@ -132,7 +132,7 @@ class TodayPointTableViewCell: UITableViewCell, UICollectionViewDelegate, UIColl
         setupUI()
         setupConstraints()
         setupLocationManager()
-        
+        collectionView.backgroundColor = #colorLiteral(red: 0.9308702946, green: 0.8239726424, blue: 0.6895636916, alpha: 0.3420166016)
         collectionView.delegate = self
         collectionView.dataSource = self
         collectionView.register(TodayPointCollectionViewCell.self, forCellWithReuseIdentifier: "TodayPointCollectionViewCell")
@@ -186,12 +186,13 @@ class TodayPointTableViewCell: UITableViewCell, UICollectionViewDelegate, UIColl
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let width = (collectionView.frame.width - 60) / 2.5
-        return CGSize(width: width, height: 150)
+        return CGSize(width: width+45, height: 160)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         return 16
     }
+    
 }
 
 
