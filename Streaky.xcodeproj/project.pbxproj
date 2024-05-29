@@ -10,6 +10,8 @@
 		9B4554C72C045EE0007BE793 /* QuestionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B4554C62C045EE0007BE793 /* QuestionViewController.swift */; };
 		9BF8E2542C049ECE001A9AAC /* PointsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BF8E2532C049ECE001A9AAC /* PointsViewController.swift */; };
 		9BF8E2562C05B164001A9AAC /* MainTabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BF8E2552C05B164001A9AAC /* MainTabBarViewController.swift */; };
+		9BF8E2592C05BEFB001A9AAC /* SecretExperienceCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BF8E2582C05BEFB001A9AAC /* SecretExperienceCollectionViewCell.swift */; };
+		9BF8E25D2C05C271001A9AAC /* SecretExperience.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BF8E25C2C05C271001A9AAC /* SecretExperience.swift */; };
 		B1505CF02BFB5C3700D42364 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1505CEF2BFB5C3700D42364 /* AppDelegate.swift */; };
 		B1505CF22BFB5C3700D42364 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1505CF12BFB5C3700D42364 /* SceneDelegate.swift */; };
 		B1505CF42BFB5C3700D42364 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1505CF32BFB5C3700D42364 /* ViewController.swift */; };
@@ -56,6 +58,8 @@
 		9B4554C62C045EE0007BE793 /* QuestionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuestionViewController.swift; sourceTree = "<group>"; };
 		9BF8E2532C049ECE001A9AAC /* PointsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PointsViewController.swift; sourceTree = "<group>"; };
 		9BF8E2552C05B164001A9AAC /* MainTabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarViewController.swift; sourceTree = "<group>"; };
+		9BF8E2582C05BEFB001A9AAC /* SecretExperienceCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecretExperienceCollectionViewCell.swift; sourceTree = "<group>"; };
+		9BF8E25C2C05C271001A9AAC /* SecretExperience.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecretExperience.swift; sourceTree = "<group>"; };
 		B1505CEC2BFB5C3700D42364 /* Streaky.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Streaky.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B1505CEF2BFB5C3700D42364 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B1505CF12BFB5C3700D42364 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -128,6 +132,14 @@
 			path = Points;
 			sourceTree = "<group>";
 		};
+		9BF8E2572C05BE98001A9AAC /* SecretExperience */ = {
+			isa = PBXGroup;
+			children = (
+				9BF8E2582C05BEFB001A9AAC /* SecretExperienceCollectionViewCell.swift */,
+			);
+			path = SecretExperience;
+			sourceTree = "<group>";
+		};
 		B1505CE32BFB5C3700D42364 = {
 			isa = PBXGroup;
 			children = (
@@ -191,6 +203,7 @@
 				B1910F192C03947900277790 /* Reward.swift */,
 				B1910F1B2C0394BD00277790 /* Location.swift */,
 				B1910F1D2C03950800277790 /* TokenResponse.swift */,
+				9BF8E25C2C05C271001A9AAC /* SecretExperience.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -198,7 +211,11 @@
 		B1505D092BFB5DF900D42364 /* MainVC */ = {
 			isa = PBXGroup;
 			children = (
+
+				9BF8E2572C05BE98001A9AAC /* SecretExperience */,
+
 				B1910F502C05C3FD00277790 /* Location */,
+
 				9BF8E2522C049EA1001A9AAC /* Points */,
 				B1910F292C048EAD00277790 /* QuestionVC */,
 				B1910F072C030F3300277790 /* SecretExperience */,
@@ -393,6 +410,7 @@
 				B180FBC62BFE1481001E8BEE /* LoginViewController.swift in Sources */,
 				B180FBD62BFE17FC001E8BEE /* EditProfileViewController.swift in Sources */,
 				B1910F2B2C048F0100277790 /* TodayQuestionCollectionViewCell.swift in Sources */,
+				9BF8E2592C05BEFB001A9AAC /* SecretExperienceCollectionViewCell.swift in Sources */,
 				B1910F1C2C0394BD00277790 /* Location.swift in Sources */,
 				B1910F0B2C0311BE00277790 /* StreaksTableViewCell.swift in Sources */,
 				B1910ED62BFF83D200277790 /* AddFriendViewController.swift in Sources */,
@@ -403,6 +421,7 @@
 				B180FBE32BFE1A1C001E8BEE /* Onboarding2ViewController.swift in Sources */,
 				B180FBDB2BFE189F001E8BEE /* OnboardingViewController.swift in Sources */,
 				B1910F2D2C048F4500277790 /* TodayQuestionCollectionViewController.swift in Sources */,
+				9BF8E25D2C05C271001A9AAC /* SecretExperience.swift in Sources */,
 				B180FBC72BFE1481001E8BEE /* AuthViewController.swift in Sources */,
 				B180FBD12BFE1566001E8BEE /* Friend.swift in Sources */,
 				B1505D242BFB607400D42364 /* SignUpViewController.swift in Sources */,
