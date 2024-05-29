@@ -20,11 +20,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let window = UIWindow(windowScene: windowScene)
 //         Window for the entery point or the app view
 
-        window.rootViewController = UINavigationController(rootViewController: MainTabBarViewController())
+        window.rootViewController = UINavigationController(rootViewController: WelcomeViewController())
         
-       
-
-
 
         self.window = window
         
