@@ -1,5 +1,11 @@
 import UIKit
 import SnapKit
+import Foundation
+
+extension Notification.Name {
+    static let userEnteredTargetArea = Notification.Name("userEnteredTargetArea")
+    static let userExitedTargetArea = Notification.Name("userExitedTargetArea")
+}
 
 class PointsViewController: UIViewController {
     

@@ -6,7 +6,7 @@ class WelcomeViewController: UIViewController {
 
     private let splashImageView: UIImageView = {
         let imageView = UIImageView()
-        imageView.image = UIImage(named: "Background")
+        imageView.image = UIImage(named: "Onboarding 2")
         imageView.contentMode = .scaleAspectFill
         imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView
