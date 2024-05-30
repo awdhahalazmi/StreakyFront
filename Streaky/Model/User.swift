@@ -10,5 +10,5 @@ struct User : Codable{
     let name: String
     let email: String
     let password : String
-    let genderId : Int  //change to Gender then
+    let genderName : String  //change to Gender then
 }

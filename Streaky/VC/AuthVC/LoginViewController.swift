@@ -1,9 +1,3 @@
-//  LoginViewController.swift
-//  Streaky
-//
-//  Created by Fatma Buyabes on 20/05/2024.
-//
-
 import UIKit
 import SnapKit
 
@@ -173,16 +167,29 @@ class LoginViewController: UIViewController {
             return
         }
 
-        // Perform login action here
-        
-        let homeVC = MainTabBarViewController()
-        let navigationController = UINavigationController(rootViewController: homeVC)
-        navigationController.modalPresentationStyle = .fullScreen
+        print("Email: \(email), Password: \(password)") // Debug print
 
-        self.present(navigationController, animated: true, completion: nil)
+        let user = UserLogin(email: email, password: password)
+
+        NetworkManager.shared.login(user: user) { result in
+            
+             print(result)
+            switch result {
+            case .success(let tokenResponse):
+                print("Login successful: \(tokenResponse.token)")
+                let homeVC = MainTabBarViewController()
+                let navigationController = UINavigationController(rootViewController: homeVC)
+                navigationController.modalPresentationStyle = .fullScreen
+                self.present(navigationController, animated: true, completion: nil)
+
+            case .failure(let error):
+                print("Login failed: \(error.localizedDescription)")
+                self.presentAlertWithTitle(title: "Error", message: "Invalid username or password")
+            }
+        }
     }
 
-        
+    
     @objc func registerButtonTapped() {
         let signUpVC = SignUpViewController()
         signUpVC.modalPresentationStyle = .fullScreen
