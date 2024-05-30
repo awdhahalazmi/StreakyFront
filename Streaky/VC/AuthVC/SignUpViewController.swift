@@ -172,6 +172,12 @@ class SignUpViewController: UIViewController {
 //        navigationItem.leftBarButtonItem = backButton
     }
     
+    func setUpNavigationBar(){
+        let appearance = UINavigationBarAppearance()
+        appearance.configureWithOpaqueBackground()
+        navigationController?.navigationBar.scrollEdgeAppearance = appearance
+    }
+    
 //    @objc func backButtonTapped() {
 //        navigationController?.popToRootViewController(animated: true)
 //        let onboardingVC = Onboarding2ViewController()
@@ -207,6 +213,7 @@ class SignUpViewController: UIViewController {
         let intVc = InterestViewController()
         intVc.modalPresentationStyle = .fullScreen
         self.present(intVc, animated: true, completion: nil)
+        
 
 //
 //                let intresetVc = InterestViewController()

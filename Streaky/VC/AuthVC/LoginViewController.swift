@@ -167,25 +167,22 @@ class LoginViewController: UIViewController {
             presentAlertWithTitle(title: "Error", message: "Email is required")
             return
         }
-        
+
         guard let password = passwordTextField.text, !password.isEmpty else {
             presentAlertWithTitle(title: "Error", message: "Password is required")
             return
         }
-        //let user = User(name: nil, email: email, password: password, gender:nil)
 
         // Perform login action here
         
-        // Navigate to the next screen after login
-        let homeVc = HomeTableViewController()
-        homeVc.modalPresentationStyle = .fullScreen
-        self.present(homeVc, animated: true, completion: nil)
-        
+        let homeVC = MainTabBarViewController()
+        let navigationController = UINavigationController(rootViewController: homeVC)
+        navigationController.modalPresentationStyle = .fullScreen
+
+        self.present(navigationController, animated: true, completion: nil)
     }
-    
+
         
-        
-    
     @objc func registerButtonTapped() {
         let signUpVC = SignUpViewController()
         signUpVC.modalPresentationStyle = .fullScreen

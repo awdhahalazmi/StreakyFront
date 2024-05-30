@@ -24,7 +24,6 @@
 		B1505D212BFB5F1000D42364 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1505D202BFB5F1000D42364 /* User.swift */; };
 		B1505D242BFB607400D42364 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1505D232BFB607400D42364 /* SignUpViewController.swift */; };
 		B1505D282BFBBAD300D42364 /* InterestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1505D272BFBBAD300D42364 /* InterestViewController.swift */; };
-		B180FB7C2BFC9664001E8BEE /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B180FB7B2BFC9664001E8BEE /* MainViewController.swift */; };
 		B180FBC62BFE1481001E8BEE /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B180FBC42BFE1481001E8BEE /* LoginViewController.swift */; };
 		B180FBC72BFE1481001E8BEE /* AuthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B180FBC52BFE1481001E8BEE /* AuthViewController.swift */; };
 		B180FBD12BFE1566001E8BEE /* Friend.swift in Sources */ = {isa = PBXBuildFile; fileRef = B180FBD02BFE1566001E8BEE /* Friend.swift */; };
@@ -68,7 +67,6 @@
 		B1505D202BFB5F1000D42364 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		B1505D232BFB607400D42364 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		B1505D272BFBBAD300D42364 /* InterestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InterestViewController.swift; sourceTree = "<group>"; };
-		B180FB7B2BFC9664001E8BEE /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		B180FBC42BFE1481001E8BEE /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		B180FBC52BFE1481001E8BEE /* AuthViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthViewController.swift; sourceTree = "<group>"; };
 		B180FBD02BFE1566001E8BEE /* Friend.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Friend.swift; sourceTree = "<group>"; };
@@ -218,7 +216,6 @@
 				B1910F062C030F2600277790 /* Rewards */,
 				B1910F052C030F1700277790 /* Streaks */,
 				B180FBD82BFE189F001E8BEE /* WelcomeViewController.swift */,
-				B180FB7B2BFC9664001E8BEE /* MainViewController.swift */,
 			);
 			path = MainVC;
 			sourceTree = "<group>";
@@ -383,7 +380,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B180FB7C2BFC9664001E8BEE /* MainViewController.swift in Sources */,
 				B1910F102C03298300277790 /* Streak.swift in Sources */,
 				B1910F1E2C03950800277790 /* TokenResponse.swift in Sources */,
 				9BF8E2562C05B164001A9AAC /* MainTabBarViewController.swift in Sources */,
@@ -496,7 +492,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
@@ -553,7 +549,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;

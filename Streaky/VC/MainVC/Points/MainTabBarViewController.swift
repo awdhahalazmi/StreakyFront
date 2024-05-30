@@ -6,9 +6,19 @@ class MainTabBarViewController: UITabBarController {
         super.viewDidLoad()
         setupViewControllers()
         configureTabBarAppearance()
+        callHome()
     }
 
     func setupViewControllers() {
+        
+        
+        
+        let HomeTableViewController = HomeTableViewController()
+        HomeTableViewController.tabBarItem = UITabBarItem(
+            title: "Home",
+            image: UIImage(systemName: "sparkles"),
+            selectedImage: UIImage(systemName: "bubbles.and.sparkles.fill")
+        )
         
         let friendsViewController = FriendsDashboardViewController()
         friendsViewController.tabBarItem = UITabBarItem(
@@ -17,12 +27,6 @@ class MainTabBarViewController: UITabBarController {
             selectedImage: UIImage(systemName: "person.2.fill")
         )
         
-        let HomeTableViewController = HomeTableViewController()
-        HomeTableViewController.tabBarItem = UITabBarItem(
-            title: "Home",
-            image: UIImage(systemName: "sparkles"),
-            selectedImage: UIImage(systemName: "bubbles.and.sparkles.fill")
-        )
 
         let profileViewController = ProfileViewController()
         profileViewController.tabBarItem = UITabBarItem(
@@ -31,13 +35,13 @@ class MainTabBarViewController: UITabBarController {
             selectedImage: UIImage(systemName: "person.fill")
         )
 
-        viewControllers = [HomeTableViewController, friendsViewController, profileViewController]
+        viewControllers = [HomeTableViewController,friendsViewController, profileViewController]
     }
 
     private func configureTabBarAppearance() {
         let appearance = UITabBarAppearance()
         appearance.configureWithOpaqueBackground()
-        appearance.backgroundColor = .clear
+        appearance.backgroundColor = .white
         
         tabBar.standardAppearance = appearance
         if #available(iOS 15.0, *) {
@@ -46,5 +50,15 @@ class MainTabBarViewController: UITabBarController {
         
         tabBar.tintColor = UIColor(red: 92/255, green: 40/255, blue: 164/255, alpha: 1.0)
         tabBar.unselectedItemTintColor = UIColor(white: 1.0, alpha: 0.6)
+    }
+    
+    func callHome()
+    {
+        let homeVC = HomeTableViewController()
+        let navigationController = UINavigationController(rootViewController: homeVC)
+        navigationController.modalPresentationStyle = .fullScreen
+
+        self.present(navigationController, animated: true, completion: nil)
+        
     }
 }

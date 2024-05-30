@@ -180,10 +180,11 @@ class InterestViewController: UIViewController {
         })
     }
     
-    
     @objc func registerButtonTapped() {
-        let homeVC = HomeTableViewController()
-        homeVC.modalPresentationStyle = .fullScreen
-        self.present(homeVC, animated: true, completion: nil)
+        let homeVC = MainTabBarViewController()
+        let navigationController = UINavigationController(rootViewController: homeVC)
+        navigationController.modalPresentationStyle = .fullScreen
+        self.present(navigationController, animated: true, completion: nil)
     }
+    
 }
