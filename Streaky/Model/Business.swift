@@ -6,6 +6,7 @@
 //
 
 import Foundation
+
 struct Business : Codable  {
     var id: Int
     var name: String
