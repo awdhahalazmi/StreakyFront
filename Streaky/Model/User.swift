@@ -7,8 +7,8 @@
 
 import Foundation
 struct User : Codable{
-    let name: String
-    let email: String
-    let password : String
-    let genderId : Int  //change to Gender then
+    var name: String
+    var email: String
+    var password : String
+    var genderName : String  //change to Gender then
 }
