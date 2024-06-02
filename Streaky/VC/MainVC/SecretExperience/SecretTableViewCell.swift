@@ -54,14 +54,18 @@ class SecretTableViewCell: UITableViewCell, UICollectionViewDelegate, UICollecti
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "SecretCollectionViewCell", for: indexPath) as! SecretCollectionViewCell
+        
         let secretExperience = secretExperiences[indexPath.item]
-        let title = secretExperience.title
-        let streaks = "\(secretExperience.streakClaimed) Streak"
+        let titleText = secretExperience.title
+        let descriptionText = secretExperience.description
+        let streakClaimedText = "\(secretExperience.streakClaimed) Streaks"
         let icon = UIImage(named: secretExperience.businessImage) ?? UIImage()
         
-        cell.configure(icon: icon, title: title, streaks: streaks)
+        cell.configure(icon: icon, titleText: titleText, descriptionText: descriptionText, streakClaimedText: streakClaimedText)
+        
         return cell
     }
+    
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let width = collectionView.frame.width / 2 - 24

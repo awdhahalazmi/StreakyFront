@@ -24,6 +24,7 @@ class StreaksTableViewCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
+    
     private func setupUI() {
         // Configure cell corner radius
         contentView.layer.cornerRadius = 24

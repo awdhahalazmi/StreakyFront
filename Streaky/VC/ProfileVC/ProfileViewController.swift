@@ -25,8 +25,9 @@ class ProfileViewController: UIViewController {
         setupNavigationBar()
         
         if let savedToken = UserDefaults.standard.string(forKey: "AuthToken") {
-                    fetchUserAccount()
-                } else {
+            print("sjhfdjdshjsh \(savedToken)")
+             fetchUserDetails(token: savedToken)
+        } else {
                     presentAlertWithTitle(title: "Error", message: "User token is missing")
                 }
     }
@@ -239,7 +240,7 @@ class ProfileViewController: UIViewController {
                 DispatchQueue.main.async {
                     self?.nameLabel.text = userDetails.name
                     self?.emailLabel.text = userDetails.email
-                    self?.genderLabel.text = userDetails.genderName
+                   // self?.genderLabel.text = userDetails.genderName
                 }
             case .failure(let error):
                 DispatchQueue.main.async {
@@ -248,21 +249,7 @@ class ProfileViewController: UIViewController {
             }
         }
     }
-    private func fetchUserAccount() {
-            NetworkManager.shared.getUserAccount{ [weak self] result in
-                switch result {
-                case .success(let userAccount):
-                    self?.userAccount = userAccount
-                    self?.nameLabel.text = userAccount.name
-                    self?.emailLabel.text = userAccount.email
-                    self?.genderLabel.text = userAccount.genderName
-                    self?.updateUI()
-                case .failure(let error):
-                    print("Failed to fetch profile: \(error)")
-                    // Handle error
-                }
-            }
-        }
+    
     
     func loadProfileImage(from urlString: String) {
         guard let url = URL(string: urlString) else {
@@ -296,8 +283,10 @@ class ProfileViewController: UIViewController {
 
 extension ProfileViewController: refreshDelagate {
     func refreshPage() {
-        if let token = UserDefaults.standard.string(forKey: "AuthToken") {
-            fetchUserDetails(token: token)
-        }
+        let token = UserDefaults.standard.string(forKey: "AuthToken")
+        print("fghjk \(token)")
+//        if token {
+//            fetchUserDetails(token: token)
+//        }
     }
 }

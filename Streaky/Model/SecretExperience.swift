@@ -7,6 +7,7 @@
 
 import Foundation
 struct SecretExperience : Codable  {
+        var id: Int
         var startDate: Date
         var endDate: Date
         var title: String
@@ -15,3 +16,5 @@ struct SecretExperience : Codable  {
         var businessName: String
         var businessImage: String
 }
+
+

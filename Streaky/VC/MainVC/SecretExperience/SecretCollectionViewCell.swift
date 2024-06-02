@@ -91,84 +91,13 @@ class SecretCollectionViewCell: UICollectionViewCell {
             }
         }
         
-    func configure(icon: UIImage, title: String, streaks: String) {
+        func configure(icon: UIImage, titleText: String, descriptionText: String, streakClaimedText: String) {
             imageView.image = icon
-            secretLabel.text = title
-            streakLabel.text = streaks
+            secretLabel.text = titleText
+            streakLabel.text = descriptionText
+            streakLabel.text = streakClaimedText
         }
+    
     
     }
 
-//import SnapKit
-//import UIKit
-//
-//class SecretTableViewCell: UITableViewCell, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
-//    
-//    static let identifier = "SecretTableViewCell"
-//    
-//    private let collectionView: UICollectionView = {
-//        let layout = UICollectionViewFlowLayout()
-//        layout.scrollDirection = .horizontal
-//        layout.minimumLineSpacing = 16
-//        layout.minimumInteritemSpacing = 16
-//        return UICollectionView(frame: .zero, collectionViewLayout: layout)
-//    }()
-//    
-//    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
-//        super.init(style: style, reuseIdentifier: reuseIdentifier)
-//        
-//        setupUI()
-//        setupConstraints()
-//        
-//        collectionView.delegate = self
-//        collectionView.dataSource = self
-//        collectionView.register(SecretCollectionViewCell.self, forCellWithReuseIdentifier: "SecretCollectionViewCell")
-//        collectionView.showsVerticalScrollIndicator = false
-//        collectionView.showsHorizontalScrollIndicator = false
-//    }
-//    
-//    required init?(coder: NSCoder) {
-//        fatalError("init(coder:) has not been implemented")
-//    }
-//    
-//    private func setupUI() {
-//        contentView.addSubview(collectionView)
-//    }
-//    
-//    private func setupConstraints() {
-//        collectionView.snp.makeConstraints { make in
-//            make.edges.equalTo(contentView)
-//            make.height.equalTo(270) // Adjust height as needed
-//        }
-//    }
-//    
-//    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-//        return 2 // Number of rewards
-//    }
-//    
-//    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-//        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "SecretCollectionViewCell", for: indexPath) as! SecretCollectionViewCell
-//        
-//        // Configure your cell with data here
-//        let discountText = "\(indexPath.item * 10)% discount voucher]"
-//        let pointsText = "\(indexPath.item * 5) Streak"
-//        cell.configure(icon: UIImage(named: "ananas")!, discountText: discountText, pointsText: pointsText)
-//        
-//        return cell
-//    }
-//    
-//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-//        let width = collectionView.frame.width / 2 - 24
-//        return CGSize(width: width, height: width)
-//    }
-//    
-//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-//        return 16
-//    }
-//
-//}
-//
-//
-//
-//
-//

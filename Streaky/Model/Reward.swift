@@ -9,9 +9,10 @@ import Foundation
 struct Reward : Codable {
     var id: Int
     var streakId: Int
-    var streak: Streak
+    var streakTitle: String
     var description: String
     var pointsClaimed: Int
     var businessId: Int
-    var business: Business
+    var businessName: String
+    var businessImage: String
 }

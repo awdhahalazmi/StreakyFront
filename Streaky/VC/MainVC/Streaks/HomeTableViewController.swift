@@ -1,6 +1,5 @@
 import UIKit
 import SnapKit
-import Hero
 
 class HomeTableViewController: UITableViewController {
     
@@ -15,12 +14,12 @@ class HomeTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        title = "Username"
         let appearance = UINavigationBarAppearance()
         appearance.configureWithOpaqueBackground()
         appearance.backgroundColor =  #colorLiteral(red: 0.6352165341, green: 0.402710855, blue: 0.9805307984, alpha: 1)
         appearance.titleTextAttributes = [
             .foregroundColor: UIColor.black,
+            
             .font: UIFont.systemFont(ofSize: 18, weight: .bold)
         ]
         appearance.shadowColor = .clear
@@ -39,16 +38,14 @@ class HomeTableViewController: UITableViewController {
         let rightBarButtonItem = UIBarButtonItem(customView: bellButton)
         navigationItem.rightBarButtonItem = rightBarButtonItem
         
-        let labelusername = UILabel()
-        labelusername.text = "Fatma"
-        let leftBarButtonItem = UIBarButtonItem(customView: labelusername)
-        navigationItem.leftBarButtonItem = leftBarButtonItem
+//        let labelusername = UILabel()
+//        let leftBarButtonItem = UIBarButtonItem(customView: labelusername)
+//        navigationItem.leftBarButtonItem = leftBarButtonItem
         
 //        navigationController?.isNavigationBarHidden = true
 
         // Customize navigation bar
         //setupNavigationBar()
-        self.hero.isEnabled = true
         tableView.separatorStyle = .none
         tableView.register(StreaksTableViewCell.self, forCellReuseIdentifier: "StreaksTableViewCell")
         tableView.register(PointsTableViewCell.self, forCellReuseIdentifier: PointsTableViewCell.identifier)
@@ -56,136 +53,92 @@ class HomeTableViewController: UITableViewController {
         tableView.register(RewardsTableViewCell.self, forCellReuseIdentifier: RewardsTableViewCell.identifier)
         tableView.register(SecretTableViewCell.self, forCellReuseIdentifier: SecretTableViewCell.identifier)
         tableView.showsVerticalScrollIndicator = false
-        
-        fetchRewards()
-        fetchSecretExperiences()
-        fetchStreaks()
-        
-        
-    }
    
-    /*
-    private func setupNavigationBar() {
-        let appearance = UINavigationBarAppearance()
-        appearance.configureWithOpaqueBackground()
-        appearance.backgroundColor =  #colorLiteral(red: 0.4261863232, green: 0.271607697, blue: 0.652882278, alpha: 1)
-        appearance.titleTextAttributes = [
-            .foregroundColor: UIColor.black,
-            .font: UIFont.systemFont(ofSize: 18, weight: .bold)
-        ]
+        if let savedToken = UserDefaults.standard.string(forKey: "AuthToken") {
+            print("home \(savedToken)")
+            fetchUserDetails(token: savedToken)
+            fetchRewards(token: savedToken)
+            fetchSecretExperiences(token: savedToken)
+            //fetchStreaks(token: savedToken)
+        } else {
+            presentAlertWithTitle(title: "Error", message: "User token is missing")
+            
 
-        navigationController?.navigationBar.standardAppearance = appearance
-        navigationController?.navigationBar.compactAppearance = appearance
-        navigationController?.navigationBar.scrollEdgeAppearance = appearance
+       }
         
-        
-        // Create profile image view
-        let profileImageView = UIImageView(image: UIImage(systemName: "person.circle.fill"))
-        profileImageView.contentMode = .scaleAspectFill
-        profileImageView.layer.cornerRadius = 18 // Half of the image size
-        profileImageView.clipsToBounds = true
-        profileImageView.backgroundColor = .clear
-        profileImageView.tintColor = .white
-        profileImageView.snp.makeConstraints { make in
-        make.width.height.equalTo(36) // Adjust size as needed
-        }
-        
-        // Create username label
-        let usernameLabel = UILabel()
-        usernameLabel.text = "Username"
-        usernameLabel.font = UIFont.boldSystemFont(ofSize: 16)
-        usernameLabel.textColor = .white
-        
-        // Create a container view for profile image and username
-        let profileContainerView = UIStackView(arrangedSubviews: [profileImageView, usernameLabel])
-        profileContainerView.axis = .horizontal
-        profileContainerView.spacing = 8
-        
-        // Add tap gesture recognizer to the profile container view
-        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(handleProfileTap))
-        profileContainerView.isUserInteractionEnabled = true
-        profileContainerView.addGestureRecognizer(tapGestureRecognizer)
-        
-        // Create a custom left bar button item with the container view
-        let leftBarButtonItem = UIBarButtonItem(customView: profileContainerView)
-        navigationItem.leftBarButtonItem = leftBarButtonItem
-        
-        // Create notification bell button
-            let bellButton = UIButton(type: .custom)
-            bellButton.setImage(UIImage(systemName: "bell.fill"), for: .normal)
-            bellButton.tintColor = .white
-            bellButton.addTarget(self, action: #selector(handleNotificationButton), for: .touchUpInside)
-            let rightBarButtonItem = UIBarButtonItem(customView: bellButton)
-            navigationItem.rightBarButtonItem = rightBarButtonItem
+
     }
-    */
-    private func fetchRewards() {
-        NetworkManager.shared.getAllRewards { [weak self] (result: Result<[Reward], Error>) in
+    
+        
+    
+    private func fetchRewards(token: String) {
+        NetworkManager.shared.getAllRewards(token: token) { [weak self] (result: Result<[Reward], Error>) in
             switch result {
             case .success(let rewards):
+                print(rewards)
                 self?.rewards = rewards
                 self?.tableView.reloadData()
             case .failure(let error):
                 // Handle error
-                print(error)
+                print("dshafjkghl \(error)")
             }
         }
     }
     
-    private func fetchSecretExperiences() {
-        NetworkManager.shared.getAllSecretExperiences { [weak self] (result: Result<[SecretExperience], Error>) in
+//    private func fetchStreaks(token: String) {
+//        NetworkManager.shared.getAllStreaks(token: token) { [weak self] (result: Result<[Streak], Error>) in
+//                switch result {
+//                case .success(let streaks):
+//                    self?.streaks = streaks
+//                    self?.tableView.reloadData()
+//                case .failure(let error):
+//                    print("Failed to fetch streaks: \(error)")
+//                }
+//            }
+//        }
+    
+    
+    private func fetchSecretExperiences(token: String) {
+        NetworkManager.shared.getAllSecretExperiences(token: token) { [weak self] (result: Result<[SecretExperience], Error>) in
             switch result {
             case .success(let secretExperiences):
+                print(secretExperiences)
                 self?.secretExperiences = secretExperiences
                 self?.tableView.reloadData()
             case .failure(let error):
                 // Handle error
-                print(error)
+                print("what \(error)")
+
             }
         }
     }
+                    
     
-//    private func fetchUserDetails() {
-//           guard let token = token else { return }
-//           NetworkManager.shared.fetchUserDetails(token: token) { [weak self] result in
-//               switch result {
-//               case .success(let userAccount):
-//                   self?.user = UserAccount
-//                   self?.tableView.reloadData()
-//               case .failure(let error):
-//                   print("Failed to fetch user details: \(error.localizedDescription)")
-//               }
-//           }
-//       }
-       
-    
-    private func fetchStreaks() {
-        NetworkManager.shared.getAllStreaks { [weak self] result in
-            switch result {
-            case .success(let streaks):
-                self?.streaks = streaks
-                self?.tableView.reloadData()
-            case .failure(let error):
-                print("Failed to fetch streaks: \(error)")
+    private func fetchUserDetails(token: String) {
+            NetworkManager.shared.fetchUserDetails(token: token) { [weak self] result in
+                switch result {
+                case .success(let userAccount):
+                    self?.user = userAccount
+                    self?.updateUsernameInNavigationBar()
+                case .failure(let error):
+                    print("Failed to fetch user details: \(error.localizedDescription)")
+                }
             }
         }
-    }
     
+        private func updateUsernameInNavigationBar() {
+            guard let username = user?.name else { return }
+            let labelusername = UILabel()
+            labelusername.text = "Hello, \(username)"
+            labelusername.textColor = .white
+            labelusername.font = UIFont.systemFont(ofSize: 23, weight: .semibold) // Set font size and weight
+            let leftBarButtonItem = UIBarButtonItem(customView: labelusername)
+            navigationItem.leftBarButtonItem = leftBarButtonItem
+        }
+
+        
     
-//    override func viewWillAppear(_ animated: Bool) {
-//        super.viewWillAppear(animated)
-//        
-//        // Customize navigation bar appearance
-//        let appearance = UINavigationBarAppearance()
-//        appearance.configureWithOpaqueBackground()
-//        appearance.backgroundColor = #colorLiteral(red: 0.4261863232, green: 0.271607697, blue: 0.652882278, alpha: 1)
-//        appearance.titleTextAttributes = [.foregroundColor: UIColor.white]
-//       
-//        navigationController?.isNavigationBarHidden = false
-//        navigationController?.navigationBar.standardAppearance = appearance
-//        navigationController?.navigationBar.compactAppearance = appearance
-//        navigationController?.navigationBar.scrollEdgeAppearance = appearance
-//    }
+
     
     @objc private func handleNotificationButton() {
         // Handle notification button tap
@@ -254,6 +207,10 @@ class HomeTableViewController: UITableViewController {
         }
     }
     
-
+    func presentAlertWithTitle(title: String, message: String) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .default))
+        self.present(alert, animated: true, completion: nil)
+    }
     
 }

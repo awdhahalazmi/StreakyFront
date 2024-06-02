@@ -42,10 +42,10 @@ class NetworkManager {
     }
     
     
-    func fetchUserDetails(token: String, completion: @escaping (Result<UserDetails, Error>) -> Void) {
+    func fetchUserDetails(token: String, completion: @escaping (Result<UserAccount, Error>) -> Void) {
         let headers: HTTPHeaders = [.authorization(bearerToken: token)]
-
-        AF.request(baseUrl + "auth/profile", headers: headers).responseDecodable(of: UserDetails.self) { response in
+        
+        AF.request(baseUrl + "auth/profile", headers: headers).responseDecodable(of: UserAccount.self) { response in
             switch response.result {
             case .success(let userDetails):
                 completion(.success(userDetails))
@@ -60,42 +60,50 @@ class NetworkManager {
     }
 
     
-    func getAllRewards(completion: @escaping (Result<[Reward], Error>) -> Void) {
+    func getAllRewards(token: String, completion: @escaping (Result<[Reward], Error>) -> Void) {
+        let headers: HTTPHeaders = [.authorization(bearerToken: token)]
+
         let url = baseUrl + "Rewards/getAllRewards"
-        
-        AF.request(url, method: .get).responseDecodable(of: [Reward].self) { response in
+        AF.request(url, method: .get, headers: headers).responseDecodable(of: [Reward].self) { response in
             switch response.result {
             case .success(let rewards):
+                print("123kdd \(response)")
                 completion(.success(rewards))
             case .failure(let error):
+                print("123kdd \(response)")
                 completion(.failure(error))
             }
         }
     }
     
-    func getAllSecretExperiences(completion: @escaping (Result<[SecretExperience], Error>) -> Void) {
-            let url = baseUrl + "SecretExperience/getAllSecretExperiences"
-            
-            AF.request(url, method: .get).responseDecodable(of: [SecretExperience].self) { response in
+
+    
+    func getAllSecretExperiences(token: String, completion: @escaping (Result<[SecretExperience], Error>) -> Void) {
+            let headers: HTTPHeaders = [.authorization(bearerToken: token)]
+            let url = baseUrl + "SecretExperience"
+            AF.request(url, method: .get,headers: headers).responseDecodable(of: [SecretExperience].self) { response in
                 switch response.result {
                 case .success(let secretExperiences):
                     completion(.success(secretExperiences))
                 case .failure(let error):
+                    print("hh")
                     completion(.failure(error))
                 }
             }
         }
         
-    func getAllStreaks(completion: @escaping (Result<[Streak], Error>) -> Void) {
+    func getAllStreaks(token: String, completion: @escaping (Result<[Streak], Error>) -> Void) {
+        let headers: HTTPHeaders = [.authorization(bearerToken: token)]
            let url = baseUrl + "Streak/getAllStreaks"
            
-           AF.request(url, method: .get).responseDecodable(of: [Streak].self) { response in
+           AF.request(url, method: .get, headers: headers).responseDecodable(of: [Streak].self) { response in
                switch response.result {
                case .success(let streaks):
                    completion(.success(streaks))
                case .failure(let error):
                    print("Error: \(error.localizedDescription)")
                    if let data = response.data, let jsonString = String(data: data, encoding: .utf8) {
+                       //ISSUE HERE!
                        print("Server Response: \(jsonString)")
                    }
                    completion(.failure(error))
@@ -103,23 +111,6 @@ class NetworkManager {
            }
        }
     
-    
-    func getUserAccount(completion: @escaping (Result<UserAccount, Error>) -> Void) {
-            let url = baseUrl + "auth/profile"
-            
-            AF.request(url, method: .get).responseDecodable(of: UserAccount.self) { response in
-                switch response.result {
-                case .success(let profile):
-                    completion(.success(profile))
-                case .failure(let error):
-                    print("Error: \(error.localizedDescription)")
-                    if let data = response.data, let jsonString = String(data: data, encoding: .utf8) {
-                        print("Server Response: \(jsonString)")
-                    }
-                    completion(.failure(error))
-                }
-            }
-        }
     
     func editAccount(token: String, profile: EditAccount, image: UIImage?, completion: @escaping (Result<UserAccount, Error>) -> Void) {
             let headers: HTTPHeaders = [.authorization(bearerToken: token)]
