@@ -38,14 +38,6 @@ class HomeTableViewController: UITableViewController {
         let rightBarButtonItem = UIBarButtonItem(customView: bellButton)
         navigationItem.rightBarButtonItem = rightBarButtonItem
         
-//        let labelusername = UILabel()
-//        let leftBarButtonItem = UIBarButtonItem(customView: labelusername)
-//        navigationItem.leftBarButtonItem = leftBarButtonItem
-        
-//        navigationController?.isNavigationBarHidden = true
-
-        // Customize navigation bar
-        //setupNavigationBar()
         tableView.separatorStyle = .none
         tableView.register(StreaksTableViewCell.self, forCellReuseIdentifier: "StreaksTableViewCell")
         tableView.register(PointsTableViewCell.self, forCellReuseIdentifier: PointsTableViewCell.identifier)

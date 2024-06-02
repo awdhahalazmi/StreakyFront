@@ -50,7 +50,6 @@ class FriendsDashboardViewController: UIViewController, UITableViewDataSource, U
     override func viewDidLoad() {
         super.viewDidLoad()
         setupViews()
-        setupNavigationBar()
         configureNavigationBarAppearance()
         tableView.dataSource = self
         tableView.delegate = self
@@ -73,15 +72,6 @@ class FriendsDashboardViewController: UIViewController, UITableViewDataSource, U
         }
     }
 
-    private func setupNavigationBar() {
-        navigationItem.rightBarButtonItem = UIBarButtonItem(
-            image: UIImage(systemName: "person.fill.badge.plus"),
-            style: .plain,
-            target: self,
-            action: #selector(addFriendButtonTapped)
-        )
-        navigationItem.rightBarButtonItem?.tintColor = UIColor.white
-    }
 
     private func configureNavigationBarAppearance() {
         title = "Friends"
@@ -94,23 +84,32 @@ class FriendsDashboardViewController: UIViewController, UITableViewDataSource, U
         navigationController?.navigationBar.standardAppearance = appearance
         navigationController?.navigationBar.scrollEdgeAppearance = appearance
         navigationController?.navigationBar.isTranslucent = true
+        
+        navigationItem.rightBarButtonItem = UIBarButtonItem(
+            image: UIImage(systemName: "person.fill.badge.plus"),
+            style: .plain,
+            target: self,
+            action: #selector(addFriendButtonTapped)
+        )
+        navigationItem.rightBarButtonItem?.tintColor = UIColor.white
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        
-        // Customize navigation bar appearance
-        let appearance = UINavigationBarAppearance()
-        title = "Friends"
-        appearance.configureWithOpaqueBackground()
-        appearance.backgroundColor = #colorLiteral(red: 0.4261863232, green: 0.271607697, blue: 0.652882278, alpha: 1)
-        appearance.titleTextAttributes = [.foregroundColor: UIColor.white]
-       
-        navigationController?.isNavigationBarHidden = false
-        navigationController?.navigationBar.standardAppearance = appearance
-        navigationController?.navigationBar.compactAppearance = appearance
-        navigationController?.navigationBar.scrollEdgeAppearance = appearance
-    }
+    
+//    override func viewWillAppear(_ animated: Bool) {
+//        super.viewWillAppear(animated)
+//        
+//        // Customize navigation bar appearance
+//        let appearance = UINavigationBarAppearance()
+//        title = "Friends"
+//        appearance.configureWithOpaqueBackground()
+//        appearance.backgroundColor = #colorLiteral(red: 0.4261863232, green: 0.271607697, blue: 0.652882278, alpha: 1)
+//        appearance.titleTextAttributes = [.foregroundColor: UIColor.white]
+//       
+//        navigationController?.isNavigationBarHidden = false
+//        navigationController?.navigationBar.standardAppearance = appearance
+//        navigationController?.navigationBar.compactAppearance = appearance
+//        navigationController?.navigationBar.scrollEdgeAppearance = appearance
+//    }
 
     @objc private func addFriendButtonTapped() {
         let addFriendVC = AddFriendViewController()

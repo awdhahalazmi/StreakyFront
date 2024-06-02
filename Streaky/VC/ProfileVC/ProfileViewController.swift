@@ -171,20 +171,20 @@ class ProfileViewController: UIViewController {
             make.trailing.equalTo(infoContainerView).offset(-20)
         }
     }
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        
-        // Customize navigation bar appearance
-        let appearance = UINavigationBarAppearance()
-        appearance.configureWithOpaqueBackground()
-        appearance.backgroundColor = #colorLiteral(red: 0.4261863232, green: 0.271607697, blue: 0.652882278, alpha: 1)
-        appearance.titleTextAttributes = [.foregroundColor: UIColor.white]
-       
-        navigationController?.isNavigationBarHidden = false
-        navigationController?.navigationBar.standardAppearance = appearance
-        navigationController?.navigationBar.compactAppearance = appearance
-        navigationController?.navigationBar.scrollEdgeAppearance = appearance
-    }
+//    override func viewWillAppear(_ animated: Bool) {
+//        super.viewWillAppear(animated)
+//        
+//        // Customize navigation bar appearance
+//        let appearance = UINavigationBarAppearance()
+//        appearance.configureWithOpaqueBackground()
+//        appearance.backgroundColor = #colorLiteral(red: 0.4261863232, green: 0.271607697, blue: 0.652882278, alpha: 1)
+//        appearance.titleTextAttributes = [.foregroundColor: UIColor.white]
+//       
+//        navigationController?.isNavigationBarHidden = false
+//        navigationController?.navigationBar.standardAppearance = appearance
+//        navigationController?.navigationBar.compactAppearance = appearance
+//        navigationController?.navigationBar.scrollEdgeAppearance = appearance
+//    }
     
     func setupNavigationBar() {
         let appearance = UINavigationBarAppearance()

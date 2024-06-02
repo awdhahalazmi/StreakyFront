@@ -23,8 +23,30 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
         super.viewDidLoad()
         setupUI()
         setupConstraints()
-        configureNavigationBar()
         fillCurrentData()
+        let appearance = UINavigationBarAppearance()
+        appearance.configureWithOpaqueBackground()
+        appearance.backgroundColor =  #colorLiteral(red: 0.6352165341, green: 0.402710855, blue: 0.9805307984, alpha: 1)
+        appearance.titleTextAttributes = [
+            .foregroundColor: UIColor.black,
+            
+            .font: UIFont.systemFont(ofSize: 18, weight: .bold)
+        ]
+        appearance.shadowColor = .clear
+        navigationController?.navigationBar.isTranslucent = false
+        navigationController?.navigationBar.standardAppearance = appearance
+        navigationController?.navigationBar.compactAppearance = appearance
+        navigationController?.navigationBar.scrollEdgeAppearance = appearance
+
+
+        
+        // Create notification bell button
+        let bellButton = UIButton(type: .custom)
+        bellButton.setImage(UIImage(systemName: "bell.fill"), for: .normal)
+        bellButton.tintColor = .white
+        //bellButton.addTarget(self, action: #selector(handleNotificationButton), for: .touchUpInside)
+        let rightBarButtonItem = UIBarButtonItem(customView: bellButton)
+        navigationItem.rightBarButtonItem = rightBarButtonItem
     }
 
     func setupUI() {
@@ -153,33 +175,8 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
         }
     }
 
-    func configureNavigationBar() {
-        let appearance = UINavigationBarAppearance()
-        appearance.configureWithOpaqueBackground()
-        appearance.backgroundColor =  #colorLiteral(red: 0.4261863232, green: 0.271607697, blue: 0.652882278, alpha: 1)
-        appearance.titleTextAttributes = [
-            .foregroundColor: UIColor.black,
-            .font: UIFont.systemFont(ofSize: 18, weight: .bold)
-        ]
 
-        navigationController?.navigationBar.standardAppearance = appearance
-        navigationController?.navigationBar.compactAppearance = appearance
-        navigationController?.navigationBar.scrollEdgeAppearance = appearance
-    }
-//    override func viewWillAppear(_ animated: Bool) {
-//        super.viewWillAppear(animated)
-//        
-//        // Customize navigation bar appearance
-//        let appearance = UINavigationBarAppearance()
-//        appearance.configureWithOpaqueBackground()
-//        appearance.backgroundColor = #colorLiteral(red: 0.4261863232, green: 0.271607697, blue: 0.652882278, alpha: 1)
-//        appearance.titleTextAttributes = [.foregroundColor: UIColor.white]
-//       
-//        navigationController?.isNavigationBarHidden = false
-//        navigationController?.navigationBar.standardAppearance = appearance
-//        navigationController?.navigationBar.compactAppearance = appearance
-//        navigationController?.navigationBar.scrollEdgeAppearance = appearance
-//    }
+
 
     func fillCurrentData() {
         nameTextField.text = currentName
