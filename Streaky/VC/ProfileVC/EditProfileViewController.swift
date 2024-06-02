@@ -1,7 +1,7 @@
 import UIKit
 import SnapKit
 
-class EditProfileViewController: UIViewController {
+class EditProfileViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
     var profileImageView: UIImageView!
     var nameTextField: UITextField!
@@ -14,6 +14,10 @@ class EditProfileViewController: UIViewController {
 
     var currentName: String?
     var currentEmail: String?
+    var currentGenderName: String?
+
+    var token: String?
+    var selectedImage: UIImage?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,14 +31,12 @@ class EditProfileViewController: UIViewController {
         view.backgroundColor = UIColor.white
         navigationItem.title = "Edit Profile"
 
-        // Profile Label
         profileLabel = UILabel()
         profileLabel.text = "PROFILE"
         profileLabel.font = UIFont.systemFont(ofSize: 14)
         profileLabel.textColor = .gray
         view.addSubview(profileLabel)
 
-        // Profile Image
         profileImageView = UIImageView()
         profileImageView.image = UIImage(named: "Profile") // Ensure this image is in your assets
         profileImageView.contentMode = .scaleAspectFill
@@ -42,14 +44,12 @@ class EditProfileViewController: UIViewController {
         profileImageView.layer.masksToBounds = true
         view.addSubview(profileImageView)
 
-        // Change Profile Picture Button
         changeProfileButton = UIButton(type: .system)
         changeProfileButton.setTitle("Change profile picture", for: .normal)
         changeProfileButton.setTitleColor(.systemPurple, for: .normal)
         changeProfileButton.addTarget(self, action: #selector(changeProfileTapped), for: .touchUpInside)
         view.addSubview(changeProfileButton)
 
-        // Info Container View
         infoContainerView = UIView()
         infoContainerView.backgroundColor = UIColor.white
         infoContainerView.layer.cornerRadius = 5
@@ -57,46 +57,39 @@ class EditProfileViewController: UIViewController {
         infoContainerView.layer.shadowColor = UIColor.lightGray.cgColor
         view.addSubview(infoContainerView)
 
-        // Name TextField
         nameTextField = UITextField()
         nameTextField.font = UIFont.systemFont(ofSize: 16)
         nameTextField.textColor = .black
-        nameTextField.placeholder = "name"
+        nameTextField.placeholder = "Name"
         nameTextField.borderStyle = .none
         infoContainerView.addSubview(nameTextField)
 
-        // Divider 1
         let divider1 = UIView()
         divider1.backgroundColor = #colorLiteral(red: 0.9137255549, green: 0.9137254953, blue: 0.9137255549, alpha: 1)
         infoContainerView.addSubview(divider1)
 
-        // Email TextField
         emailTextField = UITextField()
         emailTextField.font = UIFont.systemFont(ofSize: 16)
         emailTextField.textColor = .black
-        emailTextField.placeholder = "email"
+        emailTextField.placeholder = "Email"
         emailTextField.borderStyle = .none
         infoContainerView.addSubview(emailTextField)
 
-        // Divider 2
         let divider2 = UIView()
         divider2.backgroundColor = #colorLiteral(red: 0.9137254357, green: 0.9137255549, blue: 0.9180311561, alpha: 1)
         infoContainerView.addSubview(divider2)
 
-        // Gender Segmented Control
         genderSegmentedControl = UISegmentedControl(items: ["Male", "Female"])
         genderSegmentedControl.selectedSegmentIndex = 0
         infoContainerView.addSubview(genderSegmentedControl)
 
-        // Save Button
         confirmButton = UIButton(type: .system)
         confirmButton.setTitle("Confirm", for: .normal)
         confirmButton.setTitleColor(.white, for: .normal)
         confirmButton.backgroundColor = #colorLiteral(red: 0.2706783712, green: 0.1171713695, blue: 0.4809373021, alpha: 1)
         confirmButton.layer.cornerRadius = 24
-        confirmButton.addTarget(self, action: #selector(saveTapped), for: .touchUpInside)
+        confirmButton.addTarget(self, action: #selector(confirmTapped), for: .touchUpInside)
         view.addSubview(confirmButton)
-
     }
 
     func setupConstraints() {
@@ -114,7 +107,6 @@ class EditProfileViewController: UIViewController {
         changeProfileButton.snp.makeConstraints { make in
             make.centerX.equalTo(profileImageView).offset(150)
             make.centerY.equalTo(profileImageView)
-
         }
 
         infoContainerView.snp.makeConstraints { make in
@@ -159,13 +151,12 @@ class EditProfileViewController: UIViewController {
             make.width.equalTo(100)
             make.height.equalTo(50)
         }
-
     }
 
     func configureNavigationBar() {
         let appearance = UINavigationBarAppearance()
         appearance.configureWithOpaqueBackground()
-        appearance.backgroundColor = .clear
+        appearance.backgroundColor =  #colorLiteral(red: 0.4261863232, green: 0.271607697, blue: 0.652882278, alpha: 1)
         appearance.titleTextAttributes = [
             .foregroundColor: UIColor.black,
             .font: UIFont.systemFont(ofSize: 18, weight: .bold)
@@ -175,22 +166,41 @@ class EditProfileViewController: UIViewController {
         navigationController?.navigationBar.compactAppearance = appearance
         navigationController?.navigationBar.scrollEdgeAppearance = appearance
     }
+//    override func viewWillAppear(_ animated: Bool) {
+//        super.viewWillAppear(animated)
+//        
+//        // Customize navigation bar appearance
+//        let appearance = UINavigationBarAppearance()
+//        appearance.configureWithOpaqueBackground()
+//        appearance.backgroundColor = #colorLiteral(red: 0.4261863232, green: 0.271607697, blue: 0.652882278, alpha: 1)
+//        appearance.titleTextAttributes = [.foregroundColor: UIColor.white]
+//       
+//        navigationController?.isNavigationBarHidden = false
+//        navigationController?.navigationBar.standardAppearance = appearance
+//        navigationController?.navigationBar.compactAppearance = appearance
+//        navigationController?.navigationBar.scrollEdgeAppearance = appearance
+//    }
 
     func fillCurrentData() {
         nameTextField.text = currentName
         emailTextField.text = currentEmail
+        genderSegmentedControl.selectedSegmentIndex = currentGenderName == "Male" ? 0 : 1
     }
 
     @objc func changeProfileTapped() {
-        // Handle change profile picture action
+        let imagePicker = UIImagePickerController()
+        imagePicker.delegate = self
+        imagePicker.sourceType = .photoLibrary
+        present(imagePicker, animated: true, completion: nil)
     }
 
-    @objc func saveTapped() {
-        // Display confirmation alert
+    @objc func confirmTapped() {
         let alertController = UIAlertController(title: "Confirm Edit", message: "Are you sure you want to save these changes?", preferredStyle: .alert)
         let confirmAction = UIAlertAction(title: "Confirm", style: .default) { _ in
-            // Save the changes and dismiss or pop the view controller
-            self.navigationController?.popViewController(animated: true)
+            self.saveProfile()
+            let profileVc = MainTabBarViewController()
+            profileVc.modalPresentationStyle = .fullScreen
+            self.present(profileVc, animated: true, completion: nil)
         }
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
         alertController.addAction(confirmAction)
@@ -198,8 +208,43 @@ class EditProfileViewController: UIViewController {
         present(alertController, animated: true, completion: nil)
     }
 
-    @objc func cancelTapped() {
-        // Handle cancel action
-        navigationController?.popViewController(animated: true)
+    @objc func saveProfile() {
+        guard let token = token,
+              let name = nameTextField.text,
+              let email = emailTextField.text else { return }
+
+        let genderName = genderSegmentedControl.selectedSegmentIndex == 0 ? "Male" : "Female"
+        let profileRequest = EditAccount(name: name, email: email, genderName: genderName)
+
+        NetworkManager.shared.editAccount(token: token, profile: profileRequest, image: selectedImage) { [weak self] result in
+            switch result {
+            case .success(let updatedProfile):
+                DispatchQueue.main.async {
+                    self?.navigationController?.popViewController(animated: true)
+                }
+            case .failure(let error):
+                DispatchQueue.main.async {
+                    self?.presentAlertWithTitle(title: "Error", message: "Failed to update profile: \(error.localizedDescription)")
+                }
+            }
+        }
+    }
+
+    func presentAlertWithTitle(title: String, message: String) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .default))
+        present(alert, animated: true, completion: nil)
+    }
+
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        picker.dismiss(animated: true, completion: nil)
+        if let selectedImage = info[.originalImage] as? UIImage {
+            profileImageView.image = selectedImage
+            self.selectedImage = selectedImage
+        }
+    }
+
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        picker.dismiss(animated: true, completion: nil)
     }
 }

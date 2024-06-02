@@ -6,8 +6,8 @@
 //
 
 import Foundation
-struct Streak  {
-    var id: Int
+struct Streak : Codable {
+        var id: Int
         var title: String
         var description: String
         var businessId: Int

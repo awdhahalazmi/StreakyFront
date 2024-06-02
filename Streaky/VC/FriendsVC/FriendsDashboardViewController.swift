@@ -84,7 +84,7 @@ class FriendsDashboardViewController: UIViewController, UITableViewDataSource, U
     }
 
     private func configureNavigationBarAppearance() {
-        title = "Friends Dashboards"
+        title = "Friends"
 
         let appearance = UINavigationBarAppearance()
         appearance.configureWithOpaqueBackground()
@@ -94,6 +94,22 @@ class FriendsDashboardViewController: UIViewController, UITableViewDataSource, U
         navigationController?.navigationBar.standardAppearance = appearance
         navigationController?.navigationBar.scrollEdgeAppearance = appearance
         navigationController?.navigationBar.isTranslucent = true
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        // Customize navigation bar appearance
+        let appearance = UINavigationBarAppearance()
+        title = "Friends"
+        appearance.configureWithOpaqueBackground()
+        appearance.backgroundColor = #colorLiteral(red: 0.4261863232, green: 0.271607697, blue: 0.652882278, alpha: 1)
+        appearance.titleTextAttributes = [.foregroundColor: UIColor.white]
+       
+        navigationController?.isNavigationBarHidden = false
+        navigationController?.navigationBar.standardAppearance = appearance
+        navigationController?.navigationBar.compactAppearance = appearance
+        navigationController?.navigationBar.scrollEdgeAppearance = appearance
     }
 
     @objc private func addFriendButtonTapped() {

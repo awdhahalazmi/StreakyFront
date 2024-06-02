@@ -12,6 +12,7 @@ class TodayPointTableViewCell: UITableViewCell, UICollectionViewDelegate, UIColl
         layout.scrollDirection = .horizontal
         layout.minimumLineSpacing = 16
         layout.minimumInteritemSpacing = 16
+        
         return UICollectionView(frame: .zero, collectionViewLayout: layout)
     }()
     
@@ -29,6 +30,8 @@ class TodayPointTableViewCell: UITableViewCell, UICollectionViewDelegate, UIColl
         collectionView.delegate = self
         collectionView.dataSource = self
         collectionView.register(TodayPointCollectionViewCell.self, forCellWithReuseIdentifier: "TodayPointCollectionViewCell")
+        collectionView.showsVerticalScrollIndicator = false
+        collectionView.showsHorizontalScrollIndicator = false
     }
     
     required init?(coder: NSCoder) {

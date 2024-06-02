@@ -80,6 +80,7 @@ class TodayPointCollectionViewCell: UICollectionViewCell {
         containerView.addSubview(goButton)
         containerView.addSubview(locationIcon)
         setupGestureRecognizers()
+        
     }
     
     private func setupConstraints() {

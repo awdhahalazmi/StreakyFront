@@ -1,7 +1,9 @@
 import UIKit
 import SnapKit
-
+import Hero
 class LoginViewController: UIViewController {
+    
+    var user: UserLogin?
     
     var emailTextField: UITextField!
     var passwordTextField: UITextField!
@@ -178,6 +180,8 @@ class LoginViewController: UIViewController {
             case .success(let tokenResponse):
                 print("Login successful: \(tokenResponse.token)")
                 let homeVC = MainTabBarViewController()
+                homeVC.token = tokenResponse.token
+                print(tokenResponse)
                 let navigationController = UINavigationController(rootViewController: homeVC)
                 navigationController.modalPresentationStyle = .fullScreen
                 self.present(navigationController, animated: true, completion: nil)

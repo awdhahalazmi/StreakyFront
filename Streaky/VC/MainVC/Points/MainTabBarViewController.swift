@@ -2,41 +2,49 @@ import UIKit
 
 class MainTabBarViewController: UITabBarController {
 
+    var token: String?
+
     override func viewDidLoad() {
         super.viewDidLoad()
         setupViewControllers()
         configureTabBarAppearance()
+        if let savedToken = UserDefaults.standard.string(forKey: "AuthToken") {
+            token = savedToken
+        }
         callHome()
+        self.selectedIndex = 1
+        
     }
 
     func setupViewControllers() {
-        
-        
-        
-        let HomeTableViewController = HomeTableViewController()
-        HomeTableViewController.tabBarItem = UITabBarItem(
+        let homeTableViewController = HomeTableViewController()
+        let homeNavigationController = UINavigationController(rootViewController: homeTableViewController)
+        homeNavigationController.tabBarItem = UITabBarItem(
             title: "Home",
             image: UIImage(systemName: "sparkles"),
             selectedImage: UIImage(systemName: "bubbles.and.sparkles.fill")
         )
         
         let friendsViewController = FriendsDashboardViewController()
-        friendsViewController.tabBarItem = UITabBarItem(
+        let friendsNavigationController = UINavigationController(rootViewController: friendsViewController)
+        friendsNavigationController.tabBarItem = UITabBarItem(
             title: "Friends",
-            image: UIImage(systemName: "person.2"),
-            selectedImage: UIImage(systemName: "person.2.fill")
+            image: UIImage(systemName: "person.3"),
+            selectedImage: UIImage(systemName: "person.3.fill")
         )
         
-
         let profileViewController = ProfileViewController()
-        profileViewController.tabBarItem = UITabBarItem(
+        let profileNavigationController = UINavigationController(rootViewController: profileViewController)
+        profileNavigationController.tabBarItem = UITabBarItem(
             title: "Profile",
             image: UIImage(systemName: "person"),
             selectedImage: UIImage(systemName: "person.fill")
         )
 
-        viewControllers = [HomeTableViewController,friendsViewController, profileViewController]
+        viewControllers = [friendsViewController, homeNavigationController, profileNavigationController]
+
     }
+
 
     private func configureTabBarAppearance() {
         let appearance = UITabBarAppearance()
@@ -55,10 +63,14 @@ class MainTabBarViewController: UITabBarController {
     func callHome()
     {
         let homeVC = HomeTableViewController()
-        let navigationController = UINavigationController(rootViewController: homeVC)
-        navigationController.modalPresentationStyle = .fullScreen
-
-        self.present(navigationController, animated: true, completion: nil)
+        homeVC.token = "AuthToken" // Pass the token to GymListTableViewController
+//                    let TabBarVC = TabBarViewController()
+//                    TabBarVC.token = tokenResponse.token // You can also pass the token to other view controllers if needed
+        self.navigationController?.pushViewController(homeVC, animated: true)
+//        let navigationController = UINavigationController(rootViewController: homeVC)
+//        navigationController.modalPresentationStyle = .fullScreen
+//
+//        self.present(navigationController, animated: true, completion: nil)
         
     }
 }
