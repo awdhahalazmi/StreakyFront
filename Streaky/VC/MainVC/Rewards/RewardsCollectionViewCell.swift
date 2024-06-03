@@ -81,9 +81,39 @@ class RewardsCollectionViewCell: UICollectionViewCell {
         }
     }
     
-    func configure(icon: UIImage, discountText: String, pointsText: String) {
-        imageView.image = icon
+    func configure(icon: String, discountText: String, pointsText: String) {
+        loadImage(from: icon)
         discountLabel.text = discountText
         pointsLabel.text = pointsText
     }
+    
+    private func loadImage(from urlString: String) {
+            guard let url = URL(string: urlString) else {
+                print("Invalid URL: \(urlString)")
+                imageView.image = UIImage(named: "placeholder")
+                return
+            }
+
+            URLSession.shared.dataTask(with: url) { [weak self] data, response, error in
+                if let error = error {
+                    print("Error loading image from URL: \(error)")
+                    DispatchQueue.main.async {
+                        self?.imageView.image = UIImage(named: "placeholder")
+                    }
+                    return
+                }
+                
+                guard let data = data, let image = UIImage(data: data) else {
+                    print("Failed to load image data")
+                    DispatchQueue.main.async {
+                        self?.imageView.image = UIImage(named: "placeholder")
+                    }
+                    return
+                }
+                
+                DispatchQueue.main.async {
+                    self?.imageView.image = image
+                }
+            }.resume()
+        }
 }

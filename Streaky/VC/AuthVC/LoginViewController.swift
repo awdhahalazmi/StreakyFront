@@ -184,9 +184,9 @@ class LoginViewController: UIViewController {
                 print(tokenResponse)
                 let _ = UserDefaults.standard.setValue(tokenResponse.token, forKey: "AuthToken")
 
-                let navigationController = UINavigationController(rootViewController: homeVC)
-                navigationController.modalPresentationStyle = .fullScreen
-                self.present(navigationController, animated: true, completion: nil)
+               // let navigationController = UINavigationController(rootViewController: homeVC)
+                homeVC.modalPresentationStyle = .fullScreen
+                self.present(homeVC, animated: true, completion: nil)
 
             case .failure(let error):
                 print("Login failed: \(error.localizedDescription)")

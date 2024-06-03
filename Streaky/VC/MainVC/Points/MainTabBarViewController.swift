@@ -43,6 +43,7 @@ class MainTabBarViewController: UITabBarController {
 
         viewControllers = [friendsViewController, homeNavigationController, profileNavigationController]
 
+        
     }
 
 

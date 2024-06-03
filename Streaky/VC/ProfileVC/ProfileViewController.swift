@@ -23,6 +23,7 @@ class ProfileViewController: UIViewController {
         setupUI()
         setupConstraints()
         setupNavigationBar()
+     
         
         if let savedToken = UserDefaults.standard.string(forKey: "AuthToken") {
             print("sjhfdjdshjsh \(savedToken)")
@@ -171,25 +172,14 @@ class ProfileViewController: UIViewController {
             make.trailing.equalTo(infoContainerView).offset(-20)
         }
     }
-//    override func viewWillAppear(_ animated: Bool) {
-//        super.viewWillAppear(animated)
-//        
-//        // Customize navigation bar appearance
-//        let appearance = UINavigationBarAppearance()
-//        appearance.configureWithOpaqueBackground()
-//        appearance.backgroundColor = #colorLiteral(red: 0.4261863232, green: 0.271607697, blue: 0.652882278, alpha: 1)
-//        appearance.titleTextAttributes = [.foregroundColor: UIColor.white]
-//       
-//        navigationController?.isNavigationBarHidden = false
-//        navigationController?.navigationBar.standardAppearance = appearance
-//        navigationController?.navigationBar.compactAppearance = appearance
-//        navigationController?.navigationBar.scrollEdgeAppearance = appearance
-//    }
+
     
     func setupNavigationBar() {
+        
+        
         let appearance = UINavigationBarAppearance()
         appearance.configureWithOpaqueBackground()
-        appearance.backgroundColor =  #colorLiteral(red: 0.4261863232, green: 0.271607697, blue: 0.652882278, alpha: 1)
+        appearance.backgroundColor =  #colorLiteral(red: 0.6352165341, green: 0.402710855, blue: 0.9805307984, alpha: 1)
 
         navigationItem.leftBarButtonItem = UIBarButtonItem(
             image: UIImage(systemName: "power"),
@@ -204,8 +194,17 @@ class ProfileViewController: UIViewController {
             target: self,
             action: #selector(editTapped)
         )
-        navigationItem.rightBarButtonItem?.tintColor = UIColor.systemBlue
-        navigationItem.leftBarButtonItem?.tintColor = UIColor.systemBlue
+        navigationItem.rightBarButtonItem?.tintColor = UIColor.white
+        navigationItem.leftBarButtonItem?.tintColor = UIColor.white
+        
+    
+        appearance.shadowColor = .clear
+        navigationController?.navigationBar.isTranslucent = false
+        navigationController?.navigationBar.standardAppearance = appearance
+        navigationController?.navigationBar.compactAppearance = appearance
+        navigationController?.navigationBar.scrollEdgeAppearance = appearance
+
+
 
     }
     

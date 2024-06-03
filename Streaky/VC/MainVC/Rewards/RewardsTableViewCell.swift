@@ -63,7 +63,7 @@ class RewardsTableViewCell: UITableViewCell, UICollectionViewDelegate, UICollect
             // Assuming you have an image loading function or use a placeholder if image loading fails
             let icon = UIImage(named: reward.businessImage) ?? UIImage()
             
-            cell.configure(icon: icon, discountText: discountText, pointsText: pointsText)
+            cell.configure(icon: reward.businessImage, discountText: discountText, pointsText: pointsText)
             
             return cell
         }
@@ -79,5 +79,6 @@ class RewardsTableViewCell: UITableViewCell, UICollectionViewDelegate, UICollect
         return 16
     }
 }
+
 
 
