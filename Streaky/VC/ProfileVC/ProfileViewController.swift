@@ -196,7 +196,11 @@ class ProfileViewController: UIViewController {
         )
         navigationItem.rightBarButtonItem?.tintColor = UIColor.white
         navigationItem.leftBarButtonItem?.tintColor = UIColor.white
-        
+        appearance.titleTextAttributes = [
+            .foregroundColor: UIColor.white,
+            
+            .font: UIFont.systemFont(ofSize: 18, weight: .bold)
+        ]
     
         appearance.shadowColor = .clear
         navigationController?.navigationBar.isTranslucent = false
@@ -219,7 +223,9 @@ class ProfileViewController: UIViewController {
         let confirmAction = UIAlertAction(title: "Log Out", style: .destructive) { _ in
             UserDefaults.standard.removeObject(forKey: "AuthToken")
             let authVC = AuthViewController()
-            self.navigationController?.pushViewController(authVC, animated: true)
+            authVC.modalPresentationStyle = .fullScreen
+            self.present(authVC, animated: false, completion: nil)
+
         }
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
         alertController.addAction(confirmAction)

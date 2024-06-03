@@ -28,7 +28,7 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
         appearance.configureWithOpaqueBackground()
         appearance.backgroundColor =  #colorLiteral(red: 0.6352165341, green: 0.402710855, blue: 0.9805307984, alpha: 1)
         appearance.titleTextAttributes = [
-            .foregroundColor: UIColor.black,
+            .foregroundColor: UIColor.white,
             
             .font: UIFont.systemFont(ofSize: 18, weight: .bold)
         ]

@@ -55,6 +55,7 @@ class LoginViewController: UIViewController {
         emailTextField = UITextField()
         emailTextField.placeholder = "Email"
         emailTextField.borderStyle = .roundedRect
+        emailTextField.text = "fatma@gmail.com"
         view.addSubview(emailTextField)
         
         passwordTextField = UITextField()
@@ -62,6 +63,7 @@ class LoginViewController: UIViewController {
         passwordTextField.layer.cornerRadius = 30
         passwordTextField.borderStyle = .roundedRect
         passwordTextField.isSecureTextEntry = true
+        passwordTextField.text = "1234"
         view.addSubview(passwordTextField)
         
         loginButton = UIButton(type: .system)

@@ -118,4 +118,5 @@ class AuthViewController: UIViewController {
         signUpVC.modalPresentationStyle = .fullScreen
         self.present(signUpVC, animated: true, completion: nil)
     }
+    
 }

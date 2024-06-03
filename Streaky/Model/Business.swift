@@ -16,8 +16,10 @@ struct Business : Codable  {
     var correctAnswer: String
     var wrongAnswer1: String
     var wrongAnswer2: String
+    var question2 : String
+    var correctAnswerQ2 : String
+    var wrongAnswerQ2_1 : String
+    var wrongAnswerQ2_2 : String
     var locations: [Location]
-    var streaks: [Streak]
-    var rewards: [Reward]
-    var category: Category
+    
 }

@@ -84,10 +84,10 @@ class NetworkManager {
             AF.request(url, method: .get,headers: headers).responseDecodable(of: [SecretExperience].self) { response in
                 switch response.result {
                 case .success(let secretExperiences):
-                    print("hello")
+                    print("success in : getAllSecretExperiences")
                     completion(.success(secretExperiences))
                 case .failure(let error):
-                    print("hh")
+                    print("error in getAllSecretExperiences:")
                     completion(.failure(error))
                 }
             }

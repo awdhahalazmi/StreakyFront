@@ -72,7 +72,6 @@ class FriendsDashboardViewController: UIViewController, UITableViewDataSource, U
         }
     }
 
-
     private func configureNavigationBarAppearance() {
         title = "Friends"
 

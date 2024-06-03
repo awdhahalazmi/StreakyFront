@@ -8,8 +8,8 @@
 import Foundation
 struct SecretExperience : Codable  {
         var id: Int
-        var startDate: Date
-        var endDate: Date
+        var startDate: String
+        var endDate: String
         var title: String
         var description: String
         var streakClaimed: Int

@@ -12,7 +12,7 @@ class MainTabBarViewController: UITabBarController {
             token = savedToken
         }
         callHome()
-        self.selectedIndex = 1
+        self.selectedIndex = 0
         
     }
 
@@ -29,7 +29,7 @@ class MainTabBarViewController: UITabBarController {
         let friendsNavigationController = UINavigationController(rootViewController: friendsViewController)
         friendsNavigationController.tabBarItem = UITabBarItem(
             title: "Friends",
-            image: UIImage(systemName: "person.3"),
+            image: UIImage(systemName: "sparkles"),
             selectedImage: UIImage(systemName: "person.3.fill")
         )
         
@@ -41,7 +41,7 @@ class MainTabBarViewController: UITabBarController {
             selectedImage: UIImage(systemName: "person.fill")
         )
 
-        viewControllers = [friendsViewController, homeNavigationController, profileNavigationController]
+        viewControllers = [homeNavigationController, friendsViewController, profileNavigationController]
 
         
     }
