@@ -231,3 +231,9 @@ class HomeTableViewController: UITableViewController,CustomTableViewCellDelegate
     }
     
 }
+extension HomeTableViewController: refreshDelagate {
+    func refreshPage() {
+        let token = UserDefaults.standard.string(forKey: "AuthToken")
+
+    }
+}

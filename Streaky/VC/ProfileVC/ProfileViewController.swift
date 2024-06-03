@@ -289,7 +289,7 @@ class ProfileViewController: UIViewController {
 extension ProfileViewController: refreshDelagate {
     func refreshPage() {
         let token = UserDefaults.standard.string(forKey: "AuthToken")
-        print("fghjk \(token)")
+       // print("fghjk \(token)")
 //        if token {
 //            fetchUserDetails(token: token)
 //        }
