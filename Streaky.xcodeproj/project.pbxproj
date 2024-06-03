@@ -8,10 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		9B4554C72C045EE0007BE793 /* QuestionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B4554C62C045EE0007BE793 /* QuestionViewController.swift */; };
-		9BF8E2542C049ECE001A9AAC /* PointsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BF8E2532C049ECE001A9AAC /* PointsViewController.swift */; };
-		9BF8E2562C05B164001A9AAC /* MainTabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BF8E2552C05B164001A9AAC /* MainTabBarViewController.swift */; };
-		9BF8E2592C05BEFB001A9AAC /* SecretExperienceCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BF8E2582C05BEFB001A9AAC /* SecretExperienceCollectionViewCell.swift */; };
 		9BF8E25D2C05C271001A9AAC /* SecretExperience.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BF8E25C2C05C271001A9AAC /* SecretExperience.swift */; };
+		9BF8E2602C085B6F001A9AAC /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BF8E25F2C085B6F001A9AAC /* NetworkManager.swift */; };
+		9BF8E2622C086245001A9AAC /* RewardsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BF8E2612C086245001A9AAC /* RewardsTableViewCell.swift */; };
 		B1505CF02BFB5C3700D42364 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1505CEF2BFB5C3700D42364 /* AppDelegate.swift */; };
 		B1505CF22BFB5C3700D42364 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1505CF12BFB5C3700D42364 /* SceneDelegate.swift */; };
 		B1505CF42BFB5C3700D42364 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1505CF32BFB5C3700D42364 /* ViewController.swift */; };
@@ -56,10 +55,9 @@
 
 /* Begin PBXFileReference section */
 		9B4554C62C045EE0007BE793 /* QuestionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuestionViewController.swift; sourceTree = "<group>"; };
-		9BF8E2532C049ECE001A9AAC /* PointsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PointsViewController.swift; sourceTree = "<group>"; };
-		9BF8E2552C05B164001A9AAC /* MainTabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarViewController.swift; sourceTree = "<group>"; };
-		9BF8E2582C05BEFB001A9AAC /* SecretExperienceCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecretExperienceCollectionViewCell.swift; sourceTree = "<group>"; };
 		9BF8E25C2C05C271001A9AAC /* SecretExperience.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecretExperience.swift; sourceTree = "<group>"; };
+		9BF8E25F2C085B6F001A9AAC /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
+		9BF8E2612C086245001A9AAC /* RewardsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RewardsTableViewCell.swift; sourceTree = "<group>"; };
 		B1505CEC2BFB5C3700D42364 /* Streaky.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Streaky.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B1505CEF2BFB5C3700D42364 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B1505CF12BFB5C3700D42364 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -123,21 +121,12 @@
 			path = QuestionsVC;
 			sourceTree = "<group>";
 		};
-		9BF8E2522C049EA1001A9AAC /* Points */ = {
+		9BF8E25E2C085AFD001A9AAC /* Network */ = {
 			isa = PBXGroup;
 			children = (
-				9BF8E2532C049ECE001A9AAC /* PointsViewController.swift */,
-				9BF8E2552C05B164001A9AAC /* MainTabBarViewController.swift */,
+				9BF8E25F2C085B6F001A9AAC /* NetworkManager.swift */,
 			);
-			path = Points;
-			sourceTree = "<group>";
-		};
-		9BF8E2572C05BE98001A9AAC /* SecretExperience */ = {
-			isa = PBXGroup;
-			children = (
-				9BF8E2582C05BEFB001A9AAC /* SecretExperienceCollectionViewCell.swift */,
-			);
-			path = SecretExperience;
+			path = Network;
 			sourceTree = "<group>";
 		};
 		B1505CE32BFB5C3700D42364 = {
@@ -159,6 +148,7 @@
 		B1505CEE2BFB5C3700D42364 /* Streaky */ = {
 			isa = PBXGroup;
 			children = (
+				9BF8E25E2C085AFD001A9AAC /* Network */,
 				B1505D082BFB5DEB00D42364 /* Model */,
 				B1505D062BFB5DC000D42364 /* Supporting */,
 				B1505D052BFB5DB900D42364 /* VC */,
@@ -211,12 +201,7 @@
 		B1505D092BFB5DF900D42364 /* MainVC */ = {
 			isa = PBXGroup;
 			children = (
-
-				9BF8E2572C05BE98001A9AAC /* SecretExperience */,
-
 				B1910F502C05C3FD00277790 /* Location */,
-
-				9BF8E2522C049EA1001A9AAC /* Points */,
 				B1910F292C048EAD00277790 /* QuestionVC */,
 				B1910F072C030F3300277790 /* SecretExperience */,
 				B1910F062C030F2600277790 /* Rewards */,
@@ -281,6 +266,7 @@
 		B1910F062C030F2600277790 /* Rewards */ = {
 			isa = PBXGroup;
 			children = (
+				9BF8E2612C086245001A9AAC /* RewardsTableViewCell.swift */,
 			);
 			path = Rewards;
 			sourceTree = "<group>";
@@ -397,7 +383,6 @@
 				B180FB7C2BFC9664001E8BEE /* MainViewController.swift in Sources */,
 				B1910F102C03298300277790 /* Streak.swift in Sources */,
 				B1910F1E2C03950800277790 /* TokenResponse.swift in Sources */,
-				9BF8E2562C05B164001A9AAC /* MainTabBarViewController.swift in Sources */,
 				B1910ED72BFF83D200277790 /* RequestTableViewCell.swift in Sources */,
 				B1910F182C0393CA00277790 /* Business.swift in Sources */,
 				B1505D282BFBBAD300D42364 /* InterestViewController.swift in Sources */,
@@ -410,9 +395,10 @@
 				B180FBC62BFE1481001E8BEE /* LoginViewController.swift in Sources */,
 				B180FBD62BFE17FC001E8BEE /* EditProfileViewController.swift in Sources */,
 				B1910F2B2C048F0100277790 /* TodayQuestionCollectionViewCell.swift in Sources */,
-				9BF8E2592C05BEFB001A9AAC /* SecretExperienceCollectionViewCell.swift in Sources */,
+				9BF8E2622C086245001A9AAC /* RewardsTableViewCell.swift in Sources */,
 				B1910F1C2C0394BD00277790 /* Location.swift in Sources */,
 				B1910F0B2C0311BE00277790 /* StreaksTableViewCell.swift in Sources */,
+				9BF8E2602C085B6F001A9AAC /* NetworkManager.swift in Sources */,
 				B1910ED62BFF83D200277790 /* AddFriendViewController.swift in Sources */,
 				B1910F092C03119C00277790 /* HomeTableViewController.swift in Sources */,
 				B1505D212BFB5F1000D42364 /* User.swift in Sources */,
@@ -425,7 +411,6 @@
 				B180FBC72BFE1481001E8BEE /* AuthViewController.swift in Sources */,
 				B180FBD12BFE1566001E8BEE /* Friend.swift in Sources */,
 				B1505D242BFB607400D42364 /* SignUpViewController.swift in Sources */,
-				9BF8E2542C049ECE001A9AAC /* PointsViewController.swift in Sources */,
 				B1910ED42BFF83D200277790 /* FriendsDashboardViewController.swift in Sources */,
 				9B4554C72C045EE0007BE793 /* QuestionViewController.swift in Sources */,
 				B1910ED32BFF83D200277790 /* FriendTableViewCell.swift in Sources */,

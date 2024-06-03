@@ -98,11 +98,11 @@ class RequestTableViewCell: UITableViewCell {
        
     }
 
-    func configure(with friend: Friend) {
-        if let url = URL(string: friend.profileImageUrl) {
-            profileImageView.kf.setImage(with: url)
-        }
-        nameLabel.text = friend.name
-        streakLabel.text = "\(friend.streakCount) Streaks"
-    }
+//    func configure(with friend: Friend) {
+//        if let url = URL(string: friend.profileImageUrl) {
+//            profileImageView.kf.setImage(with: url)
+//        }
+//        nameLabel.text = friend.name
+//        streakLabel.text = "\(friend.streakCount) Streaks"
+   // }
 }

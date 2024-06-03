@@ -82,10 +82,10 @@ class AddFriendTableViewCell: UITableViewCell {
 
     func configure(with friend: Friend) {
         self.friend = friend
-        if let url = URL(string: friend.profileImageUrl) {
-            profileImageView.kf.setImage(with: url)
-        }
+//        if let url = URL(string: friend.) {
+//            profileImageView.kf.setImage(with: url)
+//        }
         nameLabel.text = friend.name
-        streakLabel.text = "\(friend.streakCount) Streaks"
+        streakLabel.text = "\(friend.userStreaksCount) Streaks"
     }
 }

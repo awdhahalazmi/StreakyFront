@@ -6,12 +6,12 @@ protocol AddFriendCellDelegate: AnyObject {
 }
 
 class AddFriendViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate, AddFriendCellDelegate {
-
-    private let friends: [Friend] = [
-        Friend(name: "Fatma", profileImageUrl: "https://example.com/image1.jpg", lastStreakLocation: "Pick", streakCount: 5),
-        Friend(name: "Awdlah", profileImageUrl: "https://example.com/image2.jpg", lastStreakLocation: "Coffee Bean", streakCount: 4)
+    
+    private var friends: [Friend] = [
+        //        Friend(name: "Fatma", profileImageUrl: "https://example.com/image1.jpg", lastStreakLocation: "Pick", streakCount: 5),
+        //        Friend(name: "Awdlah", profileImageUrl: "https://example.com/image2.jpg", lastStreakLocation: "Coffee Bean", streakCount: 4)
     ]
-
+    
     private let searchBar: UISearchBar = {
         let searchBar = UISearchBar()
         searchBar.placeholder = "Search"
@@ -20,14 +20,14 @@ class AddFriendViewController: UIViewController, UITableViewDataSource, UITableV
         searchBar.layer.masksToBounds = true
         return searchBar
     }()
-
+    
     private let tableView: UITableView = {
         let tableView = UITableView()
         tableView.register(AddFriendTableViewCell.self, forCellReuseIdentifier: AddFriendTableViewCell.identifier)
         tableView.separatorStyle = .none
         return tableView
     }()
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupViews()
@@ -35,25 +35,27 @@ class AddFriendViewController: UIViewController, UITableViewDataSource, UITableV
         tableView.dataSource = self
         tableView.delegate = self
         searchBar.delegate = self
+        fetchFriends()
     }
-
+    
+    
     private func setupViews() {
         view.backgroundColor = .white
         view.addSubview(searchBar)
         view.addSubview(tableView)
-
+        
         searchBar.snp.makeConstraints { make in
             make.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(10)
             make.left.right.equalToSuperview().inset(16)
             make.height.equalTo(40)
         }
-
+        
         tableView.snp.makeConstraints { make in
             make.top.equalTo(searchBar.snp.bottom).offset(8)
             make.left.right.bottom.equalToSuperview()
         }
     }
-
+    
     private func configureNavigationBar() {
         title = "Add Friends"
         
@@ -70,19 +72,19 @@ class AddFriendViewController: UIViewController, UITableViewDataSource, UITableV
         backButton.tintColor = .white
         navigationItem.leftBarButtonItem = backButton
     }
-
+    
     @objc private func backButtonTapped() {
         navigationController?.popViewController(animated: true)
     }
-
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return friends.count
     }
-
+    
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 80
     }
-
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: AddFriendTableViewCell.identifier, for: indexPath) as? AddFriendTableViewCell else {
             return UITableViewCell()
@@ -92,16 +94,16 @@ class AddFriendViewController: UIViewController, UITableViewDataSource, UITableV
         cell.selectionStyle = .none
         return cell
     }
-
+    
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
     }
-
+    
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-       
+        
     }
-
+    
     func didTapAddButton(for friend: Friend) {
         let alertController = UIAlertController(title: "Add Friend", message: "Do you want to add \(friend.name) as a friend?", preferredStyle: .alert)
         alertController.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
@@ -110,4 +112,20 @@ class AddFriendViewController: UIViewController, UITableViewDataSource, UITableV
         }))
         present(alertController, animated: true, completion: nil)
     }
+    private func fetchFriends() {
+        
+        NetworkManager.shared.fetchAllFriends(token: UserDefaults.standard.string(forKey: "AuthToken") ?? "") { result in
+            DispatchQueue.main.async {
+                switch result {
+                case .success(let friends):
+                    self.friends = friends
+                    //                    self.filteredFriends = friends
+                    self.tableView.reloadData()
+                case .failure(let error):
+                    print("Failed to fetch friends: \(error)")
+                }
+            }
+        }
+    }
+    
 }

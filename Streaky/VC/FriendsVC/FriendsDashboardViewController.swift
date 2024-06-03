@@ -2,18 +2,20 @@ import UIKit
 import SnapKit
 
 class FriendsDashboardViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+    var token: String?
+    var user: User?
 
-    private let friends: [Friend] = [
-        Friend(name: "Fatma", profileImageUrl: "https://example.com/image1.jpg", lastStreakLocation: "Pick", streakCount: 5),
-        Friend(name: "Awdlah", profileImageUrl: "https://example.com/image2.jpg", lastStreakLocation: "Coffee Bean", streakCount: 4),
-        Friend(name: "Faten", profileImageUrl: "https://example.com/image3.jpg", lastStreakLocation: "Pick", streakCount: 3),
-        Friend(name: "Noura", profileImageUrl: "https://example.com/image4.jpg", lastStreakLocation: "Ananas", streakCount: 2),
-        Friend(name: "Maha", profileImageUrl: "https://example.com/image5.jpg", lastStreakLocation: "Spark", streakCount: 1)
+    private var friends: [Friend] = [
+//        Friend(name: "Fatma", profileImageUrl: "https://example.com/image1.jpg", lastStreakLocation: "Pick", streakCount: 5),
+//        Friend(name: "Awdlah", profileImageUrl: "https://example.com/image2.jpg", lastStreakLocation: "Coffee Bean", streakCount: 4),
+//        Friend(name: "Faten", profileImageUrl: "https://example.com/image3.jpg", lastStreakLocation: "Pick", streakCount: 3),
+//        Friend(name: "Noura", profileImageUrl: "https://example.com/image4.jpg", lastStreakLocation: "Ananas", streakCount: 2),
+//        Friend(name: "Maha", profileImageUrl: "https://example.com/image5.jpg", lastStreakLocation: "Spark", streakCount: 1)
     ]
     
     private let requests: [Friend] = [
-        Friend(name: "Dana", profileImageUrl: "https://example.com/image6.jpg", lastStreakLocation: "Cafe", streakCount: 3),
-        Friend(name: "Haya", profileImageUrl: "https://example.com/image7.jpg", lastStreakLocation: "Mall", streakCount: 2)
+//        Friend(name: "Dana", profileImageUrl: "https://example.com/image6.jpg", lastStreakLocation: "Cafe", streakCount: 3),
+//        Friend(name: "Haya", profileImageUrl: "https://example.com/image7.jpg", lastStreakLocation: "Mall", streakCount: 2)
     ]
 
     private var currentList: [Friend]
@@ -54,6 +56,7 @@ class FriendsDashboardViewController: UIViewController, UITableViewDataSource, U
         configureNavigationBarAppearance()
         tableView.dataSource = self
         tableView.delegate = self
+        getAllFriends()
     }
 
     private func setupViews() {
@@ -114,6 +117,23 @@ class FriendsDashboardViewController: UIViewController, UITableViewDataSource, U
         }
         tableView.reloadData()
     }
+    func getAllFriends() {
+        var token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJLZmguRW1haWwiOiJNYWhhQGdtYWlsLmNvbSIsIktmaC5Vc2VySWQiOiI3IiwiaHR0cDovL3NjaGVtYXMubWljcm9zb2Z0LmNvbS93cy8yMDA4LzA2L2lkZW50aXR5L2NsYWltcy9yb2xlIjoidXNlciIsImV4cCI6MjY2NDA4NjAxMywiaXNzIjoiaHR0cDovL3d3dy5teXNpdGUuY29tIiwiYXVkIjoiaHR0cDovL3d3dy5teXNpdGUuY29tIn0.8bAXdBN6gw3rVCM0vBBYc5Vq9qvj_o5Vd5Buzob2f1o"
+        
+            NetworkManager.shared.fetchAllFriends(token: UserDefaults.standard.string(forKey: "AuthToken") ?? "") { result in
+                DispatchQueue.main.async {
+                    switch result {
+                    case .success(let friends):
+                        self.friends = friends
+                        self.tableView.reloadData()
+                    case .failure:
+                        print("Something went wrong in fetching friends")
+                    }
+                }
+            }
+        }
+   
+  
 
    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -129,7 +149,7 @@ class FriendsDashboardViewController: UIViewController, UITableViewDataSource, U
             guard let cell = tableView.dequeueReusableCell(withIdentifier: RequestTableViewCell.identifier, for: indexPath) as? RequestTableViewCell else {
                 return UITableViewCell()
             }
-            cell.configure(with: currentList[indexPath.row])
+           // cell.configure(with: currentList[indexPath.row])
             cell.selectionStyle = .none
             return cell
         } else {
@@ -147,3 +167,16 @@ class FriendsDashboardViewController: UIViewController, UITableViewDataSource, U
         tableView.deselectRow(at: indexPath, animated: true)
     }
 }
+
+extension FriendsDashboardViewController: UISearchResultsUpdating {
+    func updateSearchResults(for searchController: UISearchController) {
+        if let searchText = searchController.searchBar.text, !searchText.isEmpty {
+           
+        } else {
+            
+        }
+        tableView.reloadData()
+    }
+}
+
+
