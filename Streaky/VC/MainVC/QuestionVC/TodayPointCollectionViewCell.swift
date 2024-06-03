@@ -9,6 +9,7 @@ import UIKit
 import CoreLocation
 
 
+
 class TodayPointCollectionViewCell: UICollectionViewCell {
     
     private let pointsLabel: UILabel = {
@@ -79,7 +80,7 @@ class TodayPointCollectionViewCell: UICollectionViewCell {
         containerView.addSubview(brandLabel)
         containerView.addSubview(goButton)
         containerView.addSubview(locationIcon)
-        setupGestureRecognizers()
+        googleMapsGestureRecognizers()
         
     }
     
@@ -113,7 +114,9 @@ class TodayPointCollectionViewCell: UICollectionViewCell {
         }
     }
     
-    private func setupGestureRecognizers() {
+    
+    //MARK: Google Map Functianlity
+    private func googleMapsGestureRecognizers() {
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(openGoogleMaps))
         locationIcon.addGestureRecognizer(tapGesture)
     }
@@ -132,6 +135,28 @@ class TodayPointCollectionViewCell: UICollectionViewCell {
             }
         }
     }
+    
+    
+    //MARK: Go Button Functianlity
+    
+    private func GoGestureRecognizers() {
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(openGoogleMaps))
+        locationIcon.addGestureRecognizer(tapGesture)
+    }
+    
+//    @objc private func navigateToStartQuestionVC() {
+//
+//        let vc = StartQuestionViewController()
+//            vc.modalPresentationStyle = .pageSheet
+//
+//            if let presentationController = vc.presentationController as? UISheetPresentationController {
+//                presentationController.detents = [.medium()]
+//                presentationController.prefersGrabberVisible = true
+//            }
+
+
+    
+    
     
     func configure(points: Int, brand: String, latitude: CLLocationDegrees, longitude: CLLocationDegrees) {
         pointsLabel.text = "Get \(points) points"

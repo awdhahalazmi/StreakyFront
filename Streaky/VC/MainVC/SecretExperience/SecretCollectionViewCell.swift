@@ -7,6 +7,7 @@
 
 import UIKit
 import SnapKit
+import Kingfisher
 
 class SecretCollectionViewCell: UICollectionViewCell {
 
@@ -91,42 +92,22 @@ class SecretCollectionViewCell: UICollectionViewCell {
             }
         }
         
-        func configure(icon: UIImage, titleText: String, descriptionText: String, streakClaimedText: String) {
-            imageView.image = icon
+        func configure(iconURL: String, titleText: String, descriptionText: String, streakClaimedText: String) {
+            loadImage(from: iconURL)
             secretLabel.text = titleText
             streakLabel.text = descriptionText
             streakLabel.text = streakClaimedText
         }
         
-    private func loadImage(from urlString: String) {
-            guard let url = URL(string: urlString) else {
-                print("Invalid URL: \(urlString)")
-                imageView.image = UIImage(named: "placeholder")
-                return
-            }
-
-            URLSession.shared.dataTask(with: url) { [weak self] data, response, error in
-                if let error = error {
-                    print("Error loading image from URL: \(error)")
-                    DispatchQueue.main.async {
-                        self?.imageView.image = UIImage(named: "placeholder")
-                    }
-                    return
-                }
-                
-                guard let data = data, let image = UIImage(data: data) else {
-                    print("Failed to load image data")
-                    DispatchQueue.main.async {
-                        self?.imageView.image = UIImage(named: "placeholder")
-                    }
-                    return
-                }
-                
-                DispatchQueue.main.async {
-                    self?.imageView.image = image
-                }
-            }.resume()
+        private func loadImage(from urlString: String) {
+        guard let url = URL(string: urlString) else {
+            print("Invalid URL: \(urlString)")
+            imageView.image = UIImage(named: "placeholder")
+            return
         }
+        
+        imageView.kf.setImage(with: url, placeholder: UIImage(named: "placeholder"))
+    }
     
     
     }

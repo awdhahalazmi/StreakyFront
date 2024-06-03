@@ -2,10 +2,17 @@ import UIKit
 import CoreLocation
 import SnapKit
 
+
+// Bridge
+protocol CustomTableViewCellDelegate: AnyObject {
+    func collectionViewCellTapped(at indexPath: IndexPath)
+}
+
 class TodayPointTableViewCell: UITableViewCell, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, CLLocationManagerDelegate {
     
+    
     static let identifier = "TodayPointTableViewCell"
-
+    weak var delegate: CustomTableViewCellDelegate?
     
     private let collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
@@ -77,6 +84,7 @@ class TodayPointTableViewCell: UITableViewCell, UICollectionViewDelegate, UIColl
         let points = (indexPath.item + 1) * 10
         let brand = "Brand \(indexPath.item + 1)"
         cell.configure(points: points, brand: brand, latitude: 50, longitude: 50)
+       
         return cell
     }
     
@@ -88,6 +96,13 @@ class TodayPointTableViewCell: UITableViewCell, UICollectionViewDelegate, UIColl
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         return 16
     }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        
+        delegate?.collectionViewCellTapped(at: indexPath)
+        
+    }
+
     
 }
 

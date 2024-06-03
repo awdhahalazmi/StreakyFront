@@ -7,11 +7,5 @@
 
 import Foundation
 struct UserStreak : Codable  {
-    var id: Int
-    var userId: Int
-    var streakId: Int
-    var startDate: Date
-    var endDate: Date
-    var user: User
-    var streak: Streak
+    var totalStreaks : Int
 }

@@ -1,6 +1,5 @@
 import SnapKit
 import UIKit
-
 class SecretTableViewCell: UITableViewCell, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
     static let identifier = "SecretTableViewCell"
@@ -61,7 +60,7 @@ class SecretTableViewCell: UITableViewCell, UICollectionViewDelegate, UICollecti
         let streakClaimedText = "\(secretExperience.streakClaimed) Streaks"
         let icon = UIImage(named: secretExperience.businessImage) ?? UIImage()
         
-        cell.configure(icon: icon, titleText: titleText, descriptionText: descriptionText, streakClaimedText: streakClaimedText)
+        cell.configure(iconURL: secretExperience.businessImage, titleText: titleText, descriptionText: descriptionText, streakClaimedText: streakClaimedText)
         
         return cell
     }

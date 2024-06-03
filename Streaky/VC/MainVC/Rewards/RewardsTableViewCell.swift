@@ -22,7 +22,7 @@ class RewardsTableViewCell: UITableViewCell, UICollectionViewDelegate, UICollect
         
         setupUI()
         setupConstraints()
-        collectionView.backgroundColor = #colorLiteral(red: 1, green: 0.8982707858, blue: 0.7560862899, alpha: 0.2549316406)
+        collectionView.backgroundColor = .white
         collectionView.delegate = self
         collectionView.dataSource = self
         collectionView.register(RewardsCollectionViewCell.self, forCellWithReuseIdentifier: "RewardsCollectionViewCell")
@@ -61,9 +61,8 @@ class RewardsTableViewCell: UITableViewCell, UICollectionViewDelegate, UICollect
             let discountText = reward.description
             let pointsText = "\(reward.pointsClaimed) Points"
             // Assuming you have an image loading function or use a placeholder if image loading fails
-            let icon = UIImage(named: reward.businessImage) ?? UIImage()
             
-            cell.configure(icon: icon, discountText: discountText, pointsText: pointsText)
+            cell.configure(iconURL: reward.businessImage, discountText: discountText, pointsText: pointsText)
             
             return cell
         }

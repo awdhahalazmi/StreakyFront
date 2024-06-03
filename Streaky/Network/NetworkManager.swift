@@ -93,18 +93,20 @@ class NetworkManager {
             }
         }
         
-    func getAllStreaks(token: String, completion: @escaping (Result<[Streak], Error>) -> Void) {
+    func getUserStreaks(token: String, completion: @escaping (Result<UserStreak, Error>) -> Void) {
         let headers: HTTPHeaders = [.authorization(bearerToken: token)]
-           let url = baseUrl + "Streak/getAllStreaks"
+           let url = baseUrl + "Streak/getUserStreaks"
            
-           AF.request(url, method: .get, headers: headers).responseDecodable(of: [Streak].self) { response in
+           AF.request(url, method: .get, headers: headers).responseDecodable(of: UserStreak.self) { response in
                switch response.result {
                case .success(let streaks):
+                   print("YAY ")
                    completion(.success(streaks))
                case .failure(let error):
                    print("Error: \(error.localizedDescription)")
                    if let data = response.data, let jsonString = String(data: data, encoding: .utf8) {
-                       //ISSUE HERE!
+                       //ISSUE HERE!x
+                       print("WHY WHY WHY ")
                        print("Server Response: \(jsonString)")
                    }
                    completion(.failure(error))

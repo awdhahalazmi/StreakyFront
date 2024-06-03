@@ -95,7 +95,7 @@ class StreaksTableViewCell: UITableViewCell {
     }
     
     func configure(streaks: Int) {
-        streakNumberLabel.text = "\(streaks)"
+        streakNumberLabel.text = " \(streaks)"
         
         for (index, statusIcon) in statusIcons.enumerated() {
             if index < streaks {
@@ -103,6 +103,7 @@ class StreaksTableViewCell: UITableViewCell {
             } else {
                 statusIcon.tintColor = .lightGray
             }
+            
         }
     }
 }

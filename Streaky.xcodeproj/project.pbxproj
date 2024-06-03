@@ -62,6 +62,7 @@
 		B1EE3FC32C0B7F460013B422 /* UserAccount.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1EE3FC22C0B7F460013B422 /* UserAccount.swift */; };
 		B1EE3FC52C0B8C7D0013B422 /* EditAccount.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1EE3FC42C0B8C7D0013B422 /* EditAccount.swift */; };
 		B1EE3FC82C0C41B60013B422 /* Hero in Frameworks */ = {isa = PBXBuildFile; productRef = B1EE3FC72C0C41B60013B422 /* Hero */; };
+		B1EE3FD02C0DD9F50013B422 /* StartQuestionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1EE3FCF2C0DD9F50013B422 /* StartQuestionViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -115,6 +116,7 @@
 		B1EE3FC02C0B584B0013B422 /* SecretTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecretTableViewCell.swift; sourceTree = "<group>"; };
 		B1EE3FC22C0B7F460013B422 /* UserAccount.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserAccount.swift; sourceTree = "<group>"; };
 		B1EE3FC42C0B8C7D0013B422 /* EditAccount.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditAccount.swift; sourceTree = "<group>"; };
+		B1EE3FCF2C0DD9F50013B422 /* StartQuestionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartQuestionViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -138,6 +140,7 @@
 		9B4554C82C045EE6007BE793 /* QuestionsVC */ = {
 			isa = PBXGroup;
 			children = (
+				B1EE3FCF2C0DD9F50013B422 /* StartQuestionViewController.swift */,
 				9B4554C62C045EE0007BE793 /* QuestionViewController.swift */,
 			);
 			path = QuestionsVC;
@@ -465,6 +468,7 @@
 				B1910ED32BFF83D200277790 /* FriendTableViewCell.swift in Sources */,
 				B1910F712C073F0900277790 /* TodayPointTableViewCell.swift in Sources */,
 				B1910ED52BFF83D200277790 /* AddFriendTableViewCell.swift in Sources */,
+				B1EE3FD02C0DD9F50013B422 /* StartQuestionViewController.swift in Sources */,
 				B1910F772C07A22800277790 /* SecretCollectionViewCell.swift in Sources */,
 				B1EE3FB72C090B660013B422 /* UserDetails.swift in Sources */,
 			);
