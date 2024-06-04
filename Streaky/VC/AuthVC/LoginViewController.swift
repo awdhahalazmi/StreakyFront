@@ -55,7 +55,7 @@ class LoginViewController: UIViewController {
         emailTextField = UITextField()
         emailTextField.placeholder = "Email"
         emailTextField.borderStyle = .roundedRect
-        emailTextField.text = "fatma@gmail.com"
+        emailTextField.text = "f@gmail.com"
         view.addSubview(emailTextField)
         
         passwordTextField = UITextField()
