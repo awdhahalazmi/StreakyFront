@@ -11,8 +11,8 @@ struct Streak : Codable {
         var title: String
         var description: String
         var businessId: Int
-        var startDate: Date
-        var endDate: Date
+        var startDate: String
+        var endDate: String
         var businesses: [Business]
         var userStreaks: [UserStreak]
         var rewards: [Reward]
