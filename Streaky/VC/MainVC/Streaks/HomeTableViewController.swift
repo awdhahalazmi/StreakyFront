@@ -21,7 +21,8 @@ class HomeTableViewController: UITableViewController,CustomTableViewCellDelegate
     
     var rewards: [Reward] = []
     var secretExperiences: [SecretExperience] = []
-    var streaks: [UserStreak] = []
+    var userStreaks: [UserStreak] = []
+    var streaks : [Streak] = []
     var token: String?
     var user: UserAccount?
 
@@ -63,15 +64,15 @@ class HomeTableViewController: UITableViewController,CustomTableViewCellDelegate
         tableView.showsVerticalScrollIndicator = false
    
         if let savedToken = UserDefaults.standard.string(forKey: "AuthToken") {
-            print("home \(savedToken)")
+            print("\(savedToken)")
             fetchUserDetails(token: savedToken)
             fetchRewards(token: savedToken)
             fetchSecretExperiences(token: savedToken)
+            fetchUserStreaks(token: savedToken)
             fetchStreaks(token: savedToken)
         } else {
             presentAlertWithTitle(title: "Error", message: "User token is missing")
             
-
        }
         
 
@@ -94,11 +95,24 @@ class HomeTableViewController: UITableViewController,CustomTableViewCellDelegate
     }
     
     
-    private func fetchStreaks(token: String) {
+    private func fetchUserStreaks(token: String) {
         NetworkManager.shared.getUserStreaks(token: token) { [weak self] (result: Result<UserStreak, Error>) in
             switch result {
             case .success(let userStreak):
-                self?.streaks = [userStreak] // Ensure streaks is an array of UserStreak for compatibility with UITableView
+                self?.userStreaks = [userStreak] // Ensure streaks is an array of UserStreak for compatibility with UITableView
+                self?.tableView.reloadData()
+            case .failure(let error):
+                print("Failed to fetch User Streaks: \(error)")
+                self?.presentAlertWithTitle(title: "Error", message: "Failed to fetch User streaks.")
+            }
+        }
+    }
+    
+    private func fetchStreaks(token: String) {
+        NetworkManager.shared.getStreaks(token: token) { [weak self] (result: Result<[Streak], Error>) in
+            switch result {
+            case .success(let streak):
+                self?.streaks = streak
                 self?.tableView.reloadData()
             case .failure(let error):
                 print("Failed to fetch streaks: \(error)")
@@ -106,8 +120,6 @@ class HomeTableViewController: UITableViewController,CustomTableViewCellDelegate
             }
         }
     }
-
-
     
 
     
@@ -183,19 +195,19 @@ class HomeTableViewController: UITableViewController,CustomTableViewCellDelegate
             return cell
         } else if indexPath.section == 1 {
             let cell = tableView.dequeueReusableCell(withIdentifier: "StreaksTableViewCell", for: indexPath) as! StreaksTableViewCell
-                    let totalStreaks = streaks.first?.totalStreaks ?? 0
+                    let totalStreaks = userStreaks.first?.totalStreaks ?? 0
                     cell.configure(streaks: totalStreaks)
             //cell.configure(with: streaks)
             return cell
         } else if indexPath.section == 2 {
             let cell = tableView.dequeueReusableCell(withIdentifier: TodayPointTableViewCell.identifier, for: indexPath) as! TodayPointTableViewCell
-            // Configure the cell
+            cell.configure(with: streaks)
             cell.delegate = self
             return cell
         } else if indexPath.section == 3 {
             let cell = tableView.dequeueReusableCell(withIdentifier: RewardsTableViewCell.identifier, for: indexPath) as! RewardsTableViewCell
             // Configure the cell
-            cell.configure(with: rewards)
+                cell.configure(with: rewards)
             return cell
         } else if indexPath.section == 4 {
             let cell = tableView.dequeueReusableCell(withIdentifier: SecretTableViewCell.identifier, for: indexPath) as! SecretTableViewCell

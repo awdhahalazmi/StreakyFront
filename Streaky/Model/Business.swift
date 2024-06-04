@@ -21,5 +21,6 @@ struct Business : Codable  {
     var wrongAnswerQ2_1 : String
     var wrongAnswerQ2_2 : String
     var locations: [Location]
+    var categoryName: String
     
 }

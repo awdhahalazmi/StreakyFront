@@ -112,6 +112,26 @@ class NetworkManager {
            }
        }
     
+    func getStreaks(token: String, completion: @escaping (Result<[Streak], Error>) -> Void) {
+        let headers: HTTPHeaders = [.authorization(bearerToken: token)]
+           let url = baseUrl + "Streak/getallstreaks"
+           
+           AF.request(url, method: .get, headers: headers).responseDecodable(of: [Streak].self) { response in
+               switch response.result {
+               case .success(let streaks):
+                   completion(.success(streaks))
+               case .failure(let error):
+                   print("Error: \(error.localizedDescription)")
+                   if let data = response.data, let jsonString = String(data: data, encoding: .utf8) {
+                       //ISSUE HERE!x
+                       print("error in getStreaks   :: \(jsonString)")
+                       
+                   }
+                   completion(.failure(error))
+               }
+           }
+       }
+    
     
     func editAccount(token: String, profile: EditAccount, image: UIImage?, completion: @escaping (Result<UserAccount, Error>) -> Void) {
             let headers: HTTPHeaders = [.authorization(bearerToken: token)]

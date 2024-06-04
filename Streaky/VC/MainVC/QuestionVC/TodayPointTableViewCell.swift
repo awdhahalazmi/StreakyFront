@@ -10,7 +10,7 @@ protocol CustomTableViewCellDelegate: AnyObject {
 
 class TodayPointTableViewCell: UITableViewCell, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, CLLocationManagerDelegate {
     
-    
+    var streaks : [Streak] = []
     static let identifier = "TodayPointTableViewCell"
     weak var delegate: CustomTableViewCellDelegate?
     
@@ -49,6 +49,11 @@ class TodayPointTableViewCell: UITableViewCell, UICollectionViewDelegate, UIColl
         contentView.addSubview(collectionView)
     }
     
+    func configure(with streaks: [Streak]) {
+        self.streaks = streaks
+        collectionView.reloadData()
+    }
+    
     private func setupConstraints() {
     
         
@@ -85,6 +90,7 @@ class TodayPointTableViewCell: UITableViewCell, UICollectionViewDelegate, UIColl
         let brand = "Brand \(indexPath.item + 1)"
         cell.configure(points: points, brand: brand, latitude: 50, longitude: 50)
        
+        
         return cell
     }
     
