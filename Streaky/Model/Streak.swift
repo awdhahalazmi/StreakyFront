@@ -6,6 +6,7 @@
 //
 
 import Foundation
+
 struct Streak : Codable {
         var id: Int
         var title: String

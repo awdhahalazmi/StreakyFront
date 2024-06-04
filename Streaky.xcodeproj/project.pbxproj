@@ -63,6 +63,7 @@
 		B1EE3FC52C0B8C7D0013B422 /* EditAccount.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1EE3FC42C0B8C7D0013B422 /* EditAccount.swift */; };
 		B1EE3FC82C0C41B60013B422 /* Hero in Frameworks */ = {isa = PBXBuildFile; productRef = B1EE3FC72C0C41B60013B422 /* Hero */; };
 		B1EE3FD02C0DD9F50013B422 /* StartQuestionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1EE3FCF2C0DD9F50013B422 /* StartQuestionViewController.swift */; };
+		B1EFE9712C0F34F4005EA96A /* SecretExperienceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1EFE9702C0F34F4005EA96A /* SecretExperienceViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -117,6 +118,7 @@
 		B1EE3FC22C0B7F460013B422 /* UserAccount.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserAccount.swift; sourceTree = "<group>"; };
 		B1EE3FC42C0B8C7D0013B422 /* EditAccount.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditAccount.swift; sourceTree = "<group>"; };
 		B1EE3FCF2C0DD9F50013B422 /* StartQuestionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartQuestionViewController.swift; sourceTree = "<group>"; };
+		B1EFE9702C0F34F4005EA96A /* SecretExperienceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecretExperienceViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -160,6 +162,7 @@
 			children = (
 				B1910F762C07A22800277790 /* SecretCollectionViewCell.swift */,
 				B1EE3FC02C0B584B0013B422 /* SecretTableViewCell.swift */,
+				B1EFE9702C0F34F4005EA96A /* SecretExperienceViewController.swift */,
 			);
 			path = SecretExperience;
 			sourceTree = "<group>";
@@ -450,6 +453,7 @@
 				B1910ED62BFF83D200277790 /* AddFriendViewController.swift in Sources */,
 				B1910F092C03119C00277790 /* HomeTableViewController.swift in Sources */,
 				B1EE3FBB2C091C190013B422 /* refreshDelagate.swift in Sources */,
+				B1EFE9712C0F34F4005EA96A /* SecretExperienceViewController.swift in Sources */,
 				B1EE3FC12C0B584B0013B422 /* SecretTableViewCell.swift in Sources */,
 				B1505D212BFB5F1000D42364 /* User.swift in Sources */,
 				B1910F522C05C42000277790 /* LocationViewController.swift in Sources */,

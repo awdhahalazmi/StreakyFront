@@ -1,10 +1,17 @@
 import SnapKit
 import UIKit
+
+protocol TableViewCellDelegate: AnyObject {
+    func secretCollectionViewCellTapped(at indexPath: IndexPath)
+}
+
 class SecretTableViewCell: UITableViewCell, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
     static let identifier = "SecretTableViewCell"
     
     private var secretExperiences: [SecretExperience] = []
+    weak var delegate: TableViewCellDelegate?
+
     
     private let collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
@@ -74,4 +81,9 @@ class SecretTableViewCell: UITableViewCell, UICollectionViewDelegate, UICollecti
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         return 16
     }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        delegate?.secretCollectionViewCellTapped(at: indexPath)
+    }
+
 }

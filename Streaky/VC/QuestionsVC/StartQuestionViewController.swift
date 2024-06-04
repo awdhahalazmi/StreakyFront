@@ -6,6 +6,10 @@ class StartQuestionViewController: UIViewController {
     var questionsArray = ["How are you?", "How old are you?"]
     var questionNumber = 1
     
+    
+    var business : Business?
+
+    
     private let readyLabel: UILabel = {
         let label = UILabel()
         label.text = "Get Ready!"
@@ -53,7 +57,7 @@ class StartQuestionViewController: UIViewController {
         
         setupConstraints()
         
-        print(questionsArray[questionNumber])
+        
     }
     
     private func setupConstraints() {
@@ -79,6 +83,9 @@ class StartQuestionViewController: UIViewController {
         // Handle button tap event
         let questionVC = QuestionViewController()
         questionVC.modalPresentationStyle = .fullScreen
+        questionVC.business = business
         self.present(questionVC, animated: true, completion: nil)
-    }
+        }
+    
 }
+

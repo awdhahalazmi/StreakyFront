@@ -31,6 +31,7 @@ class StreaksTableViewCell: UITableViewCell {
         contentView.layer.masksToBounds = true
         contentView.layer.shadowColor = UIColor.lightGray.cgColor
         
+        
         // Configure flame icon
         flameIcon.image = UIImage(systemName: "flame.fill")
         flameIcon.tintColor = .orange

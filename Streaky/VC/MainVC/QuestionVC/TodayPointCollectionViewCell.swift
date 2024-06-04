@@ -1,17 +1,8 @@
-//
-//  TodayPointCollectionViewCell.swift
-//  Streaky
-//
-//  Created by Fatma Buyabes on 29/05/2024.
-//
-
 import UIKit
 import CoreLocation
 
-
-
 class TodayPointCollectionViewCell: UICollectionViewCell {
-    
+        
     private let pointsLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 14, weight: .medium)
@@ -37,7 +28,7 @@ class TodayPointCollectionViewCell: UICollectionViewCell {
         let button = UIButton()
         button.setTitle("GO", for: .normal)
         button.titleLabel?.font = UIFont.systemFont(ofSize: 14, weight: .semibold)
-        button.backgroundColor =  #colorLiteral(red: 0.9829108119, green: 0.5975590348, blue: 0.4170847535, alpha: 1)
+        button.backgroundColor = #colorLiteral(red: 0.9829108119, green: 0.5975590348, blue: 0.4170847535, alpha: 1)
         button.setTitleColor(.white, for: .normal)
         button.layer.cornerRadius = 8
         return button
@@ -46,7 +37,7 @@ class TodayPointCollectionViewCell: UICollectionViewCell {
     private let locationIcon: UIImageView = {
         let imageView = UIImageView()
         imageView.image = UIImage(systemName: "location.circle.fill")
-        imageView.tintColor =  #colorLiteral(red: 0.9829108119, green: 0.5975590348, blue: 0.4170847535, alpha: 1)
+        imageView.tintColor = #colorLiteral(red: 0.9829108119, green: 0.5975590348, blue: 0.4170847535, alpha: 1)
         imageView.isUserInteractionEnabled = true // Enable user interaction
         return imageView
     }()
@@ -81,7 +72,6 @@ class TodayPointCollectionViewCell: UICollectionViewCell {
         containerView.addSubview(goButton)
         containerView.addSubview(locationIcon)
         googleMapsGestureRecognizers()
-        
     }
     
     private func setupConstraints() {
@@ -114,8 +104,7 @@ class TodayPointCollectionViewCell: UICollectionViewCell {
         }
     }
     
-    
-    //MARK: Google Map Functianlity
+    //MARK: Google Map Functionality
     private func googleMapsGestureRecognizers() {
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(openGoogleMaps))
         locationIcon.addGestureRecognizer(tapGesture)
@@ -136,50 +125,34 @@ class TodayPointCollectionViewCell: UICollectionViewCell {
         }
     }
     
-    
-    //MARK: Go Button Functianlity
-    
+    //MARK: Go Button Functionality
     private func GoGestureRecognizers() {
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(openGoogleMaps))
         locationIcon.addGestureRecognizer(tapGesture)
     }
     
-//    @objc private func navigateToStartQuestionVC() {
-//
-//        let vc = StartQuestionViewController()
-//            vc.modalPresentationStyle = .pageSheet
-//
-//            if let presentationController = vc.presentationController as? UISheetPresentationController {
-//                presentationController.detents = [.medium()]
-//                presentationController.prefersGrabberVisible = true
-//            }
-
-
-    
-    
-    
-    func configure(points: Int, brand: String, latitude: CLLocationDegrees, longitude: CLLocationDegrees) {
-        pointsLabel.text = "Get \(points) points"
-        brandLabel.text = brand
+    func configure(with business: Business) {
+        pointsLabel.text = " 50 Points"
+        brandLabel.text = business.name
         
-        // Create CLLocation object for the target location
-        let targetLocation = CLLocation(latitude: 50, longitude: 50)
+        let userLatitude: CLLocationDegrees = 50.0
+        let userLongitude: CLLocationDegrees = 50.0
+        let userLocation = CLLocation(latitude: userLatitude, longitude: userLongitude)
+        
+        guard let businessLocation = business.locations.first else { return }
+        let targetLocation = CLLocation(latitude: businessLocation.latitude, longitude: businessLocation.longitude)
         
         // Calculate the distance between the user's location and the target location
-        let userLocation = CLLocation(latitude: latitude, longitude: longitude)
         let distance = userLocation.distance(from: targetLocation)
         
         // Set a radius (in meters) around the target location
-        let radius: CLLocationDistance = 5.0
+        let radius: CLLocationDistance = 100.0
         
         // Check if the distance is within the radius
         let isWithinRadius = distance <= radius
         
         // Enable the button if the user is within the radius, disable otherwise
         goButton.isEnabled = isWithinRadius
-        goButton.backgroundColor = isWithinRadius ?  #colorLiteral(red: 0.9829108119, green: 0.5975590348, blue: 0.4170847535, alpha: 1): #colorLiteral(red: 0.9411764741, green: 0.4980392158, blue: 0.3529411852, alpha: 1)
-
+        goButton.backgroundColor = isWithinRadius ? #colorLiteral(red: 0.9829108119, green: 0.5975590348, blue: 0.4170847535, alpha: 1) : #colorLiteral(red: 0.9411764741, green: 0.4980392158, blue: 0.3529411852, alpha: 1)
     }
 }
-
-

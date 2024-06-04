@@ -1,22 +1,7 @@
 import UIKit
 import SnapKit
 
-class HomeTableViewController: UITableViewController,CustomTableViewCellDelegate {
-    
-    
-    func collectionViewCellTapped(at indexPath: IndexPath) {
-                
-        let vc = StartQuestionViewController()
-        vc.questionNumber = indexPath.row
-            vc.modalPresentationStyle = .pageSheet
-
-            if let presentationController = vc.presentationController as? UISheetPresentationController {
-                presentationController.detents = [.medium(), .large()]
-                presentationController.prefersGrabberVisible = true
-            }
-
-        self.present(vc, animated: true)
-    }
+class HomeTableViewController: UITableViewController,CustomTableViewCellDelegate, TableViewCellDelegate{
     
     
     var rewards: [Reward] = []
@@ -243,6 +228,60 @@ class HomeTableViewController: UITableViewController,CustomTableViewCellDelegate
     }
     
 }
+
+
+//MARK: collectionViewCellTapped || secretCollectionViewCellTapped
+extension HomeTableViewController {
+    
+    func collectionViewCellTapped(at indexPath: IndexPath) {
+        guard indexPath.row < streaks.count else {
+            print("Index out of range: \(indexPath.row)")
+            return
+        }
+
+        let vc = StartQuestionViewController()
+        
+        // Access the streak at the current index
+        let selectedStreak = streaks[indexPath.row]
+        
+        // Ensure there are businesses in the streak
+        guard !selectedStreak.businesses.isEmpty else {
+            print("No businesses available in streak at index: \(indexPath.row)")
+            return
+        }
+        
+        // Access the first business for simplicity, or adjust logic as needed
+        vc.business = selectedStreak.businesses.first
+        vc.questionNumber = indexPath.row
+        vc.modalPresentationStyle = .pageSheet
+
+        if let presentationController = vc.presentationController as? UISheetPresentationController {
+            presentationController.detents = [.medium(), .large()]
+            presentationController.prefersGrabberVisible = true
+        }
+
+        self.present(vc, animated: true)
+    }
+
+    //vc.business = streaks[indexPath.row].businesses[indexPath.row]
+
+    func secretCollectionViewCellTapped(at indexPath: IndexPath) {
+                
+        let vc = SecretExperienceViewController()
+        vc.modalPresentationStyle = .pageSheet
+
+            if let presentationController = vc.presentationController as? UISheetPresentationController {
+                presentationController.detents = [.medium(), .large()]
+                presentationController.prefersGrabberVisible = true
+            }
+
+        
+        self.present(vc, animated: true)
+    }
+    
+    
+}
+
 extension HomeTableViewController: refreshDelagate {
     func refreshPage() {
         let token = UserDefaults.standard.string(forKey: "AuthToken")

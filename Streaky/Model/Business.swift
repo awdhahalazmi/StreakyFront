@@ -24,3 +24,4 @@ struct Business : Codable  {
     var categoryName: String
     
 }
+
