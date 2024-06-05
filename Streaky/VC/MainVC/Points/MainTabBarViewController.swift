@@ -29,8 +29,8 @@ class MainTabBarViewController: UITabBarController {
         let friendsNavigationController = UINavigationController(rootViewController: friendsViewController)
         friendsNavigationController.tabBarItem = UITabBarItem(
             title: "Friends",
-            image: UIImage(systemName: "person.3"),
-            selectedImage: UIImage(systemName: "person.3.fill")
+            image: UIImage(systemName: "person.3.sequence"),
+            selectedImage: UIImage(systemName: "person.3.sequence.fill")
         )
         
         let profileViewController = ProfileViewController()
@@ -41,7 +41,7 @@ class MainTabBarViewController: UITabBarController {
             selectedImage: UIImage(systemName: "person.fill")
         )
 
-        viewControllers = [friendsViewController, homeNavigationController, profileNavigationController]
+        viewControllers = [homeNavigationController, friendsViewController, profileNavigationController]
 
     }
 

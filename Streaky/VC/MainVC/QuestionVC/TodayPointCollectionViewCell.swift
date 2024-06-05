@@ -43,6 +43,7 @@ class TodayPointCollectionViewCell: UICollectionViewCell {
     }()
     
     private let locationIcon: UIImageView = {
+        
         let imageView = UIImageView()
         imageView.image = UIImage(systemName: "location.circle.fill")
         imageView.tintColor =  #colorLiteral(red: 0.9829108119, green: 0.5975590348, blue: 0.4170847535, alpha: 1)

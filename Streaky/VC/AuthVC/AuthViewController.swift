@@ -18,31 +18,32 @@ class AuthViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.navigationController?.navigationBar.tintColor = UIColor.white
         setupUi()
         setupConstraints()
-        // Do any additional setup after loading the view.
+        
     }
     
     func setupUi() {
-        // Set up the background image
-        background.image = UIImage(named: "Background") // Ensure this image is in your assets
+        
+        background.image = UIImage(named: "Background")
         background.contentMode = .scaleAspectFill
         background.clipsToBounds = true
         view.addSubview(background)
         
-        // Set up the logo image
-        logoImageView.image = UIImage(named: "Logo") // Ensure this image is in your assets
+        
+        logoImageView.image = UIImage(named: "Logo")
         logoImageView.contentMode = .scaleAspectFit
         view.addSubview(logoImageView)
         
-        // Set up the welcome label
+       
         welcomeLabel.text = "Welcome"
         welcomeLabel.font = UIFont.boldSystemFont(ofSize: 24)
         welcomeLabel.textColor = .white
         welcomeLabel.textAlignment = .left
         view.addSubview(welcomeLabel)
         
-        // Set up the description label
+        
         descriptionLabel.text = "Unlock exclusive benefits and discover a world of perks at your fingertips with Streaky"
         descriptionLabel.font = UIFont.systemFont(ofSize: 16)
         descriptionLabel.textColor = .white
@@ -50,19 +51,40 @@ class AuthViewController: UIViewController {
         descriptionLabel.textAlignment = .left
         view.addSubview(descriptionLabel)
         
-        // Set up the login button
+        //loginButton = UIButton(type: .system)
+//        loginButton.setTitle("Login to your account", for: .normal)
+//        loginButton.backgroundColor = #colorLiteral(red: 0.3071659207, green: 0.1487102509, blue: 0.5210966468, alpha: 1)
+//        loginButton.layer.cornerRadius = 24
+//        loginButton.addTarget(self, action: #selector(loginButtonTapped), for: .touchUpInside)
+//        view.addSubview(loginButton)
+        
+        loginButton = UIButton(type: .system)
         loginButton.setTitle("Login to your account", for: .normal)
-        loginButton.backgroundColor = #colorLiteral(red: 0.3071659207, green: 0.1487102509, blue: 0.5210966468, alpha: 1)
+        loginButton.titleLabel?.font = UIFont.systemFont(ofSize: 18, weight: .bold)
+        loginButton.setTitleColor(.white, for: .normal)
+        loginButton.backgroundColor = #colorLiteral(red: 0.2706783712, green: 0.1171713695, blue: 0.4809373021, alpha: 1)
         loginButton.layer.cornerRadius = 24
         loginButton.addTarget(self, action: #selector(loginButtonTapped), for: .touchUpInside)
         view.addSubview(loginButton)
         
-        // Set up the sign-up button
-        signUpButton.setTitle("Sign up", for: .normal)
+       // signUpButton = UIButton(type: .system)
+//        signUpButton.setTitle("Sign up", for: .normal)
+//        signUpButton.backgroundColor = .clear
+//        signUpButton.setTitleColor(.white, for: .normal)
+//        signUpButton.layer.borderWidth = 2
+//        signUpButton.layer.borderColor = #colorLiteral(red: 0.3071659207, green: 0.1487102509, blue: 0.5210966468, alpha: 1)
+//        signUpButton.layer.cornerRadius = 24
+//        signUpButton.addTarget(self, action: #selector(signUpButtonTapped), for: .touchUpInside)
+//        view.addSubview(signUpButton)
+        
+        signUpButton = UIButton(type: .system)
+        signUpButton.setTitle("Sign Up", for: .normal)
         signUpButton.backgroundColor = .clear
         signUpButton.setTitleColor(.white, for: .normal)
+//        signUpButton.titleLabel?.font = UIFont.systemFont(ofSize: 18, weight: .bold)
         signUpButton.layer.borderWidth = 2
         signUpButton.layer.borderColor = #colorLiteral(red: 0.3071659207, green: 0.1487102509, blue: 0.5210966468, alpha: 1)
+       
         signUpButton.layer.cornerRadius = 24
         signUpButton.addTarget(self, action: #selector(signUpButtonTapped), for: .touchUpInside)
         view.addSubview(signUpButton)

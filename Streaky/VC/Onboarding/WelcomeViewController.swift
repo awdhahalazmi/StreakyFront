@@ -44,8 +44,8 @@ class WelcomeViewController: UIViewController {
         NSLayoutConstraint.activate([
             logoImageView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             logoImageView.centerYAnchor.constraint(equalTo: view.centerYAnchor),
-            logoImageView.widthAnchor.constraint(equalToConstant: 200), // Adjust the width as needed
-            logoImageView.heightAnchor.constraint(equalToConstant: 200) // Adjust the height as needed
+            logoImageView.widthAnchor.constraint(equalToConstant: 200), 
+            logoImageView.heightAnchor.constraint(equalToConstant: 200)
         ])
     }
     

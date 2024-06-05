@@ -18,6 +18,7 @@ class StreaksTableViewCell: UITableViewCell {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         setupUI()
         setupConstraints()
+        
     }
     
     required init?(coder: NSCoder) {
@@ -35,6 +36,9 @@ class StreaksTableViewCell: UITableViewCell {
         flameIcon.tintColor = .orange
         flameIcon.contentMode = .scaleAspectFit
         contentView.addSubview(flameIcon)
+        
+        
+        
         
         // Configure streak number label
         streakNumberLabel.font = UIFont.boldSystemFont(ofSize: 32)

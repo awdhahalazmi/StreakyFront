@@ -70,13 +70,18 @@ class OnboardingViewController: UIViewController {
     }
     
     private let nextButton: UIButton = {
-        let button = UIButton()
+        let button = UIButton(type: .system)
         button.setTitle("Next", for: .normal)
         button.setTitleColor(.white, for: .normal)
         button.backgroundColor = UIColor(red: 69/255, green: 30/255, blue: 123/255, alpha: 1)
         button.layer.cornerRadius = 22
         button.addTarget(self, action: #selector(nextButtonTapped), for: .touchUpInside)
         return button
+        
+        
+    
+        
+        
     }()
     
     private var currentStep = 0
@@ -219,15 +224,15 @@ class OnboardingViewController: UIViewController {
         currentStep += 1
         
         if currentStep > 1 {
-            let nextVC = AuthViewController() // Replace with your next view controller
+            let nextVC = AuthViewController()
             navigationController?.pushViewController(nextVC, animated: true)
         } else {
-            // Update content with animation
+            
             UIView.transition(with: contentContainerView, duration: 0.5, options: .transitionCrossDissolve, animations: {
                 self.updateContent()
             }, completion: nil)
             
-            // Update background image with animation
+            
             UIView.transition(with: backgroundImageView, duration: 0.5, options: .transitionCrossDissolve, animations: {
                 self.updateBackgroundImage()
             }, completion: nil)
