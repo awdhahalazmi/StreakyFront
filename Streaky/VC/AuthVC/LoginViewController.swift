@@ -69,9 +69,9 @@ class LoginViewController: UIViewController {
         
         loginButton = UIButton(type: .system)
         loginButton.setTitle("Login", for: .normal)
-        loginButton.titleLabel?.font = UIFont.systemFont(ofSize: 18, weight: .bold)
+        loginButton.titleLabel?.font = UIFont.systemFont(ofSize: 18, weight: .regular)
         loginButton.setTitleColor(.white, for: .normal)
-        loginButton.backgroundColor = #colorLiteral(red: 0.2706783712, green: 0.1171713695, blue: 0.4809373021, alpha: 1)
+        loginButton.backgroundColor = UIColor(red: 69/255, green: 30/255, blue: 123/255, alpha: 1)
         loginButton.layer.cornerRadius = 24
         loginButton.addTarget(self, action: #selector(loginButtonTapped), for: .touchUpInside)
         view.addSubview(loginButton)

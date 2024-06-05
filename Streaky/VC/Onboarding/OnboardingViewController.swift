@@ -72,6 +72,7 @@ class OnboardingViewController: UIViewController {
     private let nextButton: UIButton = {
         let button = UIButton(type: .system)
         button.setTitle("Next", for: .normal)
+        button.titleLabel?.font = UIFont.systemFont(ofSize: 18, weight: .regular)
         button.setTitleColor(.white, for: .normal)
         button.backgroundColor = UIColor(red: 69/255, green: 30/255, blue: 123/255, alpha: 1)
         button.layer.cornerRadius = 22
