@@ -26,7 +26,7 @@ class ProfileViewController: UIViewController {
      
         
         if let savedToken = UserDefaults.standard.string(forKey: "AuthToken") {
-            print("sjhfdjdshjsh \(savedToken)")
+            print("token in profile: \(savedToken)")
              fetchUserDetails(token: savedToken)
         } else {
                     presentAlertWithTitle(title: "Error", message: "User token is missing")
@@ -53,7 +53,7 @@ class ProfileViewController: UIViewController {
         changeProfileButton = UIButton(type: .system)
         changeProfileButton.setTitle("Change profile picture", for: .normal)
         changeProfileButton.setTitleColor(.systemPurple, for: .normal)
-        changeProfileButton.addTarget(self, action: #selector(changeProfileTapped), for: .touchUpInside)
+        //changeProfileButton.addTarget(self, action: #selector(changeProfileTapped), for: .touchUpInside)
         view.addSubview(changeProfileButton)
         
         infoContainerView = UIView()
@@ -188,12 +188,12 @@ class ProfileViewController: UIViewController {
             action: #selector(logoutTapped)
         )
         
-        navigationItem.rightBarButtonItem = UIBarButtonItem(
-            title: "Edit",
-            style: .plain,
-            target: self,
-            action: #selector(editTapped)
-        )
+//        navigationItem.rightBarButtonItem = UIBarButtonItem(
+//            title: "Edit",
+//            style: .plain,
+//            target: self,
+//            action: #selector()
+//        )
         navigationItem.rightBarButtonItem?.tintColor = UIColor.white
         navigationItem.leftBarButtonItem?.tintColor = UIColor.white
         appearance.titleTextAttributes = [
@@ -212,11 +212,11 @@ class ProfileViewController: UIViewController {
 
     }
     
-    @objc func changeProfileTapped() {
-        let editVc = EditProfileViewController()
-        editVc.modalPresentationStyle = .fullScreen
-        self.present(editVc, animated: true, completion: nil)
-    }
+//    @objc func changeProfileTapped() {
+//        let editVc = EditProfileViewController()
+//        editVc.modalPresentationStyle = .fullScreen
+//        self.present(editVc, animated: true, completion: nil)
+//    }
     
     @objc func logoutTapped() {
         let alertController = UIAlertController(title: "Log Out", message: "Are you sure you want to log out?", preferredStyle: .alert)
@@ -233,10 +233,10 @@ class ProfileViewController: UIViewController {
         present(alertController, animated: true, completion: nil)
     }
     
-    @objc func editTapped() {
-        let editVC = EditProfileViewController()
-        navigationController?.pushViewController(editVC, animated: true)
-    }
+//    @objc func editTapped() {
+//        let editVC = EditProfileViewController()
+//        navigationController?.pushViewController(editVC, animated: true)
+//    }
     
     func fetchUserDetails(token: String) {
         NetworkManager.shared.fetchUserDetails(token: token) { [weak self] result in

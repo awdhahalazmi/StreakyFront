@@ -3,10 +3,10 @@ import SnapKit
 
 class StartQuestionViewController: UIViewController {
     
-    var questionsArray = ["How are you?", "How old are you?"]
-    var questionNumber = 1
-    
-    
+//    var questionsArray = ["How are you?", "How old are you?"]
+//    var questionNumber = 1
+//    
+//    
     var business : Business?
 
     

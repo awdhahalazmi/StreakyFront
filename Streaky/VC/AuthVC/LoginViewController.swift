@@ -184,9 +184,9 @@ class LoginViewController: UIViewController {
                 let homeVC = MainTabBarViewController()
                 homeVC.token = tokenResponse.token
                 print(tokenResponse)
+                UserDefaults.standard.removeObject(forKey: "AuthToken")
                 let _ = UserDefaults.standard.setValue(tokenResponse.token, forKey: "AuthToken")
 
-               // let navigationController = UINavigationController(rootViewController: homeVC)
                 homeVC.modalPresentationStyle = .fullScreen
                 self.present(homeVC, animated: true, completion: nil)
 

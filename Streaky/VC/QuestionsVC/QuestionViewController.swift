@@ -1,11 +1,15 @@
 import UIKit
 import SnapKit
+import Alamofire
 
 class QuestionViewController: UIViewController {
     
-    private var points: Int = 0
+    private var points: Double = 0
     var business: Business? // Add a property to store the Business object
-
+    private var token: String? {
+        return UserDefaults.standard.string(forKey: "AuthToken")
+    }
+    
     private let backgroundImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.image = UIImage(named: "Background")
@@ -84,17 +88,16 @@ class QuestionViewController: UIViewController {
     private var selectedAnswer: String?
     private var incorrectAnswers = 0
     
+    private let networkManager = NetworkManager() // Add the network manager instance
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupViews()
         loadBusinessQuestions()
         loadQuestion()
         
-        
         questionLabel.text = business?.question
         questionLabel.text = business?.question2
-
-        
     }
     
     private func setupViews() {
@@ -215,6 +218,8 @@ class QuestionViewController: UIViewController {
         if selectedAnswer == questionData.correctAnswer {
             highlightCorrectAnswer()
             points += 50
+            updatePointsBackend(points: points)
+            print("Correct answer selected, points: \(points)")  // Debug print
             DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
                 self.showCongratulations()
             }
@@ -326,6 +331,7 @@ class QuestionViewController: UIViewController {
             button.layer.cornerRadius = 22
             button.addTarget(self, action: #selector(doneButtonTapped), for: .touchUpInside)
             return button
+            
         }()
         
         view.addSubview(messageLabel)
@@ -393,10 +399,24 @@ class QuestionViewController: UIViewController {
     }
     
     @objc private func doneButtonTapped() {
-        if let view = view.subviews.last {
-            view.removeFromSuperview()
+        let homeVC = MainTabBarViewController()
+        homeVC.modalPresentationStyle = .fullScreen
+        self.present(homeVC, animated: true, completion: nil)
+    }
+
+    private func updatePointsBackend(points: Double) {
+        guard let token = token else {
+            print("Token is missing")
+            return
         }
-        let pointsVC = HomeTableViewController()
-        navigationController?.pushViewController(pointsVC, animated: true)
+        let updatePoints = UpdatePoints(points: points)
+        networkManager.updatesPoints(points: updatePoints, token: token) { result in
+            switch result {
+            case .success(let response):
+                print("Points updated successfully: \(response.message)")
+            case .failure(let error):
+                print("Failed to update points: \(error.localizedDescription)")
+            }
+        }
     }
 }

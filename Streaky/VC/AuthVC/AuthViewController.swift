@@ -18,6 +18,7 @@ class AuthViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.navigationController?.navigationBar.tintColor=UIColor.white
         setupUi()
         setupConstraints()
         // Do any additional setup after loading the view.
@@ -51,13 +52,17 @@ class AuthViewController: UIViewController {
         view.addSubview(descriptionLabel)
         
         // Set up the login button
+        loginButton = UIButton(type: .system)
         loginButton.setTitle("Login to your account", for: .normal)
+        loginButton.titleLabel?.font = UIFont.systemFont(ofSize: 18, weight: .bold)
+        loginButton.setTitleColor(.white, for: .normal)
         loginButton.backgroundColor = #colorLiteral(red: 0.3071659207, green: 0.1487102509, blue: 0.5210966468, alpha: 1)
         loginButton.layer.cornerRadius = 24
         loginButton.addTarget(self, action: #selector(loginButtonTapped), for: .touchUpInside)
         view.addSubview(loginButton)
         
         // Set up the sign-up button
+        signUpButton = UIButton(type: .system)
         signUpButton.setTitle("Sign up", for: .normal)
         signUpButton.backgroundColor = .clear
         signUpButton.setTitleColor(.white, for: .normal)

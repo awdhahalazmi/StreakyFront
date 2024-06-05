@@ -15,6 +15,7 @@ class SignUpViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.navigationController?.navigationBar.tintColor = UIColor.white
         title = "Sign Up"
         setupUi()
         configureNavigationBar()
@@ -196,6 +197,7 @@ class SignUpViewController: UIViewController {
             switch result {
             case .success(let tokenResponse):
                 print("Signup successful: \(tokenResponse.token)")
+                print(user)
                 let homeVC = InterestViewController()
                 let navigationController = UINavigationController(rootViewController: homeVC)
                 navigationController.modalPresentationStyle = .fullScreen

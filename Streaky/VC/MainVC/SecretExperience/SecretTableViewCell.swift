@@ -8,7 +8,6 @@ protocol TableViewCellDelegate: AnyObject {
 class SecretTableViewCell: UITableViewCell, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
     static let identifier = "SecretTableViewCell"
-    
     private var secretExperiences: [SecretExperience] = []
     weak var delegate: TableViewCellDelegate?
 

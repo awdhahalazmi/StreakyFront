@@ -73,6 +73,8 @@ class PointsTableViewCell: UITableViewCell {
     }
     
     func configure(with points: Int) {
-        pointsLabel.text = "\(points) Points"
+        
+    pointsLabel.text = "\(points) Points"
+        
     }
 }

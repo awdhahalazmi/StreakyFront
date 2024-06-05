@@ -11,6 +11,7 @@ import Kingfisher
 
 class SecretCollectionViewCell: UICollectionViewCell {
 
+
         // UI Elements
         private let imageView: UIImageView = {
             let imageView = UIImageView()

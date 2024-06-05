@@ -13,5 +13,6 @@ struct UserAccount: Codable {
     let email: String
     let genderId: Int
     let imagePath: String
-    let points: Int
+    let points: Double
+    
 }

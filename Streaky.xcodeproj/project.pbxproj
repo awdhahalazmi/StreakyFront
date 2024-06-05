@@ -54,7 +54,6 @@
 		B1910F752C0756B700277790 /* PointsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1910F742C0756B700277790 /* PointsTableViewCell.swift */; };
 		B1910F772C07A22800277790 /* SecretCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1910F762C07A22800277790 /* SecretCollectionViewCell.swift */; };
 		B1EE3FB72C090B660013B422 /* UserDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1EE3FB62C090B660013B422 /* UserDetails.swift */; };
-		B1EE3FB92C0919270013B422 /* AuthManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1EE3FB82C0919270013B422 /* AuthManager.swift */; };
 		B1EE3FBB2C091C190013B422 /* refreshDelagate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1EE3FBA2C091C190013B422 /* refreshDelagate.swift */; };
 		B1EE3FBD2C0B52640013B422 /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1EE3FBC2C0B52640013B422 /* Category.swift */; };
 		B1EE3FBF2C0B541E0013B422 /* RewardsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1EE3FBE2C0B541E0013B422 /* RewardsCollectionViewCell.swift */; };
@@ -64,6 +63,8 @@
 		B1EE3FC82C0C41B60013B422 /* Hero in Frameworks */ = {isa = PBXBuildFile; productRef = B1EE3FC72C0C41B60013B422 /* Hero */; };
 		B1EE3FD02C0DD9F50013B422 /* StartQuestionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1EE3FCF2C0DD9F50013B422 /* StartQuestionViewController.swift */; };
 		B1EFE9712C0F34F4005EA96A /* SecretExperienceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1EFE9702C0F34F4005EA96A /* SecretExperienceViewController.swift */; };
+		B1EFE9732C1029DE005EA96A /* UpdatePoints.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1EFE9722C1029DE005EA96A /* UpdatePoints.swift */; };
+		B1EFE9752C1058D7005EA96A /* MessageResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1EFE9742C1058D7005EA96A /* MessageResponse.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -110,7 +111,6 @@
 		B1910F742C0756B700277790 /* PointsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PointsTableViewCell.swift; sourceTree = "<group>"; };
 		B1910F762C07A22800277790 /* SecretCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecretCollectionViewCell.swift; sourceTree = "<group>"; };
 		B1EE3FB62C090B660013B422 /* UserDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDetails.swift; sourceTree = "<group>"; };
-		B1EE3FB82C0919270013B422 /* AuthManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthManager.swift; sourceTree = "<group>"; };
 		B1EE3FBA2C091C190013B422 /* refreshDelagate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = refreshDelagate.swift; sourceTree = "<group>"; };
 		B1EE3FBC2C0B52640013B422 /* Category.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
 		B1EE3FBE2C0B541E0013B422 /* RewardsCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RewardsCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -119,6 +119,8 @@
 		B1EE3FC42C0B8C7D0013B422 /* EditAccount.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditAccount.swift; sourceTree = "<group>"; };
 		B1EE3FCF2C0DD9F50013B422 /* StartQuestionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartQuestionViewController.swift; sourceTree = "<group>"; };
 		B1EFE9702C0F34F4005EA96A /* SecretExperienceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecretExperienceViewController.swift; sourceTree = "<group>"; };
+		B1EFE9722C1029DE005EA96A /* UpdatePoints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdatePoints.swift; sourceTree = "<group>"; };
+		B1EFE9742C1058D7005EA96A /* MessageResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageResponse.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -171,7 +173,6 @@
 			isa = PBXGroup;
 			children = (
 				B1230DE72C08AD730058854B /* NetworkManager.swift */,
-				B1EE3FB82C0919270013B422 /* AuthManager.swift */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -240,6 +241,7 @@
 				B1910F192C03947900277790 /* Reward.swift */,
 				B1910F1B2C0394BD00277790 /* Location.swift */,
 				B1910F1D2C03950800277790 /* TokenResponse.swift */,
+				B1EFE9742C1058D7005EA96A /* MessageResponse.swift */,
 				9BF8E25C2C05C271001A9AAC /* SecretExperience.swift */,
 				B1230DE92C08AF7C0058854B /* UserLogin.swift */,
 				B1EE3FB62C090B660013B422 /* UserDetails.swift */,
@@ -247,6 +249,7 @@
 				B1EE3FBC2C0B52640013B422 /* Category.swift */,
 				B1EE3FC22C0B7F460013B422 /* UserAccount.swift */,
 				B1EE3FC42C0B8C7D0013B422 /* EditAccount.swift */,
+				B1EFE9722C1029DE005EA96A /* UpdatePoints.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -446,7 +449,7 @@
 				B1505CF02BFB5C3700D42364 /* AppDelegate.swift in Sources */,
 				B180FBC62BFE1481001E8BEE /* LoginViewController.swift in Sources */,
 				B180FBD62BFE17FC001E8BEE /* EditProfileViewController.swift in Sources */,
-				B1EE3FB92C0919270013B422 /* AuthManager.swift in Sources */,
+				B1EFE9752C1058D7005EA96A /* MessageResponse.swift in Sources */,
 				B1910F1C2C0394BD00277790 /* Location.swift in Sources */,
 				B1230DEA2C08AF7C0058854B /* UserLogin.swift in Sources */,
 				B1910F0B2C0311BE00277790 /* StreaksTableViewCell.swift in Sources */,
@@ -473,6 +476,7 @@
 				B1910F712C073F0900277790 /* TodayPointTableViewCell.swift in Sources */,
 				B1910ED52BFF83D200277790 /* AddFriendTableViewCell.swift in Sources */,
 				B1EE3FD02C0DD9F50013B422 /* StartQuestionViewController.swift in Sources */,
+				B1EFE9732C1029DE005EA96A /* UpdatePoints.swift in Sources */,
 				B1910F772C07A22800277790 /* SecretCollectionViewCell.swift in Sources */,
 				B1EE3FB72C090B660013B422 /* UserDetails.swift in Sources */,
 			);

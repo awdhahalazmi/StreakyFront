@@ -70,7 +70,7 @@ class OnboardingViewController: UIViewController {
     }
     
     private let nextButton: UIButton = {
-        let button = UIButton()
+        let button = UIButton(type: .system)
         button.setTitle("Next", for: .normal)
         button.setTitleColor(.white, for: .normal)
         button.backgroundColor = UIColor(red: 69/255, green: 30/255, blue: 123/255, alpha: 1)
