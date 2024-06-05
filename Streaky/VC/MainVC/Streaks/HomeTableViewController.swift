@@ -8,7 +8,7 @@ class HomeTableViewController: UITableViewController, CustomTableViewCellDelegat
     var streaks: [Streak] = []
     var token: String?
     var user: UserAccount?
-    var helloLabel = UILabel() // Ensure this is a class property
+    var helloLabel = UILabel()
     
     let sections = ["", "Streaks", "Today's Questions", "Rewards", "Secret Experience"]
     
@@ -17,28 +17,26 @@ class HomeTableViewController: UITableViewController, CustomTableViewCellDelegat
         setupNavigationBar()
         setupTableView()
         
-        
         if let savedToken = UserDefaults.standard.string(forKey: "AuthToken") {
             fetchUserDetails(token: savedToken)
-            fetchRewards(token: savedToken)
-            fetchSecretExperiences(token: savedToken)
-            fetchUserStreaks(token: savedToken)
-            fetchStreaks(token: savedToken)
-//            helloLabel.text = user?.name
-            self.tableView.reloadData()
+                    fetchRewards(token: savedToken)
+                        fetchSecretExperiences(token: savedToken)
+                        fetchUserStreaks(token: savedToken)
+                        fetchStreaks(token: savedToken)
         } else {
             presentAlertWithTitle(title: "Error", message: "User token is missing")
         }
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         
         if let savedToken = UserDefaults.standard.string(forKey: "AuthToken") {
             fetchUserDetails(token: savedToken)
-            fetchRewards(token: savedToken)
-            fetchSecretExperiences(token: savedToken)
-            fetchUserStreaks(token: savedToken)
-            fetchStreaks(token: savedToken)
+                        fetchRewards(token: savedToken)
+                        fetchSecretExperiences(token: savedToken)
+                        fetchUserStreaks(token: savedToken)
+                        fetchStreaks(token: savedToken)
         } else {
             presentAlertWithTitle(title: "Error", message: "User token is missing")
         }
@@ -59,10 +57,11 @@ class HomeTableViewController: UITableViewController, CustomTableViewCellDelegat
         navigationController?.navigationBar.scrollEdgeAppearance = appearance
         
         helloLabel.textColor = .white
-        helloLabel.font = UIFont.systemFont(ofSize: 26, weight: .bold)
+        helloLabel.font = UIFont.systemFont(ofSize: 24, weight: .bold)
+        helloLabel.text = "Hello,"
         let leftBar = UIBarButtonItem(customView: helloLabel)
         navigationItem.leftBarButtonItem = leftBar
-        
+
         let bellButton = UIButton(type: .custom)
         bellButton.setImage(UIImage(systemName: "bell.fill"), for: .normal)
         bellButton.tintColor = .white
@@ -82,23 +81,31 @@ class HomeTableViewController: UITableViewController, CustomTableViewCellDelegat
     }
 
     private func fetchUserDetails(token: String) {
-           NetworkManager.shared.fetchUserDetails(token: token) { [weak self] result in
-               switch result {
-               case .success(let user):
-                   self?.user = user
-                   DispatchQueue.main.async {
-                       self?.helloLabel.text = "Hello, \(user.name)"
-                   }
-                   self?.fetchRewards(token: token)
-                   self?.fetchSecretExperiences(token: token)
-                   self?.fetchUserStreaks(token: token)
-                   self?.fetchStreaks(token: token)
-               case .failure(let error):
-                   print("Failed to fetch user details: \(error)")
-                   self?.presentAlertWithTitle(title: "Error", message: "Failed to fetch user details.")
-               }
-           }
-       }
+        NetworkManager.shared.fetchUserDetails(token: token) { [weak self] result in
+            switch result {
+            case .success(let user):
+                DispatchQueue.main.async {
+                    self?.user = user
+                    self?.updateNavigationBarWithUserName(user.name)
+                    self?.fetchRewards(token: token)
+                    self?.fetchSecretExperiences(token: token)
+                    self?.fetchUserStreaks(token: token)
+                    self?.fetchStreaks(token: token)
+                    self?.tableView.reloadData()
+                }
+            case .failure(let error):
+                DispatchQueue.main.async {
+                    print("Failed to fetch user details: \(error)")
+                    self?.presentAlertWithTitle(title: "Error", message: "Failed to fetch user details.")
+                }
+            }
+        }
+    }
+
+    private func updateNavigationBarWithUserName(_ userName: String) {
+        helloLabel.text = "Hello, \(userName)"
+        navigationItem.leftBarButtonItem = UIBarButtonItem(customView: helloLabel)
+    }
 
     private func fetchRewards(token: String) {
         NetworkManager.shared.getAllRewards(token: token) { [weak self] result in
@@ -216,11 +223,6 @@ class HomeTableViewController: UITableViewController, CustomTableViewCellDelegat
         print("Notification button tapped")
     }
     
-    @objc private func handleProfileTap() {
-        let profileVC = ProfileViewController()
-        navigationController?.pushViewController(profileVC, animated: true)
-    }
-    
     func presentAlertWithTitle(title: String, message: String) {
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "OK", style: .default))
@@ -280,18 +282,17 @@ class HomeTableViewController: UITableViewController, CustomTableViewCellDelegat
     }
 }
 
-//extension HomeTableViewController: refreshDelagate {
-//    func refreshPage() {
-//        if let token = UserDefaults.standard.string(forKey: "AuthToken") {
-//            fetchUserDetails(token: token)
-//            fetchRewards(token: token)
-//            fetchSecretExperiences(token: token)
-//            fetchUserStreaks(token: token)
-//            fetchStreaks(token: token)
-//            print(user?.name)
-//        } else {
-//            presentAlertWithTitle(title: "Error", message: "User token is missing")
-//        }
-//    }
-    
-
+extension HomeTableViewController: RefreshDelagate {
+    func refreshPage() {
+        if let token = UserDefaults.standard.string(forKey: "AuthToken") {
+            fetchUserDetails(token: token)
+            fetchRewards(token: token)
+            fetchSecretExperiences(token: token)
+            fetchUserStreaks(token: token)
+            fetchStreaks(token: token)
+            print(user?.name ?? "No name")
+        } else {
+            presentAlertWithTitle(title: "Error", message: "User token is missing")
+        }
+    }
+}

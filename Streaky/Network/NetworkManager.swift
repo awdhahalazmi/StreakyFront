@@ -81,6 +81,9 @@ class NetworkManager {
             switch response.result {
             case .success(let profile):
                 completion(.success(profile))
+                profile.name
+                profile.email
+                profile.points
             case .failure(let error):
                 completion(.failure(error))
             }

@@ -6,7 +6,6 @@ class ProfileViewController: UIViewController {
     
     var token: String?
     var userAccount: UserAccount?
-
     var profileImageView: UIImageView!
     var nameLabel: UILabel!
     var nameTitle: UILabel!
@@ -276,17 +275,10 @@ class ProfileViewController: UIViewController {
         alert.addAction(UIAlertAction(title: "OK", style: .default))
         self.present(alert, animated: true, completion: nil)
     }
-    private func updateUI() {
-            // Update the UI with the profile details
-            guard let userAccount = userAccount else { return }
-            // For example:
-            // nameLabel.text = profile.name
-            // emailLabel.text = profile.email
-            // ... and so on
-        }
+
 }
 
-extension ProfileViewController: refreshDelagate {
+extension ProfileViewController: RefreshDelagate {
     func refreshPage() {
         let token = UserDefaults.standard.string(forKey: "AuthToken")
        // print("fghjk \(token)")

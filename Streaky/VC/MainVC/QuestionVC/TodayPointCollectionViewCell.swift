@@ -4,6 +4,10 @@ import CoreLocation
 
 class TodayPointCollectionViewCell: UICollectionViewCell {
     
+    
+    var business : [Business] = []
+    var location : [Location] = []
+
     private let pointsLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 14, weight: .medium)
@@ -15,6 +19,7 @@ class TodayPointCollectionViewCell: UICollectionViewCell {
         label.setContentHuggingPriority(.required, for: .horizontal)
         label.setContentCompressionResistancePriority(.required, for: .horizontal)
         return label
+        
     }()
     
     private let brandLabel: UILabel = {
@@ -77,6 +82,8 @@ class TodayPointCollectionViewCell: UICollectionViewCell {
         containerView.addSubview(goButton)
         containerView.addSubview(locationIcon)
         googleMapsGestureRecognizers()
+        pointsLabel.text = " 50 Points"
+
     }
     
     private func setupConstraints() {
@@ -139,7 +146,6 @@ class TodayPointCollectionViewCell: UICollectionViewCell {
     }
     
     func configure(with business: Business) {
-        pointsLabel.text = " 50 Points"
         brandLabel.text = business.name
         
         let userLatitude: CLLocationDegrees = 50.0
@@ -162,4 +168,5 @@ class TodayPointCollectionViewCell: UICollectionViewCell {
         goButton.isEnabled = isWithinRadius
         goButton.backgroundColor = isWithinRadius ? #colorLiteral(red: 0.9829108119, green: 0.5975590348, blue: 0.4170847535, alpha: 1) : #colorLiteral(red: 0.9411764741, green: 0.4980392158, blue: 0.3529411852, alpha: 1)
     }
+    
 }

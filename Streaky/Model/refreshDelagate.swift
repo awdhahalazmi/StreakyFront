@@ -7,6 +7,6 @@
 
 import Foundation
 
-protocol refreshDelagate: AnyObject{
+protocol RefreshDelagate: AnyObject{
     func refreshPage()
 }

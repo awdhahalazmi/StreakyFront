@@ -12,6 +12,7 @@ class LoginViewController: UIViewController {
     var signUpLabel: UILabel!
     var loginButton: UIButton!
     var registerButton: UIButton!
+    var userName: UserAccount?
     var logoImageView: UIImageView!
     
     override func viewDidLoad() {
@@ -186,10 +187,9 @@ class LoginViewController: UIViewController {
                 print(tokenResponse)
                 UserDefaults.standard.removeObject(forKey: "AuthToken")
                 let _ = UserDefaults.standard.setValue(tokenResponse.token, forKey: "AuthToken")
-
                 homeVC.modalPresentationStyle = .fullScreen
                 self.present(homeVC, animated: true, completion: nil)
-
+                
             case .failure(let error):
                 print("Login failed: \(error.localizedDescription)")
                 self.presentAlertWithTitle(title: "Error", message: "Invalid username or password")

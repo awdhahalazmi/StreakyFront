@@ -9,9 +9,9 @@ import Foundation
 
 struct UserAccount: Codable {
     let id: Int
-    let name: String
-    let email: String
-    let genderId: Int
+    var name: String
+    var email: String
+    var genderId: Int
     let imagePath: String
     let points: Double
     
