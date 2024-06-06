@@ -78,7 +78,6 @@ class HomeTableViewController: UITableViewController, CustomTableViewCellDelegat
     
     func getCurrentLocation() {
         locationManager.delegate = self
-        
         locationManager.requestAlwaysAuthorization()
         locationManager.requestWhenInUseAuthorization()
         
@@ -242,28 +241,31 @@ class HomeTableViewController: UITableViewController, CustomTableViewCellDelegat
     // MARK: CustomTableViewCellDelegate and TableViewCellDelegate Methods
     
     func collectionViewCellTapped(at indexPath: IndexPath) {
-        let storeLocation = streaks[0].businesses[indexPath.item].locations[2]
-            
-        if let userLocation = userLocation {
-            checkProximity(to: userLocation, storeLocation: storeLocation, streakId: streaks[0].id)
-        } else {
+        guard let userLocation = userLocation else {
             print("User location is not available yet")
+            presentAlertWithTitle(title: "Error", message: "User location is not available yet")
+            return
         }
 
-        let vc = StartQuestionViewController()
-        let selectedStreak = streaks[0]
-        
-        print("userLocation: \(userLocation)")
-        vc.userLocation = userLocation
-        vc.business = selectedStreak.businesses[indexPath.item]
-        vc.modalPresentationStyle = .pageSheet
+        let storeLocation = streaks[0].businesses[indexPath.item].locations[2]
+        if checkProximity(to: userLocation, storeLocation: storeLocation) {
+            let vc = StartQuestionViewController()
+            let selectedStreak = streaks[0]
 
-        if let presentationController = vc.presentationController as? UISheetPresentationController {
-            presentationController.detents = [.medium(), .large()]
-            presentationController.prefersGrabberVisible = true
+            print("userLocation: \(userLocation)")
+            vc.userLocation = userLocation
+            vc.business = selectedStreak.businesses[indexPath.item]
+            vc.modalPresentationStyle = .pageSheet
+
+            if let presentationController = vc.presentationController as? UISheetPresentationController {
+                presentationController.detents = [.medium(), .large()]
+                presentationController.prefersGrabberVisible = true
+            }
+
+            self.present(vc, animated: true)
+        } else {
+            presentAlertWithTitle(title: "Error", message: "You are not at the area")
         }
-
-        self.present(vc, animated: true)
     }
 
     func secretCollectionViewCellTapped(at indexPath: IndexPath) {
@@ -307,26 +309,22 @@ extension HomeTableViewController {
 
         self.userLocation = userLocation
         print("User location: \(userLocation.coordinate.latitude), \(userLocation.coordinate.longitude)")
-        
-        if let streak = streaks.first,
-           let business = streak.businesses.first,
-           let storeLocation = business.locations.first {
-            checkProximity(to: userLocation, storeLocation: storeLocation, streakId: streak.id)
-        }
     }
     
-    func checkProximity(to userLocation: CLLocation, storeLocation: Location, streakId: Int) {
+    func checkProximity(to userLocation: CLLocation, storeLocation: Location) -> Bool {
         let storeCLLocation = CLLocation(latitude: storeLocation.latitude, longitude: storeLocation.longitude)
         let distance = userLocation.distance(from: storeCLLocation)
         
-        if distance <= storeLocation.radius {
+        let isInProximity = distance <= storeLocation.radius
+        
+        if isInProximity {
             print("User is at the place: \(storeLocation.name)")
-            startStreakIfNeeded(streakId: streakId)
         } else {
             print("User is not at the place")
         }
         
         print("Distance to target: \(distance) meters")
+        return isInProximity
     }
     
     func startStreakIfNeeded(streakId: Int) {

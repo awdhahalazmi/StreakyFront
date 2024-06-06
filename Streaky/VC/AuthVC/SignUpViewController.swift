@@ -198,6 +198,8 @@ class SignUpViewController: UIViewController {
             case .success(let tokenResponse):
                 print("Signup successful: \(tokenResponse.token)")
                 print(user)
+                let _ = UserDefaults.standard.setValue(tokenResponse.token, forKey: "AuthToken")
+
                 let homeVC = InterestViewController()
                 let navigationController = UINavigationController(rootViewController: homeVC)
                 navigationController.modalPresentationStyle = .fullScreen

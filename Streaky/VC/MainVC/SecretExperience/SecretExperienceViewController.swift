@@ -1,71 +1,60 @@
-//
-//  SecretExperienceViewController.swift
-//  Streaky
-//
-//  Created by Fatma Buyabes on 04/06/2024.
-//
-
 import UIKit
+import SnapKit
 
 class SecretExperienceViewController: UIViewController {
 
-    var secretExperience : SecretExperience?
+    var secretExperience: SecretExperience?
     var titleLabel = UILabel()
+    var emojiLabel = UILabel()
     var descriptionLabel = UILabel()
-    var image = UIImageView()
-    
+    var imageView = UIImageView()
+    var titleStackView = UIStackView()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        view.backgroundColor = .white
+        view.backgroundColor = UIColor(red: 240/255, green: 230/255, blue: 255/255, alpha: 1)
         
-        view.addSubview(titleLabel)
-        view.addSubview(descriptionLabel)
-        print(secretExperience)
-//        titleLabel.text = secretExperience?.title
-//        descriptionLabel.text  = secretExperience?.title
-        setupConstraints()
         setupUI()
-        //image.text = secretExperience?.businessImage
-        // Do any additional setup after loading the view.
+        setupConstraints()
+        
+        if let secretExperience = secretExperience {
+            titleLabel.text = secretExperience.title
+            descriptionLabel.text = secretExperience.description
+        }
     }
     
+    func setupUI() {
+        titleLabel.textColor = UIColor(red: 75/255, green: 0/255, blue: 130/255, alpha: 1)
+        titleLabel.font = UIFont.systemFont(ofSize: 24, weight: .bold)
+        titleLabel.textAlignment = .center
+        
+        emojiLabel.text = "🤫"
+        
+        titleStackView.axis = .horizontal
+        titleStackView.alignment = .center
+        titleStackView.spacing = 8
+        titleStackView.addArrangedSubview(titleLabel)
+        titleStackView.addArrangedSubview(emojiLabel)
+        
+        view.addSubview(titleStackView)
+        
+        descriptionLabel.textColor = UIColor(red: 123/255, green: 104/255, blue: 238/255, alpha: 1)
+        descriptionLabel.font = UIFont.systemFont(ofSize: 20, weight: .regular)
+        descriptionLabel.numberOfLines = 0
+        descriptionLabel.textAlignment = .center
+        view.addSubview(descriptionLabel)
+    }
     
-    func setupConstraints()
-    {
-        titleLabel.snp.makeConstraints { make in
-            make.top.equalToSuperview().offset(90)
-            make.left.right.equalToSuperview().inset(16)
+    func setupConstraints() {
+        titleStackView.snp.makeConstraints { make in
+            make.top.equalTo(view.safeAreaLayoutGuide).offset(140)
+            make.centerX.equalToSuperview()
         }
         
         descriptionLabel.snp.makeConstraints { make in
-            make.top.equalTo(titleLabel.snp.bottom).offset(10)
+            make.top.equalTo(titleStackView.snp.bottom).offset(10)
             make.left.right.equalToSuperview().inset(16)
         }
-        
-//        startButton.snp.makeConstraints { make in
-//            make.top.equalTo(questionLabel.snp.bottom).offset(60)
-//            make.centerX.equalToSuperview()
-//            make.width.equalTo(200)
-//            make.height.equalTo(50)
-//        }
     }
-    
-    func setupUI(){
-        titleLabel.textColor = .black
-        descriptionLabel.textColor = .black
-
-    }
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }

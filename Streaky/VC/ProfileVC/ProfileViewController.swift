@@ -22,23 +22,22 @@ class ProfileViewController: UIViewController {
         setupUI()
         setupConstraints()
         setupNavigationBar()
-     
         
         if let savedToken = UserDefaults.standard.string(forKey: "AuthToken") {
             print("token in profile: \(savedToken)")
-             fetchUserDetails(token: savedToken)
+            fetchUserDetails(token: savedToken)
         } else {
-                    presentAlertWithTitle(title: "Error", message: "User token is missing")
-                }
+            presentAlertWithTitle(title: "Error", message: "User token is missing")
+        }
     }
     
     func setupUI() {
-        view.backgroundColor = UIColor.white
+        view.backgroundColor = UIColor.systemGroupedBackground
         navigationItem.title = "Account Information"
         
         profileLabel = UILabel()
         profileLabel.text = "PROFILE"
-        profileLabel.font = UIFont.systemFont(ofSize: 14)
+        profileLabel.font = UIFont.systemFont(ofSize: 14, weight: .medium)
         profileLabel.textColor = .gray
         view.addSubview(profileLabel)
         
@@ -47,84 +46,68 @@ class ProfileViewController: UIViewController {
         profileImageView.contentMode = .scaleAspectFill
         profileImageView.layer.cornerRadius = 50
         profileImageView.layer.masksToBounds = true
+        profileImageView.layer.borderWidth = 2
+        profileImageView.layer.borderColor = UIColor.white.cgColor
         view.addSubview(profileImageView)
-        
-        changeProfileButton = UIButton(type: .system)
-        changeProfileButton.setTitle("Change profile picture", for: .normal)
-        changeProfileButton.setTitleColor(.systemPurple, for: .normal)
-        //changeProfileButton.addTarget(self, action: #selector(changeProfileTapped), for: .touchUpInside)
-        view.addSubview(changeProfileButton)
         
         infoContainerView = UIView()
         infoContainerView.backgroundColor = UIColor.white
-        infoContainerView.layer.cornerRadius = 5
-        infoContainerView.layer.shadowOpacity = 0.3
-        infoContainerView.layer.shadowColor = UIColor.lightGray.cgColor
+        infoContainerView.layer.cornerRadius = 10
+        infoContainerView.layer.shadowOpacity = 0.1
+        infoContainerView.layer.shadowColor = UIColor.black.cgColor
+        infoContainerView.layer.shadowOffset = CGSize(width: 0, height: 2)
+        infoContainerView.layer.shadowRadius = 4
         view.addSubview(infoContainerView)
         
         nameTitle = UILabel()
         nameTitle.text = "Name"
-        nameTitle.font = UIFont.systemFont(ofSize: 14)
+        nameTitle.font = UIFont.systemFont(ofSize: 14, weight: .medium)
         nameTitle.textColor = .gray
         infoContainerView.addSubview(nameTitle)
         
         nameLabel = UILabel()
-        nameLabel.font = UIFont.systemFont(ofSize: 16)
+        nameLabel.font = UIFont.systemFont(ofSize: 16, weight: .regular)
         nameLabel.textColor = .black
         infoContainerView.addSubview(nameLabel)
         
         let divider1 = UIView()
-        divider1.backgroundColor = #colorLiteral(red: 0.9137255549, green: 0.9137254953, blue: 0.9137255549, alpha: 1)
+        divider1.backgroundColor = UIColor.lightGray.withAlphaComponent(0.3)
         infoContainerView.addSubview(divider1)
         
         emailTitle = UILabel()
         emailTitle.text = "Email"
-        emailTitle.font = UIFont.systemFont(ofSize: 14)
+        emailTitle.font = UIFont.systemFont(ofSize: 14, weight: .medium)
         emailTitle.textColor = .gray
         infoContainerView.addSubview(emailTitle)
         
         emailLabel = UILabel()
-        emailLabel.font = UIFont.systemFont(ofSize: 16)
+        emailLabel.font = UIFont.systemFont(ofSize: 16, weight: .regular)
         emailLabel.textColor = .black
         infoContainerView.addSubview(emailLabel)
         
         let divider2 = UIView()
-        divider2.backgroundColor = #colorLiteral(red: 0.9137254357, green: 0.9137255549, blue: 0.9180311561, alpha: 1)
+        divider2.backgroundColor = UIColor.lightGray.withAlphaComponent(0.3)
         infoContainerView.addSubview(divider2)
         
-        genderTitle = UILabel()
-        genderTitle.text = "Gender"
-        genderTitle.font = UIFont.systemFont(ofSize: 14)
-        genderTitle.textColor = .gray
-        infoContainerView.addSubview(genderTitle)
         
-        genderLabel = UILabel()
-        genderLabel.font = UIFont.systemFont(ofSize: 16)
-        genderLabel.textColor = .black
-        infoContainerView.addSubview(genderLabel)
     }
     
     func setupConstraints() {
         profileLabel.snp.makeConstraints { make in
-            make.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(70)
+            make.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(20)
             make.leading.equalToSuperview().offset(20)
         }
         
         profileImageView.snp.makeConstraints { make in
-            make.top.equalTo(profileLabel.snp.bottom).offset(10)
-            make.leading.equalToSuperview().offset(20)
+            make.top.equalTo(profileLabel.snp.bottom).offset(20)
+            make.centerX.equalToSuperview()
             make.width.height.equalTo(100)
         }
         
-        changeProfileButton.snp.makeConstraints { make in
-            make.centerX.equalTo(profileImageView).offset(150)
-            make.centerY.equalTo(profileImageView)
-        }
-        
         infoContainerView.snp.makeConstraints { make in
-            make.top.equalTo(profileImageView.snp.bottom).offset(20)
+            make.top.equalTo(profileImageView.snp.bottom).offset(30)
             make.leading.trailing.equalToSuperview().inset(20)
-            make.height.equalTo(180)
+            make.height.equalTo(130)
         }
         
         nameTitle.snp.makeConstraints { make in
@@ -154,31 +137,17 @@ class ProfileViewController: UIViewController {
             make.trailing.equalTo(infoContainerView).offset(-20)
         }
         
-        let divider2 = infoContainerView.subviews[5]
-        divider2.snp.makeConstraints { make in
-            make.top.equalTo(emailTitle.snp.bottom).offset(20)
-            make.leading.trailing.equalTo(infoContainerView).inset(20)
-            make.height.equalTo(1)
-        }
         
-        genderTitle.snp.makeConstraints { make in
-            make.top.equalTo(divider2.snp.bottom).offset(20)
-            make.leading.equalTo(infoContainerView).offset(20)
-        }
         
-        genderLabel.snp.makeConstraints { make in
-            make.centerY.equalTo(genderTitle.snp.centerY)
-            make.trailing.equalTo(infoContainerView).offset(-20)
-        }
+        
+        
+        
     }
 
-    
     func setupNavigationBar() {
-        
-        
         let appearance = UINavigationBarAppearance()
         appearance.configureWithOpaqueBackground()
-        appearance.backgroundColor =  #colorLiteral(red: 0.6352165341, green: 0.402710855, blue: 0.9805307984, alpha: 1)
+        appearance.backgroundColor = #colorLiteral(red: 0.6352165341, green: 0.402710855, blue: 0.9805307984, alpha: 1)
 
         navigationItem.leftBarButtonItem = UIBarButtonItem(
             image: UIImage(systemName: "power"),
@@ -191,13 +160,12 @@ class ProfileViewController: UIViewController {
 //            title: "Edit",
 //            style: .plain,
 //            target: self,
-//            action: #selector()
+//            action: #selector(editTapped)
 //        )
-        navigationItem.rightBarButtonItem?.tintColor = UIColor.white
+//        navigationItem.rightBarButtonItem?.tintColor = UIColor.white
         navigationItem.leftBarButtonItem?.tintColor = UIColor.white
         appearance.titleTextAttributes = [
             .foregroundColor: UIColor.white,
-            
             .font: UIFont.systemFont(ofSize: 18, weight: .bold)
         ]
     
@@ -206,16 +174,7 @@ class ProfileViewController: UIViewController {
         navigationController?.navigationBar.standardAppearance = appearance
         navigationController?.navigationBar.compactAppearance = appearance
         navigationController?.navigationBar.scrollEdgeAppearance = appearance
-
-
-
     }
-    
-//    @objc func changeProfileTapped() {
-//        let editVc = EditProfileViewController()
-//        editVc.modalPresentationStyle = .fullScreen
-//        self.present(editVc, animated: true, completion: nil)
-//    }
     
     @objc func logoutTapped() {
         let alertController = UIAlertController(title: "Log Out", message: "Are you sure you want to log out?", preferredStyle: .alert)
@@ -224,7 +183,6 @@ class ProfileViewController: UIViewController {
             let authVC = AuthViewController()
             authVC.modalPresentationStyle = .fullScreen
             self.present(authVC, animated: false, completion: nil)
-
         }
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
         alertController.addAction(confirmAction)
@@ -233,7 +191,7 @@ class ProfileViewController: UIViewController {
     }
     
 //    @objc func editTapped() {
-//        let editVC = EditProfileViewController()
+//        let editVC = edit()
 //        navigationController?.pushViewController(editVC, animated: true)
 //    }
     
@@ -244,7 +202,7 @@ class ProfileViewController: UIViewController {
                 DispatchQueue.main.async {
                     self?.nameLabel.text = userDetails.name
                     self?.emailLabel.text = userDetails.email
-                   // self?.genderLabel.text = userDetails.genderName
+                    //self?.genderLabel.text = userDetails.genderName
                 }
             case .failure(let error):
                 DispatchQueue.main.async {
@@ -253,7 +211,6 @@ class ProfileViewController: UIViewController {
             }
         }
     }
-    
     
     func loadProfileImage(from urlString: String) {
         guard let url = URL(string: urlString) else {
@@ -275,12 +232,14 @@ class ProfileViewController: UIViewController {
         alert.addAction(UIAlertAction(title: "OK", style: .default))
         self.present(alert, animated: true, completion: nil)
     }
-
 }
 
 extension ProfileViewController: RefreshDelagate {
     func refreshPage() {
-        let token = UserDefaults.standard.string(forKey: "AuthToken")
-
+        if let token = UserDefaults.standard.string(forKey: "AuthToken") {
+            fetchUserDetails(token: token)
+        } else {
+            presentAlertWithTitle(title: "Error", message: "User token is missing")
+        }
     }
 }

@@ -6,9 +6,7 @@ class FriendsDashboardViewController: UIViewController, UITableViewDataSource, U
     var user: User?
 
     private var friends: [Friend] = []
-    
     private let requests: [Friend] = []
-
     private var currentList: [Friend]
     private var isRequestView: Bool = false
 
@@ -47,7 +45,6 @@ class FriendsDashboardViewController: UIViewController, UITableViewDataSource, U
         configureNavigationBarAppearance()
         tableView.dataSource = self
         tableView.delegate = self
-        getAllFriends()
     }
 
     private func setupViews() {
@@ -69,7 +66,7 @@ class FriendsDashboardViewController: UIViewController, UITableViewDataSource, U
 
     private func setupNavigationBar() {
         navigationItem.rightBarButtonItem = UIBarButtonItem(
-            image: UIImage(systemName: "person.fill.badge.plus"),
+            image: UIImage(systemName: "profile"),
             style: .plain,
             target: self,
             action: #selector(addFriendButtonTapped)
@@ -82,7 +79,7 @@ class FriendsDashboardViewController: UIViewController, UITableViewDataSource, U
 
         let appearance = UINavigationBarAppearance()
         appearance.configureWithOpaqueBackground()
-        appearance.backgroundColor = UIColor(red: 92/255, green: 40/255, blue: 164/255, alpha: 1.0)
+        appearance.backgroundColor =  #colorLiteral(red: 0.6352165341, green: 0.402710855, blue: 0.9805307984, alpha: 1)
         appearance.titleTextAttributes = [.foregroundColor: UIColor.white]
 
         navigationController?.navigationBar.standardAppearance = appearance
@@ -97,13 +94,16 @@ class FriendsDashboardViewController: UIViewController, UITableViewDataSource, U
         let appearance = UINavigationBarAppearance()
         title = "Friends"
         appearance.configureWithOpaqueBackground()
-        appearance.backgroundColor =  #colorLiteral(red: 0.4261863232, green: 0.271607697, blue: 0.652882278, alpha: 1)
+        appearance.backgroundColor =  #colorLiteral(red: 0.6352165341, green: 0.402710855, blue: 0.9805307984, alpha: 1)
         appearance.titleTextAttributes = [.foregroundColor: UIColor.white]
        
         navigationController?.isNavigationBarHidden = false
         navigationController?.navigationBar.standardAppearance = appearance
         navigationController?.navigationBar.compactAppearance = appearance
         navigationController?.navigationBar.scrollEdgeAppearance = appearance
+        
+        // Refresh the friends list
+        getAllFriends()
     }
 
     @objc private func addFriendButtonTapped() {
@@ -124,25 +124,22 @@ class FriendsDashboardViewController: UIViewController, UITableViewDataSource, U
         }
         tableView.reloadData()
     }
-    func getAllFriends() {
 
-        
-            NetworkManager.shared.fetchAllFriends(token: UserDefaults.standard.string(forKey: "AuthToken") ?? "") { result in
-                DispatchQueue.main.async {
-                    switch result {
-                    case .success(let friends):
-                        self.friends = friends
-                        self.tableView.reloadData()
-                    case .failure:
-                        print("Something went wrong in fetching friends")
-                    }
+    func getAllFriends() {
+        NetworkManager.shared.fetchAllFriends(token: UserDefaults.standard.string(forKey: "AuthToken") ?? "") { result in
+            DispatchQueue.main.async {
+                switch result {
+                case .success(let friends):
+                    self.friends = friends
+                    self.currentList = self.isRequestView ? self.requests : self.friends
+                    self.tableView.reloadData()
+                case .failure:
+                    print("Something went wrong in fetching friends")
                 }
             }
         }
-   
-  
+    }
 
-   
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return currentList.count
     }
@@ -156,7 +153,6 @@ class FriendsDashboardViewController: UIViewController, UITableViewDataSource, U
             guard let cell = tableView.dequeueReusableCell(withIdentifier: RequestTableViewCell.identifier, for: indexPath) as? RequestTableViewCell else {
                 return UITableViewCell()
             }
-           // cell.configure(with: currentList[indexPath.row])
             cell.selectionStyle = .none
             return cell
         } else {
@@ -169,7 +165,6 @@ class FriendsDashboardViewController: UIViewController, UITableViewDataSource, U
         }
     }
 
-    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
     }
@@ -178,9 +173,9 @@ class FriendsDashboardViewController: UIViewController, UITableViewDataSource, U
 extension FriendsDashboardViewController: UISearchResultsUpdating {
     func updateSearchResults(for searchController: UISearchController) {
         if let searchText = searchController.searchBar.text, !searchText.isEmpty {
-           
+            // Implement search functionality if needed
         } else {
-            
+            // Handle case when search text is empty
         }
         tableView.reloadData()
     }
