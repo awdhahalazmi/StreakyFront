@@ -88,7 +88,7 @@ class FriendTableViewCell: UITableViewCell {
         }
 
         streakCountLabel.snp.makeConstraints { make in
-            make.right.equalToSuperview().offset(-16)
+            make.right.equalToSuperview().offset(-40)
             make.centerY.equalToSuperview()
             make.height.equalTo(20)
             make.width.equalTo(70)

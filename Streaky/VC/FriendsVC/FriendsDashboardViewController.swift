@@ -66,7 +66,7 @@ class FriendsDashboardViewController: UIViewController, UITableViewDataSource, U
 
     private func setupNavigationBar() {
         navigationItem.rightBarButtonItem = UIBarButtonItem(
-            image: UIImage(systemName: "profile"),
+            image: UIImage(systemName: "person.fill.badge.plus"),
             style: .plain,
             target: self,
             action: #selector(addFriendButtonTapped)

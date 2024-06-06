@@ -126,9 +126,9 @@ class TodayPointCollectionViewCell: UICollectionViewCell {
     
     @objc private func openGoogleMaps() {
         // Open Google Maps with the target location coordinates
-        let latitude = 60.4720 // Replace with your target location's latitude
-        let longitude = 8.1 // Replace with your target location's longitude
-        if let url = URL(string: "comgooglemaps://?q=\(latitude),\(longitude)") {
+        let latitude = 48.1538771 // Replace with your target location's latitude
+        let longitude = 29.2966025 // Replace with your target location's longitude
+        if let url = URL(string: "https://www.google.com/maps/dir/Kuwait+International+Airport,+Ghazali+Street/The+Avenues+Mall,+Sheikh+Zayed+Bin+Sultan+Al+Nahyan+Road/@29.2963536,48.1542202,12z/data=!4m8!4m7!1m2!1m1!1s0x3fcf991b540ba873:0x8fde75dc30889f8a!1m2!1m1!1s0x3fcf9a893321a965:0x4db8af8c5528aa7f!3e0") {
             if UIApplication.shared.canOpenURL(url) {
                 UIApplication.shared.open(url, options: [:], completionHandler: nil)
             } else {
@@ -148,8 +148,8 @@ class TodayPointCollectionViewCell: UICollectionViewCell {
     func configure(with business: Business) {
         brandLabel.text = business.name
         
-        let userLatitude: CLLocationDegrees = 50.0
-        let userLongitude: CLLocationDegrees = 50.0
+        let userLatitude: CLLocationDegrees = 48.1538771
+        let userLongitude: CLLocationDegrees = 29.2966025
         let userLocation = CLLocation(latitude: userLatitude, longitude: userLongitude)
         
         guard let businessLocation = business.locations.first else { return }
@@ -159,7 +159,7 @@ class TodayPointCollectionViewCell: UICollectionViewCell {
         let distance = userLocation.distance(from: targetLocation)
         
         // Set a radius (in meters) around the target location
-        let radius: CLLocationDistance = 100.0
+        let radius: CLLocationDistance = 20
         
         // Check if the distance is within the radius
         let isWithinRadius = distance <= radius
