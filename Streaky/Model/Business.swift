@@ -6,7 +6,8 @@
 //
 
 import Foundation
-struct Business {
+
+struct Business : Codable  {
     var id: Int
     var name: String
     var categoryId: Int

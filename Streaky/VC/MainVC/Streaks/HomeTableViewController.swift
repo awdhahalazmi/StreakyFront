@@ -1,114 +1,259 @@
 import UIKit
 import SnapKit
-/*
-class HomeTableViewController: UITableViewController {
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        tableView.separatorStyle = .none
-        tableView.backgroundColor = #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1)
-        
-        tableView.register(StreaksTableViewCell.self, forCellReuseIdentifier: "StreaksTableViewCell")
-    }
-
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1 // Example number of rows
-    }
-    
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "StreaksTableViewCell", for: indexPath) as! StreaksTableViewCell
-        
-        //MARK: Configuring the cell
-        
-        cell.configure(streaks: 5)
-
-//        // Remove cell selection style to avoid visible border effect when selected
-//        cell.selectionStyle = .none
-        
-        return cell
-    }
-    
-    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 160 // Adjust height according to design
-    }
-}
-*/
-
+import Hero
 
 class HomeTableViewController: UITableViewController {
     
-    // MARK: How to add a new section with its cell
-    /// 1- Add one section in "sections" variable
-    /// 2- Register the cell
-    /// 3- Add the cell configuration
-    
-    // Define the section titles
-    let sections = ["","Today's Questions", "Rewards"]
+    var rewards: [Reward] = []
+    var secretExperiences: [SecretExperience] = []
+    var streaks: [Streak] = []
+    var token: String?
+    var user: UserAccount?
+
+
+    let sections = ["", "Streaks", "Today's Questions", "Rewards", "Secret Experience"]
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        tableView.separatorStyle = .none
-       // tableView.backgroundColor = #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1)
+        title = "Username"
+        let appearance = UINavigationBarAppearance()
+        appearance.configureWithOpaqueBackground()
+        appearance.backgroundColor =  #colorLiteral(red: 0.6352165341, green: 0.402710855, blue: 0.9805307984, alpha: 1)
+        appearance.titleTextAttributes = [
+            .foregroundColor: UIColor.black,
+            .font: UIFont.systemFont(ofSize: 18, weight: .bold)
+        ]
+        appearance.shadowColor = .clear
+        navigationController?.navigationBar.isTranslucent = false
+        navigationController?.navigationBar.standardAppearance = appearance
+        navigationController?.navigationBar.compactAppearance = appearance
+        navigationController?.navigationBar.scrollEdgeAppearance = appearance
+
+
         
+        // Create notification bell button
+        let bellButton = UIButton(type: .custom)
+        bellButton.setImage(UIImage(systemName: "bell.fill"), for: .normal)
+        bellButton.tintColor = .white
+        bellButton.addTarget(self, action: #selector(handleNotificationButton), for: .touchUpInside)
+        let rightBarButtonItem = UIBarButtonItem(customView: bellButton)
+        navigationItem.rightBarButtonItem = rightBarButtonItem
+        
+        let labelusername = UILabel()
+        labelusername.text = "Fatma"
+        let leftBarButtonItem = UIBarButtonItem(customView: labelusername)
+        navigationItem.leftBarButtonItem = leftBarButtonItem
+        
+//        navigationController?.isNavigationBarHidden = true
+
+        // Customize navigation bar
+        //setupNavigationBar()
+        self.hero.isEnabled = true
+        tableView.separatorStyle = .none
         tableView.register(StreaksTableViewCell.self, forCellReuseIdentifier: "StreaksTableViewCell")
+        tableView.register(PointsTableViewCell.self, forCellReuseIdentifier: PointsTableViewCell.identifier)
         tableView.register(TodayPointTableViewCell.self, forCellReuseIdentifier: TodayPointTableViewCell.identifier)
         tableView.register(RewardsTableViewCell.self, forCellReuseIdentifier: RewardsTableViewCell.identifier)
-//        tableView.rowHeight = UITableView.automaticDimension
-//        tableView.estimatedRowHeight = 160
+        tableView.register(SecretTableViewCell.self, forCellReuseIdentifier: SecretTableViewCell.identifier)
+        tableView.showsVerticalScrollIndicator = false
+        
+        fetchRewards()
+        fetchSecretExperiences()
+        fetchStreaks()
+        
+        
+    }
+   
+    /*
+    private func setupNavigationBar() {
+        let appearance = UINavigationBarAppearance()
+        appearance.configureWithOpaqueBackground()
+        appearance.backgroundColor =  #colorLiteral(red: 0.4261863232, green: 0.271607697, blue: 0.652882278, alpha: 1)
+        appearance.titleTextAttributes = [
+            .foregroundColor: UIColor.black,
+            .font: UIFont.systemFont(ofSize: 18, weight: .bold)
+        ]
+
+        navigationController?.navigationBar.standardAppearance = appearance
+        navigationController?.navigationBar.compactAppearance = appearance
+        navigationController?.navigationBar.scrollEdgeAppearance = appearance
+        
+        
+        // Create profile image view
+        let profileImageView = UIImageView(image: UIImage(systemName: "person.circle.fill"))
+        profileImageView.contentMode = .scaleAspectFill
+        profileImageView.layer.cornerRadius = 18 // Half of the image size
+        profileImageView.clipsToBounds = true
+        profileImageView.backgroundColor = .clear
+        profileImageView.tintColor = .white
+        profileImageView.snp.makeConstraints { make in
+        make.width.height.equalTo(36) // Adjust size as needed
+        }
+        
+        // Create username label
+        let usernameLabel = UILabel()
+        usernameLabel.text = "Username"
+        usernameLabel.font = UIFont.boldSystemFont(ofSize: 16)
+        usernameLabel.textColor = .white
+        
+        // Create a container view for profile image and username
+        let profileContainerView = UIStackView(arrangedSubviews: [profileImageView, usernameLabel])
+        profileContainerView.axis = .horizontal
+        profileContainerView.spacing = 8
+        
+        // Add tap gesture recognizer to the profile container view
+        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(handleProfileTap))
+        profileContainerView.isUserInteractionEnabled = true
+        profileContainerView.addGestureRecognizer(tapGestureRecognizer)
+        
+        // Create a custom left bar button item with the container view
+        let leftBarButtonItem = UIBarButtonItem(customView: profileContainerView)
+        navigationItem.leftBarButtonItem = leftBarButtonItem
+        
+        // Create notification bell button
+            let bellButton = UIButton(type: .custom)
+            bellButton.setImage(UIImage(systemName: "bell.fill"), for: .normal)
+            bellButton.tintColor = .white
+            bellButton.addTarget(self, action: #selector(handleNotificationButton), for: .touchUpInside)
+            let rightBarButtonItem = UIBarButtonItem(customView: bellButton)
+            navigationItem.rightBarButtonItem = rightBarButtonItem
+    }
+    */
+    private func fetchRewards() {
+        NetworkManager.shared.getAllRewards { [weak self] (result: Result<[Reward], Error>) in
+            switch result {
+            case .success(let rewards):
+                self?.rewards = rewards
+                self?.tableView.reloadData()
+            case .failure(let error):
+                // Handle error
+                print(error)
+            }
+        }
+    }
+    
+    private func fetchSecretExperiences() {
+        NetworkManager.shared.getAllSecretExperiences { [weak self] (result: Result<[SecretExperience], Error>) in
+            switch result {
+            case .success(let secretExperiences):
+                self?.secretExperiences = secretExperiences
+                self?.tableView.reloadData()
+            case .failure(let error):
+                // Handle error
+                print(error)
+            }
+        }
+    }
+    
+//    private func fetchUserDetails() {
+//           guard let token = token else { return }
+//           NetworkManager.shared.fetchUserDetails(token: token) { [weak self] result in
+//               switch result {
+//               case .success(let userAccount):
+//                   self?.user = UserAccount
+//                   self?.tableView.reloadData()
+//               case .failure(let error):
+//                   print("Failed to fetch user details: \(error.localizedDescription)")
+//               }
+//           }
+//       }
+       
+    
+    private func fetchStreaks() {
+        NetworkManager.shared.getAllStreaks { [weak self] result in
+            switch result {
+            case .success(let streaks):
+                self?.streaks = streaks
+                self?.tableView.reloadData()
+            case .failure(let error):
+                print("Failed to fetch streaks: \(error)")
+            }
+        }
+    }
+    
+    
+//    override func viewWillAppear(_ animated: Bool) {
+//        super.viewWillAppear(animated)
+//        
+//        // Customize navigation bar appearance
+//        let appearance = UINavigationBarAppearance()
+//        appearance.configureWithOpaqueBackground()
+//        appearance.backgroundColor = #colorLiteral(red: 0.4261863232, green: 0.271607697, blue: 0.652882278, alpha: 1)
+//        appearance.titleTextAttributes = [.foregroundColor: UIColor.white]
+//       
+//        navigationController?.isNavigationBarHidden = false
+//        navigationController?.navigationBar.standardAppearance = appearance
+//        navigationController?.navigationBar.compactAppearance = appearance
+//        navigationController?.navigationBar.scrollEdgeAppearance = appearance
+//    }
+    
+    @objc private func handleNotificationButton() {
+        // Handle notification button tap
+        print("Notification button tapped")
+    }
+    
+    @objc private func handleProfileTap() {
+        let profileVC = ProfileViewController()
+        navigationController?.pushViewController(profileVC, animated: true)
     }
 
     override func numberOfSections(in tableView: UITableView) -> Int {
-        return sections.count // Number of sections
+        return sections.count
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1 // One row per section
+        return 1
     }
     
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return sections[section] // Section title
+        return sections[section]
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if indexPath.section == 0 {
-            // First cell (StreaksTableViewCell)
-            
-            let cell = tableView.dequeueReusableCell(withIdentifier: "StreaksTableViewCell", for: indexPath) as! StreaksTableViewCell
+            let cell = tableView.dequeueReusableCell(withIdentifier: PointsTableViewCell.identifier, for: indexPath) as! PointsTableViewCell
             // Configure the cell
-            cell.configure(streaks: 5)
             return cell
-            
         } else if indexPath.section == 1 {
-            
-            let cell = tableView.dequeueReusableCell(withIdentifier: TodayPointTableViewCell.identifier, for: indexPath) as! TodayPointTableViewCell
-            
-            // Configure the cell if needed
+            let cell = tableView.dequeueReusableCell(withIdentifier: "StreaksTableViewCell", for: indexPath) as! StreaksTableViewCell
+            let totalStreaks = streaks.count
+            cell.configure(streaks: totalStreaks)
             return cell
-            
-        }
-        else if indexPath.section == 2 {
-            // Second cell (TodayPointTableViewCell)
-
-            
+        } else if indexPath.section == 2 {
+            let cell = tableView.dequeueReusableCell(withIdentifier: TodayPointTableViewCell.identifier, for: indexPath) as! TodayPointTableViewCell
+            // Configure the cell
+            return cell
+        } else if indexPath.section == 3 {
             let cell = tableView.dequeueReusableCell(withIdentifier: RewardsTableViewCell.identifier, for: indexPath) as! RewardsTableViewCell
             // Configure the cell
+            cell.configure(with: rewards)
             return cell
-        }
-        else {
+        } else if indexPath.section == 4 {
+            let cell = tableView.dequeueReusableCell(withIdentifier: SecretTableViewCell.identifier, for: indexPath) as! SecretTableViewCell
+            // Configure the cell
+            cell.configure(with: secretExperiences)
+            return cell
+        } else {
             return UITableViewCell()
         }
     }
+    
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-           if indexPath.section == 0 {
-               // Calculate height for the StreaksTableViewCell based on its content
-               return 160
-           } else if indexPath.section == 1 {
-               // Calculate height for the TodayPointTableViewCell based on its content
-               return 160
-           } else if indexPath.section == 2{
-               return 180
-           } else {
-               return 160
-           }
-       }
+        if indexPath.section == 0 {
+            return 45
+        } else if indexPath.section == 1 {
+            return 150
+        } else if indexPath.section == 2 {
+            return 160
+        } else if indexPath.section == 3 {
+            return 180
+        } else if indexPath.section == 4 {
+            return 180
+        } else {
+            return UITableView.automaticDimension
+        }
+    }
+    
+
+    
 }

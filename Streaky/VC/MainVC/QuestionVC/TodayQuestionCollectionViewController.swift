@@ -113,6 +113,8 @@ class TodayPointTableViewCell: UITableViewCell, UICollectionViewDelegate, UIColl
     
     static let identifier = "TodayPointTableViewCell"
 
+    var name = ""
+    var businesses = [Business]()
     
     private let collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
@@ -173,13 +175,13 @@ class TodayPointTableViewCell: UITableViewCell, UICollectionViewDelegate, UIColl
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 4
+        return businesses.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "TodayPointCollectionViewCell", for: indexPath) as! TodayPointCollectionViewCell
-        let points = (indexPath.item + 1) * 10
-        let brand = "Brand \(indexPath.item + 1)"
+        let points = "Get 50 Points"
+        let brand = "Brand \(businesses[indexPath.row].name)"
         cell.configure(points: points, brand: brand, latitude: 50, longitude: 50)
         return cell
     }
@@ -224,9 +226,10 @@ class TodayPointCollectionViewCell: UICollectionViewCell {
         let button = UIButton()
         button.setTitle("GO", for: .normal)
         button.titleLabel?.font = UIFont.systemFont(ofSize: 14, weight: .semibold)
-        button.backgroundColor = #colorLiteral(red: 1, green: 0.8982707858, blue: 0.7560862899, alpha: 1)
+        button.backgroundColor = #colorLiteral(red: 0.9372549057, green: 0.3490196168, blue: 0.1921568662, alpha: 1)
         button.setTitleColor(.white, for: .normal)
         button.layer.cornerRadius = 8
+        button.addTarget(self, action: #selector(Gotapped), for: .touchUpInside)
         return button
     }()
     
@@ -268,6 +271,8 @@ class TodayPointCollectionViewCell: UICollectionViewCell {
         containerView.addSubview(goButton)
         containerView.addSubview(locationIcon)
         setupGestureRecognizers()
+        tapped()
+        
     }
     
     private func setupConstraints() {
@@ -305,10 +310,26 @@ class TodayPointCollectionViewCell: UICollectionViewCell {
         locationIcon.addGestureRecognizer(tapGesture)
     }
     
+    private func tapped() {
+        let tapedButton = UITapGestureRecognizer(target: self, action: #selector(Gotapped))
+        print("Go button tapped ")
+        goButton.addGestureRecognizer(tapedButton)
+    }
+    
+    
+    @objc func Gotapped() {
+//        if (configure(points: <#T##Int#>, brand: <#T##String#>, latitude: <#T##CLLocationDegrees#>, longitude: <#T##CLLocationDegrees#>)) {
+//            let questionVc = QuestionViewController()
+//            questionVc.modalPresentationStyle = .fullScreen
+//        } else {
+//            // Go to Google maps
+//        }
+    }
+    
     @objc private func openGoogleMaps() {
         // Open Google Maps with the target location coordinates
-        let latitude = 60.4720 // Replace with your target location's latitude
-        let longitude = 8.1 // Replace with your target location's longitude
+        let latitude = 29.3581395 // Replace with your target location's latitude
+        let longitude = 47.9070288 // Replace with your target location's longitude
         if let url = URL(string: "comgooglemaps://?q=\(latitude),\(longitude)") {
             if UIApplication.shared.canOpenURL(url) {
                 UIApplication.shared.open(url, options: [:], completionHandler: nil)
@@ -320,12 +341,12 @@ class TodayPointCollectionViewCell: UICollectionViewCell {
         }
     }
     
-    func configure(points: Int, brand: String, latitude: CLLocationDegrees, longitude: CLLocationDegrees) {
+    func configure(points: String, brand: String, latitude: CLLocationDegrees, longitude: CLLocationDegrees) -> Bool {
         pointsLabel.text = "Get \(points) points"
         brandLabel.text = brand
         
         // Create CLLocation object for the target location
-        let targetLocation = CLLocation(latitude: 50, longitude: 50)
+        let targetLocation = CLLocation(latitude: 29.3581396, longitude: 47.9070288)        
         
         // Calculate the distance between the user's location and the target location
         let userLocation = CLLocation(latitude: latitude, longitude: longitude)
@@ -337,8 +358,8 @@ class TodayPointCollectionViewCell: UICollectionViewCell {
         // Check if the distance is within the radius
         let isWithinRadius = distance <= radius
         
-        // Enable the button if the user is within the radius, disable otherwise
-        goButton.isEnabled = isWithinRadius
-        goButton.backgroundColor = isWithinRadius ? .orange : #colorLiteral(red: 1, green: 0.8982707858, blue: 0.7560862899, alpha: 1)
+        return isWithinRadius
+        
+
     }
 }

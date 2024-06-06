@@ -88,7 +88,7 @@ class StreaksTableViewCell: UITableViewCell {
             }
         }
         self.backgroundColor = .clear
-        self.contentView.backgroundColor = .white
+        self.contentView.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
         self.selectionStyle = .none
         
     }

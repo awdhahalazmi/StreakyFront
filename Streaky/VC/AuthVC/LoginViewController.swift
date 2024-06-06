@@ -1,13 +1,9 @@
-//  LoginViewController.swift
-//  Streaky
-//
-//  Created by Fatma Buyabes on 20/05/2024.
-//
-
 import UIKit
 import SnapKit
-
+import Hero
 class LoginViewController: UIViewController {
+    
+    var user: UserLogin?
     
     var emailTextField: UITextField!
     var passwordTextField: UITextField!
@@ -167,24 +163,36 @@ class LoginViewController: UIViewController {
             presentAlertWithTitle(title: "Error", message: "Email is required")
             return
         }
-        
+
         guard let password = passwordTextField.text, !password.isEmpty else {
             presentAlertWithTitle(title: "Error", message: "Password is required")
             return
         }
-        //let user = User(name: nil, email: email, password: password, gender:nil)
 
-        // Perform login action here
-        
-        // Navigate to the next screen after login
-        let homeVc = HomeTableViewController()
-        homeVc.modalPresentationStyle = .fullScreen
-        self.present(homeVc, animated: true, completion: nil)
-        
+        print("Email: \(email), Password: \(password)") // Debug print
+
+        let user = UserLogin(email: email, password: password)
+
+        NetworkManager.shared.login(user: user) { result in
+            
+             print(result)
+            switch result {
+            case .success(let tokenResponse):
+                print("Login successful: \(tokenResponse.token)")
+                let homeVC = MainTabBarViewController()
+                homeVC.token = tokenResponse.token
+                print(tokenResponse)
+                let navigationController = UINavigationController(rootViewController: homeVC)
+                navigationController.modalPresentationStyle = .fullScreen
+                self.present(navigationController, animated: true, completion: nil)
+
+            case .failure(let error):
+                print("Login failed: \(error.localizedDescription)")
+                self.presentAlertWithTitle(title: "Error", message: "Invalid username or password")
+            }
+        }
     }
-    
-        
-        
+
     
     @objc func registerButtonTapped() {
         let signUpVC = SignUpViewController()

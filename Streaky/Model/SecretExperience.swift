@@ -6,9 +6,12 @@
 //
 
 import Foundation
-struct SecretExperience {
-    let title: String
-    let imageName: String
-    let description: String
-    let streaks: Int
+struct SecretExperience : Codable  {
+        var startDate: Date
+        var endDate: Date
+        var title: String
+        var description: String
+        var streakClaimed: Int
+        var businessName: String
+        var businessImage: String
 }

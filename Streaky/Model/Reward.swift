@@ -6,7 +6,7 @@
 //
 
 import Foundation
-struct Reward {
+struct Reward : Codable {
     var id: Int
     var streakId: Int
     var streak: Streak

@@ -1,10 +1,3 @@
-//
-//  SignUpViewController.swift
-//  Streaky
-//
-//  Created by Fatma Buyabes on 20/05/2024.
-//
-
 import UIKit
 import SnapKit
 
@@ -26,8 +19,6 @@ class SignUpViewController: UIViewController {
         setupUi()
         configureNavigationBar()
         setupConstraints()
-        
-        
     }
     
     func setupUi() {
@@ -76,23 +67,21 @@ class SignUpViewController: UIViewController {
         emailTextField.borderStyle = .roundedRect
         view.addSubview(emailTextField)
         
-        
         passwordTextField = UITextField()
         passwordTextField.placeholder = "Password"
         passwordTextField.layer.cornerRadius = 30
         passwordTextField.borderStyle = .roundedRect
-        passwordTextField.isSecureTextEntry = true
+        //passwordTextField.isSecureTextEntry = true
         view.addSubview(passwordTextField)
         
         signUpButton = UIButton(type: .system)
-        signUpButton.setTitle("Next", for: .normal)
+        signUpButton.setTitle("Sign Up", for: .normal)
         signUpButton.titleLabel?.font = UIFont.systemFont(ofSize: 18, weight: .bold)
         signUpButton.setTitleColor(.white, for: .normal)
         signUpButton.backgroundColor = #colorLiteral(red: 0.2706783712, green: 0.1171713695, blue: 0.4809373021, alpha: 1)
         signUpButton.layer.cornerRadius = 24
         signUpButton.addTarget(self, action: #selector(signUpButtonTapped), for: .touchUpInside)
         view.addSubview(signUpButton)
-        
         
         logoImageView = UIImageView()
         logoImageView.image = UIImage(named: "Logo")
@@ -101,13 +90,13 @@ class SignUpViewController: UIViewController {
     }
     
     func setupConstraints() {
+        backgroundImageView.snp.makeConstraints { make in
+            make.edges.equalToSuperview()
+        }
+        
         welcomeLabel.snp.makeConstraints { make in
             make.top.equalTo(view.safeAreaLayoutGuide).offset(80)
             make.centerX.equalToSuperview()
-        }
-        
-        backgroundImageView.snp.makeConstraints { make in
-            make.edges.equalToSuperview()
         }
         
         signUpLabel.snp.makeConstraints { make in
@@ -121,12 +110,6 @@ class SignUpViewController: UIViewController {
             make.height.equalTo(44)
         }
         
-        genderSegmentedControl.snp.makeConstraints { make in
-            make.top.equalTo(passwordTextField.snp.bottom).offset(16)
-            make.leading.trailing.equalToSuperview().inset(30)
-            make.height.equalTo(44)
-        }
-        
         emailTextField.snp.makeConstraints { make in
             make.top.equalTo(nameTextField.snp.bottom).offset(16)
             make.leading.trailing.equalToSuperview().inset(30)
@@ -135,6 +118,12 @@ class SignUpViewController: UIViewController {
         
         passwordTextField.snp.makeConstraints { make in
             make.top.equalTo(emailTextField.snp.bottom).offset(16)
+            make.leading.trailing.equalToSuperview().inset(30)
+            make.height.equalTo(44)
+        }
+        
+        genderSegmentedControl.snp.makeConstraints { make in
+            make.top.equalTo(passwordTextField.snp.bottom).offset(16)
             make.leading.trailing.equalToSuperview().inset(30)
             make.height.equalTo(44)
         }
@@ -167,16 +156,14 @@ class SignUpViewController: UIViewController {
         navigationController?.navigationBar.scrollEdgeAppearance = appearance
         
         // Add back button
-//        let backButton = UIBarButtonItem(image: UIImage(systemName: "chevron.left"), style: .plain, target: self, action: #selector(backButtonTapped))
-//        backButton.tintColor = .white
-//        navigationItem.leftBarButtonItem = backButton
+        let backButton = UIBarButtonItem(image: UIImage(systemName: "chevron.left"), style: .plain, target: self, action: #selector(backButtonTapped))
+        backButton.tintColor = .white
+        navigationItem.leftBarButtonItem = backButton
     }
     
-//    @objc func backButtonTapped() {
-//        navigationController?.popToRootViewController(animated: true)
-//        let onboardingVC = Onboarding2ViewController()
-//        self.navigationController?.pushViewController(onboardingVC, animated: false)
-//    }
+    @objc func backButtonTapped() {
+        navigationController?.popViewController(animated: true)
+    }
     
     @objc func signUpButtonTapped() {
         guard let name = nameTextField.text, !name.isEmpty else {
@@ -195,74 +182,34 @@ class SignUpViewController: UIViewController {
         }
         
         let genderIndex = genderSegmentedControl.selectedSegmentIndex
-        
-                let genderID: Int
-                if genderIndex == 1 {
-                    genderID = 1 // Female
-                } else {
-                    genderID = 2 // Male
-                }
-        
-        let user = User(name: name, email: email, password: password, genderId: genderIndex)
-        let intVc = InterestViewController()
-        intVc.modalPresentationStyle = .fullScreen
-        self.present(intVc, animated: true, completion: nil)
-
-//
-//                let intresetVc = InterestViewController()
-//        intresetVc.modalPresentationStyle = .popover
-//                self.present(intresetVc, animated: true)
-            
-            
-        
-        
-        //        NetworkManager.shared.signup(user: user) { [weak self] result in
-        //            switch result {
-        //            case .success(let tokenResponse):
-        //                print("Signup successful. Token: \(tokenResponse.token)")
-        //                // Optionally perform any action upon successful signup, like navigating to the main screen
-        //                DispatchQueue.main.async {
-        //                    // Example: Navigate to the main screen
-        //                    let mainVC = MainViewController()
-        //                    mainVC.token = tokenResponse.token
-        //                    mainVC.user = user
-        //                    self?.navigationController?.pushViewController(mainVC, animated: true)
-        //                }
-        //            case .failure(let error):
-        //                print("Signup failed. Error: \(error.localizedDescription)")
-        //                // Optionally handle failure, such as displaying an error message
-        //                DispatchQueue.main.async {
-        //                    self?.presentAlertWithTitle(title: "Error", message: "Sign up failed. Please try again.")
-        //                }
-        //            }
-        //        }
-        //    }
-        
-        
-        
-        func presentAlertWithTitle(title: String, message: String) {
-            let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: "OK", style: .default))
-            self.present(alert, animated: true, completion: nil)
+        let genderName: String
+        if genderIndex == 1 {
+            genderName = "Female"
+        } else {
+            genderName = "Male"
         }
         
-                
+        let user = User(name: name, email: email, password: password, genderName: genderName)
         
+        NetworkManager.shared.signup(user: user) { [weak self] result in
+            print(result)
+            switch result {
+            case .success(let tokenResponse):
+                print("Signup successful: \(tokenResponse.token)")
+                let homeVC = InterestViewController()
+                let navigationController = UINavigationController(rootViewController: homeVC)
+                navigationController.modalPresentationStyle = .fullScreen
+                self?.present(navigationController, animated: true, completion: nil)
+            case .failure(let error):
+                print("Signup failed: \(error.localizedDescription)")
+                self?.presentAlertWithTitle(title: "Error", message: "Sign up failed. Please try again.")
+            }
+        }
     }
     
-
-
-//        
-
-
-    
-    
-    
-    
+    func presentAlertWithTitle(title: String, message: String) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .default))
+        self.present(alert, animated: true, completion: nil)
+    }
 }
-
-
-
-
-
-

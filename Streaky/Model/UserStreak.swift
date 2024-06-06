@@ -6,7 +6,7 @@
 //
 
 import Foundation
-struct UserStreak  {
+struct UserStreak : Codable  {
     var id: Int
     var userId: Int
     var streakId: Int
