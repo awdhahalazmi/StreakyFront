@@ -1,6 +1,6 @@
 import UIKit
 import SnapKit
-
+import CoreLocation
 class StartQuestionViewController: UIViewController {
     
 //    var questionsArray = ["How are you?", "How old are you?"]
@@ -8,7 +8,7 @@ class StartQuestionViewController: UIViewController {
 //    
 //    
     var business : Business?
-
+    var userLocation: CLLocation?
     
     private let readyLabel: UILabel = {
         let label = UILabel()
@@ -57,7 +57,9 @@ class StartQuestionViewController: UIViewController {
         
         setupConstraints()
         
-        
+        if let location = userLocation {
+                    print("User's current location: \(location.coordinate.latitude), \(location.coordinate.longitude)")
+                }
     }
     
     private func setupConstraints() {

@@ -6,7 +6,7 @@ class TodayPointCollectionViewCell: UICollectionViewCell {
     
     
     var business : [Business] = []
-    var location : [Location] = []
+    var location : Location?
 
     private let pointsLabel: UILabel = {
         let label = UILabel()

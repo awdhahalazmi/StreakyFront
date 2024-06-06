@@ -96,8 +96,8 @@ class QuestionViewController: UIViewController {
         loadBusinessQuestions()
         loadQuestion()
         
-        questionLabel.text = business?.question
-        questionLabel.text = business?.question2
+        //questionLabel.text = business?.question
+       // questionLabel.text = business?.question2
     }
     
     private func setupViews() {
