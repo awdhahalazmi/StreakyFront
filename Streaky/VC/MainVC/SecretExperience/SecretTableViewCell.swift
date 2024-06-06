@@ -1,11 +1,16 @@
 import SnapKit
 import UIKit
 
+protocol TableViewCellDelegate: AnyObject {
+    func secretCollectionViewCellTapped(at indexPath: IndexPath)
+}
+
 class SecretTableViewCell: UITableViewCell, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
     static let identifier = "SecretTableViewCell"
-    
     private var secretExperiences: [SecretExperience] = []
+    weak var delegate: TableViewCellDelegate?
+
     
     private let collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
@@ -54,14 +59,18 @@ class SecretTableViewCell: UITableViewCell, UICollectionViewDelegate, UICollecti
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "SecretCollectionViewCell", for: indexPath) as! SecretCollectionViewCell
+        
         let secretExperience = secretExperiences[indexPath.item]
-        let title = secretExperience.title
-        let streaks = "\(secretExperience.streakClaimed) Streak"
+        let titleText = secretExperience.title
+        let descriptionText = secretExperience.description
+        let streakClaimedText = "\(secretExperience.streakClaimed) Streaks"
         let icon = UIImage(named: secretExperience.businessImage) ?? UIImage()
         
-        cell.configure(icon: icon, title: title, streaks: streaks)
+        cell.configure(iconURL: secretExperience.businessImage, titleText: titleText, descriptionText: descriptionText, streakClaimedText: streakClaimedText)
+        
         return cell
     }
+    
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let width = collectionView.frame.width / 2 - 24
@@ -71,4 +80,9 @@ class SecretTableViewCell: UITableViewCell, UICollectionViewDelegate, UICollecti
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         return 16
     }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        delegate?.secretCollectionViewCellTapped(at: indexPath)
+    }
+
 }

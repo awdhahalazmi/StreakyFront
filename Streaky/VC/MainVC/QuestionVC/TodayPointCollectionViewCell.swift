@@ -1,27 +1,25 @@
-//
-//  TodayPointCollectionViewCell.swift
-//  Streaky
-//
-//  Created by Fatma Buyabes on 29/05/2024.
-//
-
 import UIKit
+import SnapKit
 import CoreLocation
-
 
 class TodayPointCollectionViewCell: UICollectionViewCell {
     
+    
+    var business : [Business] = []
+    var location : Location?
+
     private let pointsLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 14, weight: .medium)
-        label.textColor = #colorLiteral(red: 1, green: 0.5878451467, blue: 0.005192696583, alpha: 1)
-        label.backgroundColor = #colorLiteral(red: 0.9568627477, green: 0.6588235497, blue: 0.5450980663, alpha: 0.1781005859)
-        label.layer.cornerRadius = 5
+        label.textColor = .orange
+        label.backgroundColor = #colorLiteral(red: 0.9568627477, green: 0.6588235497, blue: 0.5450980663, alpha: 0.3300537109)
+        label.layer.cornerRadius = 12
         label.layer.masksToBounds = true
         label.textAlignment = .center
         label.setContentHuggingPriority(.required, for: .horizontal)
         label.setContentCompressionResistancePriority(.required, for: .horizontal)
         return label
+        
     }()
     
     private let brandLabel: UILabel = {
@@ -36,16 +34,20 @@ class TodayPointCollectionViewCell: UICollectionViewCell {
         let button = UIButton()
         button.setTitle("GO", for: .normal)
         button.titleLabel?.font = UIFont.systemFont(ofSize: 14, weight: .semibold)
-        button.backgroundColor =  #colorLiteral(red: 0.9829108119, green: 0.5975590348, blue: 0.4170847535, alpha: 1)
+        button.backgroundColor = #colorLiteral(red: 0.9829108119, green: 0.5975590348, blue: 0.4170847535, alpha: 1)
         button.setTitleColor(.white, for: .normal)
-        button.layer.cornerRadius = 8
+        button.layer.cornerRadius = 15
+        button.layer.shadowColor = UIColor.black.cgColor
+        button.layer.shadowOpacity = 0.2
+        button.layer.shadowOffset = CGSize(width: 0, height: 2)
+        button.layer.shadowRadius = 4
         return button
     }()
     
     private let locationIcon: UIImageView = {
         let imageView = UIImageView()
         imageView.image = UIImage(systemName: "location.circle.fill")
-        imageView.tintColor =  #colorLiteral(red: 0.9829108119, green: 0.5975590348, blue: 0.4170847535, alpha: 1)
+        imageView.tintColor = #colorLiteral(red: 0.9829108119, green: 0.5975590348, blue: 0.4170847535, alpha: 1)
         imageView.isUserInteractionEnabled = true // Enable user interaction
         return imageView
     }()
@@ -55,8 +57,8 @@ class TodayPointCollectionViewCell: UICollectionViewCell {
         view.layer.cornerRadius = 16
         view.layer.borderWidth = 0.5
         view.layer.borderColor = UIColor.lightGray.cgColor
-        view.layer.shadowRadius = 1
-        view.layer.shadowOpacity = 0.5
+        view.layer.shadowRadius = 4
+        view.layer.shadowOpacity = 0.2
         view.layer.shadowColor = UIColor.lightGray.cgColor
         view.layer.shadowOffset = CGSize(width: 0, height: 4)
         view.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
@@ -79,18 +81,21 @@ class TodayPointCollectionViewCell: UICollectionViewCell {
         containerView.addSubview(brandLabel)
         containerView.addSubview(goButton)
         containerView.addSubview(locationIcon)
-        setupGestureRecognizers()
-        
+        googleMapsGestureRecognizers()
+        pointsLabel.text = " 50 Points"
+
     }
     
     private func setupConstraints() {
         containerView.snp.makeConstraints { make in
-            make.edges.equalToSuperview().inset(4)
+            make.edges.equalToSuperview().inset(8)
         }
         
         pointsLabel.snp.makeConstraints { make in
             make.top.equalToSuperview().offset(16)
             make.leading.equalToSuperview().offset(16)
+            make.width.equalTo(80)
+            make.height.equalTo(24)
         }
         
         brandLabel.snp.makeConstraints { make in
@@ -113,7 +118,8 @@ class TodayPointCollectionViewCell: UICollectionViewCell {
         }
     }
     
-    private func setupGestureRecognizers() {
+    // MARK: Google Map Functionality
+    private func googleMapsGestureRecognizers() {
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(openGoogleMaps))
         locationIcon.addGestureRecognizer(tapGesture)
     }
@@ -133,28 +139,34 @@ class TodayPointCollectionViewCell: UICollectionViewCell {
         }
     }
     
-    func configure(points: Int, brand: String, latitude: CLLocationDegrees, longitude: CLLocationDegrees) {
-        pointsLabel.text = "Get \(points) points"
-        brandLabel.text = brand
+    // MARK: Go Button Functionality
+    private func goGestureRecognizers() {
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(openGoogleMaps))
+        locationIcon.addGestureRecognizer(tapGesture)
+    }
+    
+    func configure(with business: Business) {
+        brandLabel.text = business.name
         
-        // Create CLLocation object for the target location
-        let targetLocation = CLLocation(latitude: 50, longitude: 50)
+        let userLatitude: CLLocationDegrees = 50.0
+        let userLongitude: CLLocationDegrees = 50.0
+        let userLocation = CLLocation(latitude: userLatitude, longitude: userLongitude)
+        
+        guard let businessLocation = business.locations.first else { return }
+        let targetLocation = CLLocation(latitude: businessLocation.latitude, longitude: businessLocation.longitude)
         
         // Calculate the distance between the user's location and the target location
-        let userLocation = CLLocation(latitude: latitude, longitude: longitude)
         let distance = userLocation.distance(from: targetLocation)
         
         // Set a radius (in meters) around the target location
-        let radius: CLLocationDistance = 5.0
+        let radius: CLLocationDistance = 100.0
         
         // Check if the distance is within the radius
         let isWithinRadius = distance <= radius
         
         // Enable the button if the user is within the radius, disable otherwise
         goButton.isEnabled = isWithinRadius
-        goButton.backgroundColor = isWithinRadius ?  #colorLiteral(red: 0.9829108119, green: 0.5975590348, blue: 0.4170847535, alpha: 1): #colorLiteral(red: 0.9411764741, green: 0.4980392158, blue: 0.3529411852, alpha: 1)
-
+        goButton.backgroundColor = isWithinRadius ? #colorLiteral(red: 0.9829108119, green: 0.5975590348, blue: 0.4170847535, alpha: 1) : #colorLiteral(red: 0.9411764741, green: 0.4980392158, blue: 0.3529411852, alpha: 1)
     }
+    
 }
-
-

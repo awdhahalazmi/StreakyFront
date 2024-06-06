@@ -1,9 +1,14 @@
 import UIKit
 import SnapKit
+import Alamofire
 
 class QuestionViewController: UIViewController {
     
-    private var points: Int = 0
+    private var points: Double = 0
+    var business: Business? // Add a property to store the Business object
+    private var token: String? {
+        return UserDefaults.standard.string(forKey: "AuthToken")
+    }
     
     private let backgroundImageView: UIImageView = {
         let imageView = UIImageView()
@@ -22,7 +27,7 @@ class QuestionViewController: UIViewController {
     
     private let todayQuestionLabel: UILabel = {
         let label = UILabel()
-        label.text = "Today Question"
+        label.text = "Today's Question"
         label.font = UIFont.systemFont(ofSize: 24, weight: .bold)
         label.textColor = .white
         label.textAlignment = .center
@@ -77,20 +82,22 @@ class QuestionViewController: UIViewController {
     private let incorrectAnswerColor = UIColor(red: 238/255, green: 100/255, blue: 100/255, alpha: 1)
     private let selectedAnswerColor = UIColor(red: 100/255, green: 149/255, blue: 237/255, alpha: 1)
     
-    private var questions: [(question: String, options: [String], correctAnswer: String)] = [
-        ("What is the latest released in Pick", ["Tramisu Latte", "Con Panna", "Pum Berry Sauce", "Schiaccatta"], "Pum Berry Sauce"),
-        ("What is the capital of France?", ["Berlin", "Madrid", "Paris", "Rome"], "Paris"),
-        
-    ]
+    private var questions: [(question: String, options: [String], correctAnswer: String)] = []
     
     private var currentQuestionIndex = 0
     private var selectedAnswer: String?
     private var incorrectAnswers = 0
     
+    private let networkManager = NetworkManager() // Add the network manager instance
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupViews()
+        loadBusinessQuestions()
         loadQuestion()
+        
+        //questionLabel.text = business?.question
+       // questionLabel.text = business?.question2
     }
     
     private func setupViews() {
@@ -152,6 +159,19 @@ class QuestionViewController: UIViewController {
         }
     }
     
+    private func loadBusinessQuestions() {
+        guard let business = business else {
+            print("Business is nil") // Debugging statement
+            return
+        }
+        
+        let question1 = (question: business.question, options: [business.correctAnswer, business.wrongAnswer1, business.wrongAnswer2], correctAnswer: business.correctAnswer)
+        let question2 = (question: business.question2, options: [business.correctAnswerQ2, business.wrongAnswerQ2_1, business.wrongAnswerQ2_2], correctAnswer: business.correctAnswerQ2)
+        
+        questions = [question1, question2]
+        print("Loaded questions: \(questions)") // Debugging statement
+    }
+    
     private func loadQuestion() {
         guard currentQuestionIndex < questions.count else {
             return
@@ -197,7 +217,9 @@ class QuestionViewController: UIViewController {
         let questionData = questions[currentQuestionIndex]
         if selectedAnswer == questionData.correctAnswer {
             highlightCorrectAnswer()
-            points += 50 
+            points += 50
+            updatePointsBackend(points: points)
+            print("Correct answer selected, points: \(points)")  // Debug print
             DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
                 self.showCongratulations()
             }
@@ -309,6 +331,7 @@ class QuestionViewController: UIViewController {
             button.layer.cornerRadius = 22
             button.addTarget(self, action: #selector(doneButtonTapped), for: .touchUpInside)
             return button
+            
         }()
         
         view.addSubview(messageLabel)
@@ -376,10 +399,24 @@ class QuestionViewController: UIViewController {
     }
     
     @objc private func doneButtonTapped() {
-        if let view = view.subviews.last {
-            view.removeFromSuperview()
+        let homeVC = MainTabBarViewController()
+        homeVC.modalPresentationStyle = .fullScreen
+        self.present(homeVC, animated: true, completion: nil)
+    }
+
+    private func updatePointsBackend(points: Double) {
+        guard let token = token else {
+            print("Token is missing")
+            return
         }
-        let pointsVC = HomeTableViewController()
-        navigationController?.pushViewController(pointsVC, animated: true)
+        let updatePoints = UpdatePoints(points: points)
+        networkManager.updatesPoints(points: updatePoints, token: token) { result in
+            switch result {
+            case .success(let response):
+                print("Points updated successfully: \(response.message)")
+            case .failure(let error):
+                print("Failed to update points: \(error.localizedDescription)")
+            }
+        }
     }
 }

@@ -6,7 +6,6 @@ class ProfileViewController: UIViewController {
     
     var token: String?
     var userAccount: UserAccount?
-
     var profileImageView: UIImageView!
     var nameLabel: UILabel!
     var nameTitle: UILabel!
@@ -23,10 +22,12 @@ class ProfileViewController: UIViewController {
         setupUI()
         setupConstraints()
         setupNavigationBar()
+     
         
         if let savedToken = UserDefaults.standard.string(forKey: "AuthToken") {
-                    fetchUserAccount()
-                } else {
+            print("token in profile: \(savedToken)")
+             fetchUserDetails(token: savedToken)
+        } else {
                     presentAlertWithTitle(title: "Error", message: "User token is missing")
                 }
     }
@@ -51,7 +52,7 @@ class ProfileViewController: UIViewController {
         changeProfileButton = UIButton(type: .system)
         changeProfileButton.setTitle("Change profile picture", for: .normal)
         changeProfileButton.setTitleColor(.systemPurple, for: .normal)
-        changeProfileButton.addTarget(self, action: #selector(changeProfileTapped), for: .touchUpInside)
+        //changeProfileButton.addTarget(self, action: #selector(changeProfileTapped), for: .touchUpInside)
         view.addSubview(changeProfileButton)
         
         infoContainerView = UIView()
@@ -170,25 +171,14 @@ class ProfileViewController: UIViewController {
             make.trailing.equalTo(infoContainerView).offset(-20)
         }
     }
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        
-        // Customize navigation bar appearance
-        let appearance = UINavigationBarAppearance()
-        appearance.configureWithOpaqueBackground()
-        appearance.backgroundColor = #colorLiteral(red: 0.4261863232, green: 0.271607697, blue: 0.652882278, alpha: 1)
-        appearance.titleTextAttributes = [.foregroundColor: UIColor.white]
-       
-        navigationController?.isNavigationBarHidden = false
-        navigationController?.navigationBar.standardAppearance = appearance
-        navigationController?.navigationBar.compactAppearance = appearance
-        navigationController?.navigationBar.scrollEdgeAppearance = appearance
-    }
+
     
     func setupNavigationBar() {
+        
+        
         let appearance = UINavigationBarAppearance()
         appearance.configureWithOpaqueBackground()
-        appearance.backgroundColor =  #colorLiteral(red: 0.4261863232, green: 0.271607697, blue: 0.652882278, alpha: 1)
+        appearance.backgroundColor =  #colorLiteral(red: 0.6352165341, green: 0.402710855, blue: 0.9805307984, alpha: 1)
 
         navigationItem.leftBarButtonItem = UIBarButtonItem(
             image: UIImage(systemName: "power"),
@@ -197,29 +187,44 @@ class ProfileViewController: UIViewController {
             action: #selector(logoutTapped)
         )
         
-        navigationItem.rightBarButtonItem = UIBarButtonItem(
-            title: "Edit",
-            style: .plain,
-            target: self,
-            action: #selector(editTapped)
-        )
-        navigationItem.rightBarButtonItem?.tintColor = UIColor.systemBlue
-        navigationItem.leftBarButtonItem?.tintColor = UIColor.systemBlue
+//        navigationItem.rightBarButtonItem = UIBarButtonItem(
+//            title: "Edit",
+//            style: .plain,
+//            target: self,
+//            action: #selector()
+//        )
+        navigationItem.rightBarButtonItem?.tintColor = UIColor.white
+        navigationItem.leftBarButtonItem?.tintColor = UIColor.white
+        appearance.titleTextAttributes = [
+            .foregroundColor: UIColor.white,
+            
+            .font: UIFont.systemFont(ofSize: 18, weight: .bold)
+        ]
+    
+        appearance.shadowColor = .clear
+        navigationController?.navigationBar.isTranslucent = false
+        navigationController?.navigationBar.standardAppearance = appearance
+        navigationController?.navigationBar.compactAppearance = appearance
+        navigationController?.navigationBar.scrollEdgeAppearance = appearance
+
+
 
     }
     
-    @objc func changeProfileTapped() {
-        let editVc = EditProfileViewController()
-        editVc.modalPresentationStyle = .fullScreen
-        self.present(editVc, animated: true, completion: nil)
-    }
+//    @objc func changeProfileTapped() {
+//        let editVc = EditProfileViewController()
+//        editVc.modalPresentationStyle = .fullScreen
+//        self.present(editVc, animated: true, completion: nil)
+//    }
     
     @objc func logoutTapped() {
         let alertController = UIAlertController(title: "Log Out", message: "Are you sure you want to log out?", preferredStyle: .alert)
         let confirmAction = UIAlertAction(title: "Log Out", style: .destructive) { _ in
             UserDefaults.standard.removeObject(forKey: "AuthToken")
             let authVC = AuthViewController()
-            self.navigationController?.pushViewController(authVC, animated: true)
+            authVC.modalPresentationStyle = .fullScreen
+            self.present(authVC, animated: false, completion: nil)
+
         }
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
         alertController.addAction(confirmAction)
@@ -227,10 +232,10 @@ class ProfileViewController: UIViewController {
         present(alertController, animated: true, completion: nil)
     }
     
-    @objc func editTapped() {
-        let editVC = EditProfileViewController()
-        navigationController?.pushViewController(editVC, animated: true)
-    }
+//    @objc func editTapped() {
+//        let editVC = EditProfileViewController()
+//        navigationController?.pushViewController(editVC, animated: true)
+//    }
     
     func fetchUserDetails(token: String) {
         NetworkManager.shared.fetchUserDetails(token: token) { [weak self] result in
@@ -239,7 +244,7 @@ class ProfileViewController: UIViewController {
                 DispatchQueue.main.async {
                     self?.nameLabel.text = userDetails.name
                     self?.emailLabel.text = userDetails.email
-                    self?.genderLabel.text = userDetails.genderName
+                   // self?.genderLabel.text = userDetails.genderName
                 }
             case .failure(let error):
                 DispatchQueue.main.async {
@@ -248,21 +253,7 @@ class ProfileViewController: UIViewController {
             }
         }
     }
-    private func fetchUserAccount() {
-            NetworkManager.shared.getUserAccount{ [weak self] result in
-                switch result {
-                case .success(let userAccount):
-                    self?.userAccount = userAccount
-                    self?.nameLabel.text = userAccount.name
-                    self?.emailLabel.text = userAccount.email
-                    self?.genderLabel.text = userAccount.genderName
-                    self?.updateUI()
-                case .failure(let error):
-                    print("Failed to fetch profile: \(error)")
-                    // Handle error
-                }
-            }
-        }
+    
     
     func loadProfileImage(from urlString: String) {
         guard let url = URL(string: urlString) else {
@@ -284,20 +275,12 @@ class ProfileViewController: UIViewController {
         alert.addAction(UIAlertAction(title: "OK", style: .default))
         self.present(alert, animated: true, completion: nil)
     }
-    private func updateUI() {
-            // Update the UI with the profile details
-            guard let userAccount = userAccount else { return }
-            // For example:
-            // nameLabel.text = profile.name
-            // emailLabel.text = profile.email
-            // ... and so on
-        }
+
 }
 
-extension ProfileViewController: refreshDelagate {
+extension ProfileViewController: RefreshDelagate {
     func refreshPage() {
-        if let token = UserDefaults.standard.string(forKey: "AuthToken") {
-            fetchUserDetails(token: token)
-        }
+        let token = UserDefaults.standard.string(forKey: "AuthToken")
+
     }
 }

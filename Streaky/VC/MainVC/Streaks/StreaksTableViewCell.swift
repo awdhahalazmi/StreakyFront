@@ -24,11 +24,13 @@ class StreaksTableViewCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
+    
     private func setupUI() {
         // Configure cell corner radius
         contentView.layer.cornerRadius = 24
         contentView.layer.masksToBounds = true
         contentView.layer.shadowColor = UIColor.lightGray.cgColor
+        
         
         // Configure flame icon
         flameIcon.image = UIImage(systemName: "flame.fill")
@@ -94,7 +96,7 @@ class StreaksTableViewCell: UITableViewCell {
     }
     
     func configure(streaks: Int) {
-        streakNumberLabel.text = "\(streaks)"
+        streakNumberLabel.text = " \(streaks)"
         
         for (index, statusIcon) in statusIcons.enumerated() {
             if index < streaks {
@@ -102,6 +104,7 @@ class StreaksTableViewCell: UITableViewCell {
             } else {
                 statusIcon.tintColor = .lightGray
             }
+            
         }
     }
 }

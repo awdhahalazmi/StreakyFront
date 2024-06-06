@@ -12,6 +12,7 @@ class LoginViewController: UIViewController {
     var signUpLabel: UILabel!
     var loginButton: UIButton!
     var registerButton: UIButton!
+    var userName: UserAccount?
     var logoImageView: UIImageView!
     
     override func viewDidLoad() {
@@ -55,6 +56,7 @@ class LoginViewController: UIViewController {
         emailTextField = UITextField()
         emailTextField.placeholder = "Email"
         emailTextField.borderStyle = .roundedRect
+        emailTextField.text = "f@gmail.com"
         view.addSubview(emailTextField)
         
         passwordTextField = UITextField()
@@ -62,13 +64,14 @@ class LoginViewController: UIViewController {
         passwordTextField.layer.cornerRadius = 30
         passwordTextField.borderStyle = .roundedRect
         passwordTextField.isSecureTextEntry = true
+        passwordTextField.text = "1234"
         view.addSubview(passwordTextField)
         
         loginButton = UIButton(type: .system)
         loginButton.setTitle("Login", for: .normal)
-        loginButton.titleLabel?.font = UIFont.systemFont(ofSize: 18, weight: .bold)
+        loginButton.titleLabel?.font = UIFont.systemFont(ofSize: 18, weight: .regular)
         loginButton.setTitleColor(.white, for: .normal)
-        loginButton.backgroundColor = #colorLiteral(red: 0.2706783712, green: 0.1171713695, blue: 0.4809373021, alpha: 1)
+        loginButton.backgroundColor = UIColor(red: 69/255, green: 30/255, blue: 123/255, alpha: 1)
         loginButton.layer.cornerRadius = 24
         loginButton.addTarget(self, action: #selector(loginButtonTapped), for: .touchUpInside)
         view.addSubview(loginButton)
@@ -182,10 +185,11 @@ class LoginViewController: UIViewController {
                 let homeVC = MainTabBarViewController()
                 homeVC.token = tokenResponse.token
                 print(tokenResponse)
-                let navigationController = UINavigationController(rootViewController: homeVC)
-                navigationController.modalPresentationStyle = .fullScreen
-                self.present(navigationController, animated: true, completion: nil)
-
+                UserDefaults.standard.removeObject(forKey: "AuthToken")
+                let _ = UserDefaults.standard.setValue(tokenResponse.token, forKey: "AuthToken")
+                homeVC.modalPresentationStyle = .fullScreen
+                self.present(homeVC, animated: true, completion: nil)
+                
             case .failure(let error):
                 print("Login failed: \(error.localizedDescription)")
                 self.presentAlertWithTitle(title: "Error", message: "Invalid username or password")

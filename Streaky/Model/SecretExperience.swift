@@ -7,11 +7,14 @@
 
 import Foundation
 struct SecretExperience : Codable  {
-        var startDate: Date
-        var endDate: Date
+        var id: Int
+        var startDate: String
+        var endDate: String
         var title: String
         var description: String
         var streakClaimed: Int
         var businessName: String
         var businessImage: String
 }
+
+

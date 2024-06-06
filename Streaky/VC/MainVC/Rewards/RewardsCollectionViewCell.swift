@@ -1,5 +1,6 @@
 import UIKit
 import SnapKit
+import Kingfisher
 
 class RewardsCollectionViewCell: UICollectionViewCell {
 
@@ -32,13 +33,14 @@ class RewardsCollectionViewCell: UICollectionViewCell {
     private let containerView: UIView = {
         let view = UIView()
         view.layer.cornerRadius = 16
-        view.layer.borderWidth = 1
-        view.layer.borderColor = UIColor.white.cgColor
+        view.layer.borderWidth = 0.5
+        view.layer.borderColor = UIColor.lightGray.cgColor
         view.layer.shadowRadius = 1
         view.layer.shadowOpacity = 0.2
         view.layer.shadowColor = UIColor.lightGray.cgColor
         view.layer.shadowOffset = CGSize(width: 0, height: 4)
         view.backgroundColor = UIColor.white
+
         return view
     }()
     
@@ -81,9 +83,20 @@ class RewardsCollectionViewCell: UICollectionViewCell {
         }
     }
     
-    func configure(icon: UIImage, discountText: String, pointsText: String) {
-        imageView.image = icon
-        discountLabel.text = discountText
-        pointsLabel.text = pointsText
-    }
+    func configure(iconURL: String, discountText: String, pointsText: String) {
+            loadImage(from: iconURL)
+            discountLabel.text = discountText
+            pointsLabel.text = pointsText
+        }
+        
+        private func loadImage(from urlString: String) {
+            guard let url = URL(string: urlString) else {
+                print("Invalid URL: \(urlString)")
+                imageView.image = UIImage(named: "placeholder")
+                return
+            }
+            
+            imageView.kf.setImage(with: url, placeholder: UIImage(named: "placeholder"))
+        }
+    
 }

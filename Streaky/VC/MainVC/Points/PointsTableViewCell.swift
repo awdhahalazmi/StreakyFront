@@ -4,6 +4,7 @@ import SnapKit
 class PointsTableViewCell: UITableViewCell {
     
     static let identifier = "PointsTableViewCell"
+    var user: UserAccount?
 
     // UI Components
     private let pointsContainerView = UIView()
@@ -41,8 +42,13 @@ class PointsTableViewCell: UITableViewCell {
         // Configure points label
         pointsLabel.font = UIFont.boldSystemFont(ofSize: 18)
         pointsLabel.textColor = .white
-        pointsLabel.text = "1 Points"
+        pointsLabel.text = "\(user?.points ?? 0) Points"
+        
         pointsContainerView.addSubview(pointsLabel)
+        
+        if let points = user?.points {
+            pointsLabel.text = "\(points) Points"
+        }
     }
     
     private func setupConstraints() {
@@ -67,6 +73,8 @@ class PointsTableViewCell: UITableViewCell {
     }
     
     func configure(with points: Int) {
-        pointsLabel.text = "\(points) Points"
+        
+    pointsLabel.text = "\(points) Points"
+        
     }
 }

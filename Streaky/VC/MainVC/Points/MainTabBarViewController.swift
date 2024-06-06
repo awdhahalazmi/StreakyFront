@@ -11,8 +11,8 @@ class MainTabBarViewController: UITabBarController {
         if let savedToken = UserDefaults.standard.string(forKey: "AuthToken") {
             token = savedToken
         }
-        callHome()
-        self.selectedIndex = 1
+        //callHome()
+        self.selectedIndex = 0
         
     }
 
@@ -29,7 +29,7 @@ class MainTabBarViewController: UITabBarController {
         let friendsNavigationController = UINavigationController(rootViewController: friendsViewController)
         friendsNavigationController.tabBarItem = UITabBarItem(
             title: "Friends",
-            image: UIImage(systemName: "person.3"),
+            image: UIImage(systemName: "sparkles"),
             selectedImage: UIImage(systemName: "person.3.fill")
         )
         
@@ -41,8 +41,9 @@ class MainTabBarViewController: UITabBarController {
             selectedImage: UIImage(systemName: "person.fill")
         )
 
-        viewControllers = [friendsViewController, homeNavigationController, profileNavigationController]
+        viewControllers = [homeNavigationController, friendsViewController, profileNavigationController]
 
+        
     }
 
 
@@ -60,17 +61,17 @@ class MainTabBarViewController: UITabBarController {
         tabBar.unselectedItemTintColor = UIColor(white: 1.0, alpha: 0.6)
     }
     
-    func callHome()
-    {
-        let homeVC = HomeTableViewController()
-        homeVC.token = "AuthToken" // Pass the token to GymListTableViewController
-//                    let TabBarVC = TabBarViewController()
-//                    TabBarVC.token = tokenResponse.token // You can also pass the token to other view controllers if needed
-        self.navigationController?.pushViewController(homeVC, animated: true)
-//        let navigationController = UINavigationController(rootViewController: homeVC)
-//        navigationController.modalPresentationStyle = .fullScreen
-//
-//        self.present(navigationController, animated: true, completion: nil)
-        
-    }
+//    func callHome()
+//    {
+//        let homeVC = HomeTableViewController()
+//        homeVC.token = "AuthToken" // Pass the token to GymListTableViewController
+////                    let TabBarVC = TabBarViewController()
+////                    TabBarVC.token = tokenResponse.token // You can also pass the token to other view controllers if needed
+//        self.navigationController?.pushViewController(homeVC, animated: true)
+////        let navigationController = UINavigationController(rootViewController: homeVC)
+////        navigationController.modalPresentationStyle = .fullScreen
+////
+////        self.present(navigationController, animated: true, completion: nil)
+//        
+//    }
 }
