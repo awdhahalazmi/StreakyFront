@@ -90,6 +90,29 @@ class NetworkManager {
         }
     }
     
+    func fetchAllFriends(token: String, completion: @escaping (Result<[Friend], Error>) -> Void) {
+        
+        
+        
+        let url = baseUrl + "Auth/friends"
+        
+        let headers: HTTPHeaders = [.authorization(bearerToken: token)]
+        
+        AF.request(url, method: .get, headers: headers).responseDecodable(of: [Friend].self) { response in
+            switch response.result {
+            case .success(let friends):
+                if let data = response.data, let str = String(data: data, encoding: .utf8) {
+                    print("Success: fetchAllFriends response: (str)")
+                }
+                completion(.success(friends))
+            case .failure(let error):
+                if let data = response.data, let str = String(data: data, encoding: .utf8) {
+                    print("Error: fetchAllFriends response: (str)")}
+                print(error.localizedDescription)
+            }
+        }
+    }
+    
     
     
     func getAllRewards(token: String, completion: @escaping (Result<[Reward], Error>) -> Void) {

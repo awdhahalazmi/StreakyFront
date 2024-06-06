@@ -5,18 +5,9 @@ class FriendsDashboardViewController: UIViewController, UITableViewDataSource, U
     var token: String?
     var user: User?
 
-    private var friends: [Friend] = [
-//        Friend(name: "Fatma", profileImageUrl: "https://example.com/image1.jpg", lastStreakLocation: "Pick", streakCount: 5),
-//        Friend(name: "Awdlah", profileImageUrl: "https://example.com/image2.jpg", lastStreakLocation: "Coffee Bean", streakCount: 4),
-//        Friend(name: "Faten", profileImageUrl: "https://example.com/image3.jpg", lastStreakLocation: "Pick", streakCount: 3),
-//        Friend(name: "Noura", profileImageUrl: "https://example.com/image4.jpg", lastStreakLocation: "Ananas", streakCount: 2),
-//        Friend(name: "Maha", profileImageUrl: "https://example.com/image5.jpg", lastStreakLocation: "Spark", streakCount: 1)
-    ]
+    private var friends: [Friend] = []
     
-    private let requests: [Friend] = [
-//        Friend(name: "Dana", profileImageUrl: "https://example.com/image6.jpg", lastStreakLocation: "Cafe", streakCount: 3),
-//        Friend(name: "Haya", profileImageUrl: "https://example.com/image7.jpg", lastStreakLocation: "Mall", streakCount: 2)
-    ]
+    private let requests: [Friend] = []
 
     private var currentList: [Friend]
     private var isRequestView: Bool = false
@@ -52,6 +43,7 @@ class FriendsDashboardViewController: UIViewController, UITableViewDataSource, U
     override func viewDidLoad() {
         super.viewDidLoad()
         setupViews()
+        setupNavigationBar()
         configureNavigationBarAppearance()
         tableView.dataSource = self
         tableView.delegate = self
@@ -75,6 +67,16 @@ class FriendsDashboardViewController: UIViewController, UITableViewDataSource, U
         }
     }
 
+    private func setupNavigationBar() {
+        navigationItem.rightBarButtonItem = UIBarButtonItem(
+            image: UIImage(systemName: "person.fill.badge.plus"),
+            style: .plain,
+            target: self,
+            action: #selector(addFriendButtonTapped)
+        )
+        navigationItem.rightBarButtonItem?.tintColor = UIColor.white
+    }
+
     private func configureNavigationBarAppearance() {
         title = "Friends"
 
@@ -86,32 +88,23 @@ class FriendsDashboardViewController: UIViewController, UITableViewDataSource, U
         navigationController?.navigationBar.standardAppearance = appearance
         navigationController?.navigationBar.scrollEdgeAppearance = appearance
         navigationController?.navigationBar.isTranslucent = true
-        
-        navigationItem.rightBarButtonItem = UIBarButtonItem(
-            image: UIImage(systemName: "person.fill.badge.plus"),
-            style: .plain,
-            target: self,
-            action: #selector(addFriendButtonTapped)
-        )
-        navigationItem.rightBarButtonItem?.tintColor = UIColor.white
     }
     
-    
-//    override func viewWillAppear(_ animated: Bool) {
-//        super.viewWillAppear(animated)
-//        
-//        // Customize navigation bar appearance
-//        let appearance = UINavigationBarAppearance()
-//        title = "Friends"
-//        appearance.configureWithOpaqueBackground()
-//        appearance.backgroundColor = #colorLiteral(red: 0.4261863232, green: 0.271607697, blue: 0.652882278, alpha: 1)
-//        appearance.titleTextAttributes = [.foregroundColor: UIColor.white]
-//       
-//        navigationController?.isNavigationBarHidden = false
-//        navigationController?.navigationBar.standardAppearance = appearance
-//        navigationController?.navigationBar.compactAppearance = appearance
-//        navigationController?.navigationBar.scrollEdgeAppearance = appearance
-//    }
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        // Customize navigation bar appearance
+        let appearance = UINavigationBarAppearance()
+        title = "Friends"
+        appearance.configureWithOpaqueBackground()
+        appearance.backgroundColor =  #colorLiteral(red: 0.4261863232, green: 0.271607697, blue: 0.652882278, alpha: 1)
+        appearance.titleTextAttributes = [.foregroundColor: UIColor.white]
+       
+        navigationController?.isNavigationBarHidden = false
+        navigationController?.navigationBar.standardAppearance = appearance
+        navigationController?.navigationBar.compactAppearance = appearance
+        navigationController?.navigationBar.scrollEdgeAppearance = appearance
+    }
 
     @objc private func addFriendButtonTapped() {
         let addFriendVC = AddFriendViewController()
@@ -132,7 +125,7 @@ class FriendsDashboardViewController: UIViewController, UITableViewDataSource, U
         tableView.reloadData()
     }
     func getAllFriends() {
-        var token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJLZmguRW1haWwiOiJNYWhhQGdtYWlsLmNvbSIsIktmaC5Vc2VySWQiOiI3IiwiaHR0cDovL3NjaGVtYXMubWljcm9zb2Z0LmNvbS93cy8yMDA4LzA2L2lkZW50aXR5L2NsYWltcy9yb2xlIjoidXNlciIsImV4cCI6MjY2NDA4NjAxMywiaXNzIjoiaHR0cDovL3d3dy5teXNpdGUuY29tIiwiYXVkIjoiaHR0cDovL3d3dy5teXNpdGUuY29tIn0.8bAXdBN6gw3rVCM0vBBYc5Vq9qvj_o5Vd5Buzob2f1o"
+
         
             NetworkManager.shared.fetchAllFriends(token: UserDefaults.standard.string(forKey: "AuthToken") ?? "") { result in
                 DispatchQueue.main.async {
@@ -192,5 +185,3 @@ extension FriendsDashboardViewController: UISearchResultsUpdating {
         tableView.reloadData()
     }
 }
-
-

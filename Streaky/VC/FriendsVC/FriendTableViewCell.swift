@@ -100,7 +100,7 @@ class FriendTableViewCell: UITableViewCell {
 //            profileImageView.kf.setImage(with: url)
         //}
         nameLabel.text = friend.name
-        lastStreakLocationLabel.text = "Last Streak at \(friend.name)"
+        //lastStreakLocationLabel.text = "Last Streak at \(friend.userStreaksCount)"
         streakCountLabel.text = "\(friend.userStreaksCount) Streaks"
     }
 }
