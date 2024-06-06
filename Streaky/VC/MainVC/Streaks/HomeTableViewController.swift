@@ -14,15 +14,8 @@ class HomeTableViewController: UITableViewController, CustomTableViewCellDelegat
     var userLocation: CLLocation?
     let locationManager = CLLocationManager()
 
-    
     let sections = ["", "Streaks", "Today's Questions", "Rewards", "Secret Experience"]
 
-    // Target location coordinates
-    // TODO get the list of locations from the backend and then loop to check if the user location is inside any of the branches
-//    let targetLatitude: CLLocationDegrees = location?.latitude
-//    let targetLongitude: CLLocationDegrees = 47.9071659
-//    let targetRadius: CLLocationDistance = 40
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupNavigationBar()
@@ -34,6 +27,7 @@ class HomeTableViewController: UITableViewController, CustomTableViewCellDelegat
         super.viewWillAppear(animated)
         
         if let savedToken = UserDefaults.standard.string(forKey: "AuthToken") {
+            token = savedToken
             fetchUserDetails(token: savedToken)
             fetchRewards(token: savedToken)
             fetchSecretExperiences(token: savedToken)
@@ -85,21 +79,16 @@ class HomeTableViewController: UITableViewController, CustomTableViewCellDelegat
     func getCurrentLocation() {
         locationManager.delegate = self
         
-        // Request authorization
         locationManager.requestAlwaysAuthorization()
         locationManager.requestWhenInUseAuthorization()
-        print("Location services are not enabled 1")
         
-        // TODO don't call on main thread
         if CLLocationManager.locationServicesEnabled() {
-            print("Location services are not enabled 2")
             locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
             locationManager.startUpdatingLocation()
         } else {
-            print("Location services are not enabled 3")
+            print("Location services are not enabled")
         }
     }
-
 
     private func fetchUserDetails(token: String) {
         NetworkManager.shared.fetchUserDetails(token: token) { [weak self] result in
@@ -253,50 +242,20 @@ class HomeTableViewController: UITableViewController, CustomTableViewCellDelegat
     // MARK: CustomTableViewCellDelegate and TableViewCellDelegate Methods
     
     func collectionViewCellTapped(at indexPath: IndexPath) {
-        
-        
-        //Location Code
-        //LOGS:
-        /// User location: 29.3581396, 47.9070288
-        /// User location updated: 29.3581396, 47.9070288
-        ///Distance to target: 28.07471041270769 meters
-        ///You are in the target area.
-
         let storeLocation = streaks[0].businesses[indexPath.item].locations[2]
             
-            if let userLocation = userLocation {
-                checkProximity(to: userLocation, storeLocation: storeLocation)
-            } else {
-                print("User location is not available yet")
-            }
-        
-        
-        
-        //YOUR CODE
-        print("collectionViewCellTapped \(indexPath)")
-        
-        print("rewards.count \(rewards.count)")
-        
-        print("streaks[indexPath.row] \(streaks.count)")
-        
-        guard indexPath.item < rewards.count else {
-            print("Index out of range: \(indexPath.item)")
-            return
+        if let userLocation = userLocation {
+            checkProximity(to: userLocation, storeLocation: storeLocation, streakId: streaks[0].id)
+        } else {
+            print("User location is not available yet")
         }
-        
+
         let vc = StartQuestionViewController()
         let selectedStreak = streaks[0]
         
-        // Pass the location to the next view controller
-//        if let location = userLocation {
-            print("userLocation: \(userLocation)")
-            vc.userLocation = userLocation
-//        }
-       
-        
+        print("userLocation: \(userLocation)")
+        vc.userLocation = userLocation
         vc.business = selectedStreak.businesses[indexPath.item]
-
-        
         vc.modalPresentationStyle = .pageSheet
 
         if let presentationController = vc.presentationController as? UISheetPresentationController {
@@ -313,8 +272,6 @@ class HomeTableViewController: UITableViewController, CustomTableViewCellDelegat
         let secret = secretExperiences[indexPath.row]
         vc.titleLabel.text = secret.title
         vc.descriptionLabel.text = secret.description
-        // Assuming vc.image is an imageView
-        //vc.image.image = UIImage(named: secret.imageName) // Adjust accordingly
 
         if let presentationController = vc.presentationController as? UISheetPresentationController {
             presentationController.detents = [.medium(), .large()]
@@ -324,7 +281,6 @@ class HomeTableViewController: UITableViewController, CustomTableViewCellDelegat
         self.present(vc, animated: true)
     }
 }
-
 
 extension HomeTableViewController {
     func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {
@@ -337,70 +293,57 @@ extension HomeTableViewController {
                 print("Location services are not enabled")
             }
         case .notDetermined, .restricted, .denied:
-            // Handle the case where the user has not granted location access
             print("Location access denied or restricted")
-            break
         @unknown default:
             break
         }
     }
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-           guard let userLocation = locations.last else {
-               print("No user location available")
-               return
-           }
+        guard let userLocation = locations.last else {
+            print("No user location available")
+            return
+        }
 
-           self.userLocation = userLocation
-           
-           print("User location: \(userLocation.coordinate.latitude), \(userLocation.coordinate.longitude)")
-       }
+        self.userLocation = userLocation
+        print("User location: \(userLocation.coordinate.latitude), \(userLocation.coordinate.longitude)")
+        
+        if let streak = streaks.first,
+           let business = streak.businesses.first,
+           let storeLocation = business.locations.first {
+            checkProximity(to: userLocation, storeLocation: storeLocation, streakId: streak.id)
+        }
+    }
     
+    func checkProximity(to userLocation: CLLocation, storeLocation: Location, streakId: Int) {
+        let storeCLLocation = CLLocation(latitude: storeLocation.latitude, longitude: storeLocation.longitude)
+        let distance = userLocation.distance(from: storeCLLocation)
+        
+        if distance <= storeLocation.radius {
+            print("User is at the place: \(storeLocation.name)")
+            startStreakIfNeeded(streakId: streakId)
+        } else {
+            print("User is not at the place")
+        }
+        
+        print("Distance to target: \(distance) meters")
+    }
     
-    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
-           print("Failed to get user location: \(error.localizedDescription)")
-       }
-       
-       func checkProximity(to userLocation: CLLocation, storeLocation: Location) {
-           let storeCLLocation = CLLocation(latitude: storeLocation.latitude, longitude: storeLocation.longitude)
-           let distance = userLocation.distance(from: storeCLLocation)
-           
-           if distance <= storeLocation.radius {
-               print("User is at the place: \(storeLocation.name)")
-           } else {
-               print("User is not at the place")
-           }
-           
-           print("Distance to target: \(distance) meters")
-       }
-   
-    
-//    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-//        guard let a = locations.last else {
-//            print("No user location available")
-//            return
-//        }
-//        
-//        if let location = locations.last {
-//            print("User location: \(location.coordinate.latitude), \(location.coordinate.longitude)")
-//            print("User location updated: \(location.coordinate.latitude), \(location.coordinate.longitude)")
-//            checkProximity(to: location)
-//            userLocation = location
-//        }
-//        
-//    }
-    
-//    func checkProximity(to userLocation: CLLocation) {
-//        let targetLocation = CLLocation(latitude: targetLatitude, longitude: targetLongitude)
-//        let distance = userLocation.distance(from: targetLocation)
-//        
-//        print("Distance to target: \(distance) meters")
-//        
-//        if distance <= targetRadius {
-//            // TODO + Streak :) :) :) 
-//            print("You are in the target area.")
-//        } else {
-//            print("You are not in the target area.")
-//        }
-//    }
+    func startStreakIfNeeded(streakId: Int) {
+        guard let token = token else {
+            print("No token available")
+            return
+        }
+        
+        NetworkManager.shared.startStreak(streakId: streakId, token: token) { [weak self] result in
+            switch result {
+            case .success(let message):
+                print("Streak started successfully: \(message)")
+                self?.presentAlertWithTitle(title: "Success", message: "Streak started: \(message)")
+            case .failure(let error):
+                print("Failed to start streak: \(error)")
+                self?.presentAlertWithTitle(title: "Error", message: "Failed to start streak.")
+            }
+        }
+    }
 }

@@ -24,7 +24,7 @@ class NetworkManager {
             }
         }
     }
-
+    
     
     func login(user: UserLogin, completion: @escaping (Result<TokenResponse, Error>) -> Void) {
         let url = baseUrl + "Auth/login"
@@ -74,7 +74,7 @@ class NetworkManager {
             }
         }
     }
-        
+    
     func fetchUserDetails(token: String, completion: @escaping (Result<UserAccount, Error>) -> Void) {
         let headers: HTTPHeaders = [.authorization(bearerToken: token)]
         AF.request(baseUrl + "Auth/profile", headers: headers).responseDecodable(of: UserAccount.self) { response in
@@ -90,41 +90,41 @@ class NetworkManager {
         }
     }
     
+    
+    
+    func getAllRewards(token: String, completion: @escaping (Result<[Reward], Error>) -> Void) {
+        let headers: HTTPHeaders = [.authorization(bearerToken: token)]
         
-        
-        func getAllRewards(token: String, completion: @escaping (Result<[Reward], Error>) -> Void) {
-            let headers: HTTPHeaders = [.authorization(bearerToken: token)]
-            
-            let url = baseUrl + "Rewards/getAllRewards"
-            AF.request(url, method: .get, headers: headers).responseDecodable(of: [Reward].self) { response in
-                switch response.result {
-                case .success(let rewards):
-                    print("123kdd \(response)")
-                    completion(.success(rewards))
-                case .failure(let error):
-                    print("123kdd \(response)")
-                    completion(.failure(error))
-                }
+        let url = baseUrl + "Rewards/getAllRewards"
+        AF.request(url, method: .get, headers: headers).responseDecodable(of: [Reward].self) { response in
+            switch response.result {
+            case .success(let rewards):
+                print("123kdd \(response)")
+                completion(.success(rewards))
+            case .failure(let error):
+                print("123kdd \(response)")
+                completion(.failure(error))
             }
         }
-        
-        
-        
-        func getAllSecretExperiences(token: String, completion: @escaping (Result<[SecretExperience], Error>) -> Void) {
-            let headers: HTTPHeaders = [.authorization(bearerToken: token)]
-            let url = baseUrl + "SecretExperience"
-            AF.request(url, method: .get,headers: headers).responseDecodable(of: [SecretExperience].self) { response in
-                switch response.result {
-                case .success(let secretExperiences):
-                    print("success in : getAllSecretExperiences")
-                    completion(.success(secretExperiences))
-                case .failure(let error):
-                    print("error in getAllSecretExperiences:")
-                    completion(.failure(error))
-                }
+    }
+    
+    
+    
+    func getAllSecretExperiences(token: String, completion: @escaping (Result<[SecretExperience], Error>) -> Void) {
+        let headers: HTTPHeaders = [.authorization(bearerToken: token)]
+        let url = baseUrl + "SecretExperience"
+        AF.request(url, method: .get,headers: headers).responseDecodable(of: [SecretExperience].self) { response in
+            switch response.result {
+            case .success(let secretExperiences):
+                print("success in : getAllSecretExperiences")
+                completion(.success(secretExperiences))
+            case .failure(let error):
+                print("error in getAllSecretExperiences:")
+                completion(.failure(error))
             }
         }
-        
+    }
+    
     func getUserStreaks(token: String, completion: @escaping (Result<UserStreak, Error>) -> Void) {
         let headers: HTTPHeaders = [.authorization(bearerToken: token)]
         let url = baseUrl + "Streak/getUserStreaks"
@@ -143,54 +143,76 @@ class NetworkManager {
             }
         }
     }
-            
-            
-            
+    
+    
+    
     func getStreaks(token: String, completion: @escaping (Result<[Streak], Error>) -> Void) {
-                let headers: HTTPHeaders = [.authorization(bearerToken: token)]
-                let url = baseUrl + "Streak/getallstreaks"
-                
-                AF.request(url, method: .get, headers: headers).responseDecodable(of: [Streak].self) { response in
-                    switch response.result {
-                    case .success(let streaks):
-                        completion(.success(streaks))
-                    case .failure(let error):
-                        print("Error: \(error.localizedDescription)")
-                        if let data = response.data, let jsonString = String(data: data, encoding: .utf8) {
-                            //ISSUE HERE!x
-                            print("error in getStreaks   :: \(jsonString)")
-                            
-                        }
-                        completion(.failure(error))
-                    }
-                }
-                
-            }
-                
-//                func editAccount(token: String, profile: EditAccount, image: UIImage?, completion: @escaping (Result<UserAccount, Error>) -> Void) {
-//                    let headers: HTTPHeaders = [.authorization(bearerToken: token)]
-//                    let url = baseUrl + "auth/profile"
-//                    
-//                    AF.upload(multipartFormData: { formData in
-//                        formData.append(Data(profile.name.utf8), withName: "name")
-//                        formData.append(Data(profile.email.utf8), withName: "email")
-//                        formData.append(Data(profile.genderName.utf8), withName: "genderName")
-//                        if let image = image, let imageData = image.jpegData(compressionQuality: 0.8) {
-//                            formData.append(imageData, withName: "image", fileName: "profile.jpg", mimeType: "image/jpeg")
-//                        }
-//                    }, to: url, headers: headers).responseDecodable(of: UserAccount.self) { response in
-//                        switch response.result {
-//                        case .success(let updatedProfile):
-//                            completion(.success(updatedProfile))
-//                        case .failure(let error):
-//                            completion(.failure(error))
-//                        }
-//                    }
-//                }
-                
-                
-            }
-            
+        let headers: HTTPHeaders = [.authorization(bearerToken: token)]
+        let url = baseUrl + "Streak/getallstreaks"
         
+        AF.request(url, method: .get, headers: headers).responseDecodable(of: [Streak].self) { response in
+            switch response.result {
+            case .success(let streaks):
+                completion(.success(streaks))
+            case .failure(let error):
+                print("Error: \(error.localizedDescription)")
+                if let data = response.data, let jsonString = String(data: data, encoding: .utf8) {
+                    //ISSUE HERE!x
+                    print("error in getStreaks   :: \(jsonString)")
+                    
+                }
+                completion(.failure(error))
+            }
+        }
+    }
+    func startStreak(streakId: Int, token: String, completion: @escaping (Result<String, Error>) -> Void) {
+        let url = baseUrl + "Streak/startStreak/\(streakId)"
+        let headers: HTTPHeaders = [
+            "Authorization": "Bearer \(token)"
+        ]
+        
+        AF.request(url, method: .post, headers: headers).responseJSON { response in
+            switch response.result {
+            case .success(let json):
+                if let dictionary = json as? [String: Any],
+                   let message = dictionary["Message"] as? String {
+                    completion(.success(message))
+                } else {
+                    completion(.failure(AFError.responseValidationFailed(reason: .dataFileNil)))
+                }
+            case .failure(let afError):
+                if let data = response.data, let str = String(data: data, encoding: .utf8) {
+                    print("Raw error response: \(str)")
+                }
+                completion(.failure(afError))
+            }
+        }
+    }
+
+        
+        //                func editAccount(token: String, profile: EditAccount, image: UIImage?, completion: @escaping (Result<UserAccount, Error>) -> Void) {
+        //                    let headers: HTTPHeaders = [.authorization(bearerToken: token)]
+        //                    let url = baseUrl + "auth/profile"
+        //                    
+        //                    AF.upload(multipartFormData: { formData in
+        //                        formData.append(Data(profile.name.utf8), withName: "name")
+        //                        formData.append(Data(profile.email.utf8), withName: "email")
+        //                        formData.append(Data(profile.genderName.utf8), withName: "genderName")
+        //                        if let image = image, let imageData = image.jpegData(compressionQuality: 0.8) {
+        //                            formData.append(imageData, withName: "image", fileName: "profile.jpg", mimeType: "image/jpeg")
+        //                        }
+        //                    }, to: url, headers: headers).responseDecodable(of: UserAccount.self) { response in
+        //                        switch response.result {
+        //                        case .success(let updatedProfile):
+        //                            completion(.success(updatedProfile))
+        //                        case .failure(let error):
+        //                            completion(.failure(error))
+        //                        }
+        //                    }
+        //                }
+        
+        
+    }
+    
     
 
