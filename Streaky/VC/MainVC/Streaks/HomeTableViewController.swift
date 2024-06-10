@@ -239,7 +239,6 @@ class HomeTableViewController: UITableViewController, CustomTableViewCellDelegat
     }
     
     // MARK: CustomTableViewCellDelegate and TableViewCellDelegate Methods
-    
     func collectionViewCellTapped(at indexPath: IndexPath) {
         guard let userLocation = userLocation else {
             print("User location is not available yet")

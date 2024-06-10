@@ -1,9 +1,13 @@
 import UIKit
 import SnapKit
 import CoreLocation
+import MapKit
 
 class TodayPointCollectionViewCell: UICollectionViewCell {
 
+    var location: Location?
+    var business: Business?
+    
     private let pointsLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 14, weight: .medium)
@@ -121,18 +125,36 @@ class TodayPointCollectionViewCell: UICollectionViewCell {
     }
     
     @objc private func openGoogleMaps() {
-        // Open Google Maps with the target location coordinates
-        let latitude = 48.1538771 // Replace with your target location's latitude
-        let longitude = 29.2966025 // Replace with your target location's longitude
-        if let url = URL(string: "https://www.google.com/maps/dir/Kuwait+International+Airport,+Ghazali+Street/The+Avenues+Mall,+Sheikh+Zayed+Bin+Sultan+Al+Nahyan+Road/@29.2963536,48.1542202,12z/data=!4m8!4m7!1m2!1m1!1s0x3fcf991b540ba873:0x8fde75dc30889f8a!1m2!1m1!1s0x3fcf9a893321a965:0x4db8af8c5528aa7f!3e0") {
-            if UIApplication.shared.canOpenURL(url) {
-                UIApplication.shared.open(url, options: [:], completionHandler: nil)
-            } else {
-                // If Google Maps is not installed, open in Safari
-                let safariUrl = URL(string: "https://www.google.com/maps?q=\(latitude),\(longitude)")!
-                UIApplication.shared.open(safariUrl, options: [:], completionHandler: nil)
-            }
+        if(business == nil || location == nil) {
+            return
         }
+        
+        let latitude: CLLocationDegrees = location!.latitude
+        let longitude: CLLocationDegrees = location!.longitude
+        let regionDistance:CLLocationDistance = 10000
+        let coordinates = CLLocationCoordinate2DMake(latitude, longitude)
+        let regionSpan = MKCoordinateRegion(center: coordinates, latitudinalMeters: regionDistance, longitudinalMeters: regionDistance)
+        let options = [
+            MKLaunchOptionsMapCenterKey: NSValue(mkCoordinate: regionSpan.center),
+            MKLaunchOptionsMapSpanKey: NSValue(mkCoordinateSpan: regionSpan.span)
+        ]
+        let placemark = MKPlacemark(coordinate: coordinates, addressDictionary: nil)
+        let mapItem = MKMapItem(placemark: placemark)
+        mapItem.name = business!.name
+        mapItem.openInMaps(launchOptions: options)
+        
+        // Open Google Maps with the target location coordinates
+//        let latitude = 48.1538771 // Replace with your target location's latitude
+//        let longitude = 29.2966025 // Replace with your target location's longitude
+//        if let url = URL(string: "https://www.google.com/maps/@29.2963536,48.1542202") {
+//            if UIApplication.shared.canOpenURL(url) {
+//                UIApplication.shared.open(url, options: [:], completionHandler: nil)
+//            } else {
+//                // If Google Maps is not installed, open in Safari
+//                let safariUrl = URL(string: "https://www.google.com/maps?q=\(latitude),\(longitude)")!
+//                UIApplication.shared.open(safariUrl, options: [:], completionHandler: nil)
+//            }
+//        }
     }
     
     // MARK: Go Button Functionality
@@ -142,7 +164,9 @@ class TodayPointCollectionViewCell: UICollectionViewCell {
     }
     
     func configure(with business: Business, isWithinLocation: Bool) {
+        self.business = business
         brandLabel.text = business.name
+        self.location = business.locations.first
         
         // Enable the button if the user is within the radius, disable otherwise
         goButton.isEnabled = isWithinLocation
