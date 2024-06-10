@@ -3,10 +3,6 @@ import SnapKit
 import CoreLocation
 
 class TodayPointCollectionViewCell: UICollectionViewCell {
-    
-    
-    var business : [Business] = []
-    var location : Location?
 
     private let pointsLabel: UILabel = {
         let label = UILabel()
@@ -145,28 +141,13 @@ class TodayPointCollectionViewCell: UICollectionViewCell {
         locationIcon.addGestureRecognizer(tapGesture)
     }
     
-    func configure(with business: Business) {
+    func configure(with business: Business, isWithinLocation: Bool) {
         brandLabel.text = business.name
         
-        let userLatitude: CLLocationDegrees = 48.1538771
-        let userLongitude: CLLocationDegrees = 29.2966025
-        let userLocation = CLLocation(latitude: userLatitude, longitude: userLongitude)
-        
-        guard let businessLocation = business.locations.first else { return }
-        let targetLocation = CLLocation(latitude: businessLocation.latitude, longitude: businessLocation.longitude)
-        
-        // Calculate the distance between the user's location and the target location
-        let distance = userLocation.distance(from: targetLocation)
-        
-        // Set a radius (in meters) around the target location
-        let radius: CLLocationDistance = 20
-        
-        // Check if the distance is within the radius
-        let isWithinRadius = distance <= radius
-        
         // Enable the button if the user is within the radius, disable otherwise
-        goButton.isEnabled = isWithinRadius
-        goButton.backgroundColor = isWithinRadius ? #colorLiteral(red: 0.9829108119, green: 0.5975590348, blue: 0.4170847535, alpha: 1) : #colorLiteral(red: 0.9411764741, green: 0.4980392158, blue: 0.3529411852, alpha: 1)
+        goButton.isEnabled = isWithinLocation
+        goButton.backgroundColor = isWithinLocation ? #colorLiteral(red: 0.9411764741, green: 0.4980392158, blue: 0.3529411852, alpha: 1) : #colorLiteral(red: 0.9829108119, green: 0.5975590348, blue: 0.4170847535, alpha: 0.6094970703)
+        
     }
     
 }

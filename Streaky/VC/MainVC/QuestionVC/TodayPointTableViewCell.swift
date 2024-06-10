@@ -13,6 +13,8 @@ class TodayPointTableViewCell: UITableViewCell, UICollectionViewDelegate, UIColl
     static let identifier = "TodayPointTableViewCell"
     weak var delegate: CustomTableViewCellDelegate?
     
+    var userLocation: CLLocation?
+
     private let collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
@@ -22,7 +24,7 @@ class TodayPointTableViewCell: UITableViewCell, UICollectionViewDelegate, UIColl
     }()
     
     private let locationManager = CLLocationManager()
-    private let targetLocation = CLLocation(latitude: 50, longitude: -50) // Example coordinates
+    
     private var isNearLocation = false
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
@@ -30,8 +32,7 @@ class TodayPointTableViewCell: UITableViewCell, UICollectionViewDelegate, UIColl
         
         setupUI()
         setupConstraints()
-        setupLocationManager()
-        
+        getCurrentLocation()
         collectionView.backgroundColor = .white
         collectionView.delegate = self
         collectionView.dataSource = self
@@ -53,6 +54,19 @@ class TodayPointTableViewCell: UITableViewCell, UICollectionViewDelegate, UIColl
         collectionView.reloadData()
     }
     
+    func getCurrentLocation() {
+        locationManager.delegate = self
+        locationManager.requestAlwaysAuthorization()
+        locationManager.requestWhenInUseAuthorization()
+        
+        if CLLocationManager.locationServicesEnabled() {
+            locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
+            locationManager.startUpdatingLocation()
+        } else {
+            print("Location services are not enabled")
+        }
+    }
+    
     private func setupConstraints() {
         collectionView.snp.makeConstraints { make in
             make.edges.equalTo(contentView)
@@ -60,17 +74,11 @@ class TodayPointTableViewCell: UITableViewCell, UICollectionViewDelegate, UIColl
         }
     }
     
-    private func setupLocationManager() {
-        locationManager.delegate = self
-        locationManager.requestWhenInUseAuthorization()
-        locationManager.startUpdatingLocation()
-    }
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        guard let userLocation = locations.last else { return }
+        guard let location = locations.last else { return }
         
-        let distance = userLocation.distance(from: targetLocation)
-        isNearLocation = distance <= 100
+        self.userLocation = location
         
         collectionView.reloadData()
     }
@@ -80,10 +88,34 @@ class TodayPointTableViewCell: UITableViewCell, UICollectionViewDelegate, UIColl
 
     }
     
+    func checkProximity(userLocation: CLLocation?, storeLocation: Location?) -> Bool {
+        if(userLocation == nil || storeLocation == nil) {
+            return false
+        }
+        
+        let storeCLLocation = CLLocation(latitude: storeLocation!.latitude, longitude: storeLocation!.longitude)
+        let distance = userLocation!.distance(from: storeCLLocation)
+        
+        let isInProximity = distance <= storeLocation!.radius
+        
+        if isInProximity {
+            print(storeLocation!.latitude)
+            print("User is at the place: \(storeLocation!.name)")
+
+        } else {
+            print("User is not at the place")
+            
+        }
+        
+        print("Distance to target: \(distance) meters")
+        return isInProximity
+    }
+    
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "TodayPointCollectionViewCell", for: indexPath) as! TodayPointCollectionViewCell
         let business = businesses[indexPath.item]
-        cell.configure(with: business)
+        let isWithinLocation = checkProximity(userLocation: userLocation, storeLocation: business.locations.first)
+        cell.configure(with: business, isWithinLocation: isWithinLocation)
         return cell
     }
     
@@ -97,6 +129,7 @@ class TodayPointTableViewCell: UITableViewCell, UICollectionViewDelegate, UIColl
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        print(indexPath.item)
         delegate?.collectionViewCellTapped(at: indexPath)
     }
 }

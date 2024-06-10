@@ -246,8 +246,12 @@ class HomeTableViewController: UITableViewController, CustomTableViewCellDelegat
             presentAlertWithTitle(title: "Error", message: "User location is not available yet")
             return
         }
-
-        let storeLocation = streaks[0].businesses[indexPath.item].locations[2]
+        
+        print(indexPath.item)
+        
+        print(streaks[0].businesses.count)
+        //MARK: change business
+        let storeLocation = streaks[0].businesses[indexPath.item].locations[0]
         if checkProximity(to: userLocation, storeLocation: storeLocation) {
             let vc = StartQuestionViewController()
             let selectedStreak = streaks[0]
@@ -309,6 +313,7 @@ extension HomeTableViewController {
 
         self.userLocation = userLocation
         print("User location: \(userLocation.coordinate.latitude), \(userLocation.coordinate.longitude)")
+        
     }
     
     func checkProximity(to userLocation: CLLocation, storeLocation: Location) -> Bool {
